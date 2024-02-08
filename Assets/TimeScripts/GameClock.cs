@@ -8,10 +8,11 @@ public class GameClock : MonoBehaviour
 
     [SerializeField, Range(24f, 480f)]
     [Tooltip("In-game hours per real hour")]
-    float gameHourScale;
+    float gameHourScale  = 240f;
     float realTime = 0f;
+    
 
-	private void Start()
+    private void Start()
 	{
 		
 	}
@@ -19,6 +20,7 @@ public class GameClock : MonoBehaviour
     {
         realTime += Time.deltaTime;
         gameTime += Time.deltaTime *gameHourScale/3600;
+
         float gameHour = gameTime%3600;
         if (Input.GetKeyDown(KeyCode.Space)) { Debug.Log(((realTime/60f)%60f) + " minutes playing, " + gameHour + "in game hour" ); }
     }
