@@ -24,6 +24,7 @@ public class PlayerStates : MonoBehaviour
 	Movement move;
 	public bool walking;
 	public bool moving;
+	public InputAction openMenuAction;
 	public InputAction movementAction;
 	public InputAction walkAction;
 	public InputAction interactAction;
@@ -40,10 +41,11 @@ public class PlayerStates : MonoBehaviour
 	// Start is called before the first frame update
 	void Awake()
 	{
-		transform.rotation = Quaternion.LookRotation( transform.forward , CustomGravity.GetUpAxis(transform.position));
+		transform.rotation = Quaternion.LookRotation( transform.forward, CustomGravity.GetUpAxis(transform.position));
         sphere = player.GetComponent<Movement>();
 		move = this.GetComponent<Movement>();
 		interactAction = GetComponent<PlayerInput>().currentActionMap.FindAction("Interact");
+		openMenuAction = GetComponent<PlayerInput>().currentActionMap.FindAction("OpenMenu");
 		attackAction = GetComponent<PlayerInput>().currentActionMap.FindAction("Attack");
 		walkAction = GetComponent<PlayerInput>().currentActionMap.FindAction("Walk");
 		movementAction = GetComponent<PlayerInput>().currentActionMap.FindAction("Move");
