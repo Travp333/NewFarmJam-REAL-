@@ -143,7 +143,7 @@ public class UiPlugger : MonoBehaviour
 		 ButtonDeselected(row, column);
 		 // Code to execute after the delay
 	}
-	//this is to give feedback for when a button has been selected, ie it has been stored in a temp slot preparing for a swap2
+	//this is to give feedback for when a button has been selected, ie it has been stored in a temp slot preparing for a swap
 	
 	public void ButtonSelected(int row, int column) {
 		//Debug.Log("Made it into button selected");

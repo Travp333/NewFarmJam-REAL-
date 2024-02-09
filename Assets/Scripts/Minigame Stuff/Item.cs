@@ -9,11 +9,13 @@ public class Item : ScriptableObject
     [SerializeField]
     public string Objname;
     [SerializeField]
+    public float weight;
+    [SerializeField]
     public int stackSize;
     [SerializeField]
-	public Sprite img;
-	[SerializeField]
-	public bool requiresIngredient;
-	[SerializeField]
-	public string ingredientName;
+    public Sprite img;
+    [SerializeField]
+	public GameObject prefab;
+    
+
 }

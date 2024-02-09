@@ -157,7 +157,7 @@ public class Interact : MonoBehaviour
 	            	Debug.Log(hit.gameObject.name);
 		            if(hit.transform.gameObject.GetComponent<Inven>() != null){
 			            if(hit.transform.gameObject.tag != "Player"){
-			            	Debug.Log("HIT NON PLAYER INVENTORY");
+			            	//Debug.Log("HIT NON PLAYER INVENTORY");
 				            Inven inv = hit.transform.gameObject.GetComponent<Inven>();
 				            //enable the relevant UI element
 				            inv.UIPlugger.gameObject.transform.GetChild(0).gameObject.SetActive(true);

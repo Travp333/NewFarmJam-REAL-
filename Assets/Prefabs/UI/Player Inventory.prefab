@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 4353276008651055472}
   - component: {fileID: 4353276008651055479}
   - component: {fileID: 4353276008651055478}
-  - component: {fileID: 4343544446032082936}
-  m_Layer: 3
+  - component: {fileID: 4353276008651055474}
+  - component: {fileID: 8479812746902769279}
+  m_Layer: 6
   m_Name: Player Inventory
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -58,8 +59,8 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 1
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -104,7 +105,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4343544446032082936
+--- !u!114 &4353276008651055474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,6 +126,18 @@ MonoBehaviour:
   slotsPos: []
   hPadding: 100
   vPadding: 100
+--- !u!114 &8479812746902769279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4353276008651055477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c2cb689a9c590408f0d320efd3071e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4353276009733245878
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +149,7 @@ GameObject:
   - component: {fileID: 4353276009733245879}
   - component: {fileID: 4353276009733245873}
   - component: {fileID: 4353276009733245872}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,8 +222,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4353276010095314652}
-  - component: {fileID: 960118944708209109}
-  m_Layer: 3
+  - component: {fileID: 6520062110087169541}
+  m_Layer: 6
   m_Name: Inven UI Backdrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +250,7 @@ RectTransform:
   m_AnchoredPosition: {x: 1204, y: -134.0625}
   m_SizeDelta: {x: 416.39, y: 346.39}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &960118944708209109
+--- !u!114 &6520062110087169541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -260,7 +273,7 @@ GameObject:
   - component: {fileID: 8880376442547687400}
   - component: {fileID: 8880376442547687402}
   - component: {fileID: 8880376442547687403}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Text BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8880376442848152203}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: placeHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +385,7 @@ GameObject:
   - component: {fileID: 8880376443217429010}
   - component: {fileID: 8880376443217429007}
   - component: {fileID: 8880376443217429004}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +443,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0ace07e77a946b54f9a9677d9188437f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3ec8a875a27c20540b5ae876d0239d5c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -451,7 +464,7 @@ GameObject:
   - component: {fileID: 8880376443802130700}
   - component: {fileID: 8880376443802130702}
   - component: {fileID: 8880376443802130703}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -585,7 +598,7 @@ GameObject:
   - component: {fileID: 8880376444067833620}
   - component: {fileID: 8880376444067833622}
   - component: {fileID: 8880376444067833623}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Button BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,7 +673,7 @@ GameObject:
   - component: {fileID: 8880376444226333567}
   - component: {fileID: 8880376444226333561}
   - component: {fileID: 8880376444226333566}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -794,7 +807,7 @@ GameObject:
   - component: {fileID: 8880376444536841863}
   - component: {fileID: 8880376444536841857}
   - component: {fileID: 8880376444536841862}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: CountBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}

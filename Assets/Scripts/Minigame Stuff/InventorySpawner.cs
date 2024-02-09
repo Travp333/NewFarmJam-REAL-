@@ -22,11 +22,7 @@ public class InventorySpawner : MonoBehaviour
 				i.UIPlugger = g.gameObject;
 				g.GetComponent<UiPlugger>().inven = i;
 				g.name = i.gameObject.name + " Inventory";
-				if(Player != null){
-					Player.GetComponent<Interact>().HideAllInventories();
-				}
-				
-				
+				Player.GetComponent<Interact>().HideAllInventories();
 				
 			}
 		}

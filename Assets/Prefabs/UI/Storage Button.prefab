@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 5137595416102804874}
   - component: {fileID: 5137595416102804887}
   - component: {fileID: 5137595416102804884}
+  - component: {fileID: 5137595416102804886}
+  - component: {fileID: 475025264604649871}
   - component: {fileID: 2634109878440493169}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,6 +83,106 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5137595416102804886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5137595416102804875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72094ce07097bf84786ec27689a183bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftDown:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 475025264604649871}
+        m_TargetAssemblyTypeName: StorageFinder, Assembly-CSharp
+        m_MethodName: SendPickUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  leftClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 475025264604649871}
+        m_TargetAssemblyTypeName: StorageFinder, Assembly-CSharp
+        m_MethodName: TryShiftClickCheck
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  middleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 475025264604649871}
+        m_TargetAssemblyTypeName: StorageFinder, Assembly-CSharp
+        m_MethodName: SendDropAllItems
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  rightHold:
+    m_PersistentCalls:
+      m_Calls: []
+  leftRelease:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 475025264604649871}
+        m_TargetAssemblyTypeName: StorageFinder, Assembly-CSharp
+        m_MethodName: SendReleaseItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  leftReleaseInvalid:
+    m_PersistentCalls:
+      m_Calls: []
+  middleHold:
+    m_PersistentCalls:
+      m_Calls: []
+  requiredHoldTime: 0
+  fillImage: {fileID: 1227775717388719487}
+--- !u!114 &475025264604649871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5137595416102804875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae54cc3fb404ab541a519d97f9a508bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storage: {fileID: 0}
+  storageInven: {fileID: 0}
 --- !u!225 &2634109878440493169
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -104,7 +206,7 @@ GameObject:
   - component: {fileID: 5137595416538600723}
   - component: {fileID: 5137595416538600722}
   - component: {fileID: 895487161846732032}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Storage Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +273,7 @@ GameObject:
   - component: {fileID: 5137595416766713970}
   - component: {fileID: 5137595416766713971}
   - component: {fileID: 1477796224751918163}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Text BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +361,7 @@ GameObject:
   - component: {fileID: 5137595416927156505}
   - component: {fileID: 5137595416927156510}
   - component: {fileID: 2662766139165567419}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: CountBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +449,7 @@ GameObject:
   - component: {fileID: 5137595417371358433}
   - component: {fileID: 5137595417371358438}
   - component: {fileID: 2653721518064626906}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +596,7 @@ GameObject:
   - component: {fileID: 5137595417532020878}
   - component: {fileID: 5137595417532020879}
   - component: {fileID: 4518542078234247859}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Button BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +684,7 @@ GameObject:
   - component: {fileID: 5137595417794561686}
   - component: {fileID: 5137595417794561687}
   - component: {fileID: 3441827842426541745}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -729,7 +831,7 @@ GameObject:
   - component: {fileID: 495902915213078378}
   - component: {fileID: 1227775717388719487}
   - component: {fileID: 7047913670240087703}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
