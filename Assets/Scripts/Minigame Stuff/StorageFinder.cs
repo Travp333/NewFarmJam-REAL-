@@ -47,12 +47,6 @@ public class StorageFinder : MonoBehaviour
 		//Debug.Log("Made it to release Item in storage Finder");
 		tH.DropItem(storage.GetComponent<Inven>(), this.gameObject.transform.parent.name);
 	}
-	public void tryRecycle(){
-		storageInven.RecycleOneItemFromStack(this.gameObject.transform.parent.name);
-	}
-	public void tryRecycleAll(){
-		storageInven.RecycleEntireStack(this.gameObject.transform.parent.name);
-	}
 	public void TryShiftClickCheck(){
 		//Debug.Log("Shift click check #1");
 		tH.ShiftClickCheck(storage.GetComponent<Inven>(), this.gameObject.transform.parent.name);

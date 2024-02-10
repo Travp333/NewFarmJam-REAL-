@@ -6,7 +6,11 @@ public class InventorySpawner : MonoBehaviour
 {
 	[SerializeField]
 	GameObject UIPrefab;
+	
 	GameObject Player;
+	[SerializeField]
+	public tempHolder temp;
+	
     // Start is called before the first frame update
     void Start()
 	{
@@ -20,11 +24,14 @@ public class InventorySpawner : MonoBehaviour
 				GameObject g = Instantiate(UIPrefab, this.transform);
 				//Debug.Log("Pluggin Ui Plugger");
 				i.UIPlugger = g.gameObject;
+				//this needs to run right before line 98 of Inven
 				g.GetComponent<UiPlugger>().inven = i;
+				i.jumpStart();
 				g.name = i.gameObject.name + " Inventory";
 				Player.GetComponent<Interact>().HideAllInventories();
 				
 			}
 		}
+		temp.LateStart();
     }
 }

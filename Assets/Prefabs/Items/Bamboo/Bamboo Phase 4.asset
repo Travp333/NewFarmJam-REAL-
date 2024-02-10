@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79a0295687fa01a4c9b3188f6da3b7d5, type: 3}
+  m_Name: Bamboo Phase 4
+  m_EditorClassIdentifier: 
+  Objname: Bamboo Phase 3
+  stackSize: 1
+  img: {fileID: 21300000, guid: 1810e063680304446b7750fc50fc80ec, type: 3}
+  worldModel:
+  - {fileID: 1246674325083502988, guid: 7db0304aeb908dd42bf3ee46545f07e2, type: 3}
+  - {fileID: 1246674325083502988, guid: 80c2f23817c53bb42990d7f9bcda9449, type: 3}
+  - {fileID: 1246674325083502988, guid: c6d6e011fd51946419f39852306352f0, type: 3}
+  - {fileID: 1246674325083502988, guid: 7f022dc8b0072b04ca9c23a02e22d6b9, type: 3}
+  requiredIngredient: {fileID: 0}
+  growsInto: {fileID: 0}
+  grabbable: 0

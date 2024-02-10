@@ -32,9 +32,9 @@ public class tempHolder : MonoBehaviour
 			Inven playerInven = GameObject.Find("3rd Person Character").GetComponent<Inven>();
 			playerInven.UIPlugger.GetComponent<UiPlugger>().SpawnButtonsPlayer();
 		}
-		Invoke("LateStart", .1f);
+		//Invoke("LateStart", .01f);
 	}
-	void LateStart(){
+	public void LateStart(){
 		foreach(UiPlugger i in GameObject.FindObjectsOfType<UiPlugger>()){
 			Debug.Log(i.name);
 			if(i.gameObject.tag != "Player"){

@@ -93,9 +93,9 @@ public class UiPlugger : MonoBehaviour
 		//rt.pivot = new Vector2(.5f, .5f);
 	}
 	public void ChangeItem(int row, int column, Sprite img, int count, string name){
-		//Debug.Log(slots.Count + this.gameObject.name);
+		Debug.Log(slots.Count + this.gameObject.name);
 		foreach(GameObject g in slots){
-			//Debug.Log("Made it to changeItem");
+			Debug.Log("Made it to changeItem");
 	        if(slots[i].name == row+","+column){
                 reff = slots[i].GetComponent<UIReferenceHolder>();
                 reff.button.GetComponent<UnityEngine.UI.Image>().sprite = img;
