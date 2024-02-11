@@ -1,6 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using Random=UnityEngine.Random;
+
 //This script allows inventory objects to be stored in a 2D array. This script should be able to be placed on both a player and a storage device. 
 //This scirpt handles all the storage and manipulation of this array on the backend, ie picking up or dropping an object.
 //Written by Conor and Travis
@@ -13,6 +17,7 @@ public class ItemStat {
     public int StackSize = 0;
     public GameObject prefab = null;
 	public Sprite image = null;
+	public GameObject[] worldModel;
 }
 public class Inven : MonoBehaviour
 {
@@ -67,6 +72,7 @@ public class Inven : MonoBehaviour
 		array[row, column].StackSize = 0;
 		array[row, column].prefab = null;
 		array[row, column].image = temp.emptyImage;
+		array[row, column].worldModel = null;
 		//updating UI to match new change
 		plug.ClearSlot(row, column, temp.emptyImage);
 	}
@@ -77,12 +83,13 @@ public class Inven : MonoBehaviour
 		array[row, column].Amount = array[row, column].Amount - 1;
 		//you just dropped the last item in that slot, reverting to default
 		if(array[row, column].Amount <= 0){
-			Debug.Log("Out of " + array[row, column].Name + " in slot (" + row + " , "+ column + " ) , slot now empty ");
+			//Debug.Log("Out of " + array[row, column].Name + " in slot (" + row + " , "+ column + " ) , slot now empty ");
 			array[row, column].Name = "";
 			array[row, column].Amount = 0;
 			array[row, column].StackSize = 0;
 			array[row, column].prefab = null;
 			array[row, column].image = temp.emptyImage;
+			array[row, column].worldModel = null;
 			//updating UI to match new change
 			plug.ClearSlot(row, column, temp.emptyImage);
 		}
@@ -103,7 +110,7 @@ public class Inven : MonoBehaviour
 			for (int i = 0; i < startingInvenCount[i2]; i++) {
 				SmartPickUp(g);	
 				if(isPickedUp){
-					Debug.Log("Successfull pickup!");
+					//Debug.Log("Successfull pickup!");
 					isPickedUp = false;
 				}
 				else{
@@ -129,14 +136,16 @@ public class Inven : MonoBehaviour
 				//is this slot empty?
 				if(array[i,i2].Name == ""){
 					//yes empty, filling slot
-					Debug.Log("Slot (" + i + " , "+ i2 + " ) is empty, putting " + item.Objname + " in slot");
+					//Debug.Log("Slot (" + i + " , "+ i2 + " ) is empty, putting " + item.Objname + " in slot");
 					isPickedUp = true;
 					//Debug.Log("ispickedup set to "+ isPickedUp);
 					array[i,i2].Name = item.Objname;
 					array[i,i2].Amount = array[i,i2].Amount + 1;
 					array[i,i2].StackSize = item.stackSize;
 					array[i, i2].image = item.img;
+					array[i, i2].worldModel = item.worldModel;
 					//updating UI to match new change
+					plug.SyncWorldModel(i, i2, array[i,i2].Name, array[i, i2].worldModel[Random.Range(0, item.worldModel.Length-1)]);
 					plug.ChangeItem(i, i2, item.img, array[i,i2].Amount, array[i,i2].Name);
 					i=0;
 					i2=0;
@@ -160,7 +169,7 @@ public class Inven : MonoBehaviour
 						return;
 					}
 					else if(array[i,i2].StackSize <= array[i,i2].Amount + 1){
-						Debug.Log("cant hold more than " + array[i,i2].Amount + " " + array[i,i2].Name + " in one stack, starting new stack... ");
+						//Debug.Log("cant hold more than " + array[i,i2].Amount + " " + array[i,i2].Name + " in one stack, starting new stack... ");
 					}
 					//otherwise theres something here but its not the same type or theres no room for it
 				}
@@ -168,7 +177,9 @@ public class Inven : MonoBehaviour
 		}
 	}
 	
+	
 	//Overload that allows picking up itemstat objects
+	/*
 	public void PickUp(ItemStat item){
 		//iterating through colomns
 		for (int i = 0; i < vSize; i++)
@@ -190,7 +201,7 @@ public class Inven : MonoBehaviour
 					array[i,i2].prefab = item.prefab;
 					array[i, i2].image = item.image;
 					//updating UI to match new change
-					plug.ChangeItem(i, i2, item.image, array[i,i2].Amount, array[i,i2].Name);
+					plug.ChangeItem(i, i2, item.image, array[i,i2].Amount, array[i,i2].Name, ItemStat);
 					i=0;
 					i2=0;
 					return;
@@ -220,10 +231,11 @@ public class Inven : MonoBehaviour
 			}
 		}
 	}
+	*/
 	
 	//this handles picking up new inventory items in a way that prioritizes existing stacks
 	public void SmartPickUp(Item item){
-		Debug.Log("Starting "+ this.gameObject.name + " with a " + item.name);
+		//Debug.Log("Starting "+ this.gameObject.name + " with a " + item.name);
 		//iterating through colomns
 		for (int i = 0; i < vSize; i++)
 		{
@@ -233,9 +245,9 @@ public class Inven : MonoBehaviour
 			{
 				if((array[i,i2].Name == item.Objname) && (loopCounter <= (hSize * vSize)) && (array[i,i2].StackSize !>= array[i,i2].Amount + 1)){
 					//found a stack of the existing item in inventory
-					Debug.Log("found a stack of the existing item in inventory");
+					//Debug.Log("found a stack of the existing item in inventory");
 					isPickedUp = true;
-					Debug.Log("ispickedup set to "+ isPickedUp);
+					//Debug.Log("ispickedup set to "+ isPickedUp);
 					array[i,i2].Amount = array[i,i2].Amount + 1;
 					plug.UpdateItem(i,i2,array[i,i2].Amount);
 					i=0;
@@ -245,11 +257,11 @@ public class Inven : MonoBehaviour
 				}
 				else{
 					//this slot doesnt have the same name or doesnt have space
-					Debug.Log("this slot doesnt have the same name or doesnt have space");
+					//Debug.Log("this slot doesnt have the same name or doesnt have space");
 					//Debug.Log(loopCounter);
 					loopCounter++;
 					if(loopCounter >= (hSize * vSize)){
-						Debug.Log("searched whole inventory, nothing shares name, calling normal PickUp()");
+						//Debug.Log("searched whole inventory, nothing shares name, calling normal PickUp()");
 						//searched whole inventory, nothing shares name, calling normal PickUp()
 						PickUp(item);
 						loopCounter = 0;
@@ -260,6 +272,7 @@ public class Inven : MonoBehaviour
 		}
 	}
 	//overload that allows picking up itemstat objects
+	/*
 	public void SmartPickUp(ItemStat item){
 		//Debug.Log("Starting "+ this.gameObject.name + " with a " + item.name);
 		//iterating through colomns
@@ -295,6 +308,7 @@ public class Inven : MonoBehaviour
 			}
 		}
 	}
+	*/
 
 
 	//This script actually Instantiates a new object with the same stats as the object stored in the inventory
@@ -327,6 +341,8 @@ public class Inven : MonoBehaviour
 	                array[row, column].StackSize = 0;
 	                array[row, column].prefab = null;
 		            array[row, column].image = temp.emptyImage;
+					array[row, column].worldModel = null;
+					
 	                //updating UI to match new change
 		            plug.ClearSlot(row, column, temp.emptyImage);
 	            }
@@ -363,6 +379,7 @@ public class Inven : MonoBehaviour
 				array[row, column].StackSize = 0;
 				array[row, column].prefab = null;
 				array[row, column].image = temp.emptyImage;
+				array[row, column].worldModel = null;
 				//updating UI to match new change
 				plug.ClearSlot(row, column, temp.emptyImage);
 			}

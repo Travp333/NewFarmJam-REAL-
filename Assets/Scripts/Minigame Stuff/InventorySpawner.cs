@@ -26,6 +26,7 @@ public class InventorySpawner : MonoBehaviour
 				i.UIPlugger = g.gameObject;
 				//this needs to run right before line 98 of Inven
 				g.GetComponent<UiPlugger>().inven = i;
+				g.GetComponent<UiPlugger>().sync = i.GetComponent<InvenSyncer>();
 				i.jumpStart();
 				g.name = i.gameObject.name + " Inventory";
 				Player.GetComponent<Interact>().HideAllInventories();

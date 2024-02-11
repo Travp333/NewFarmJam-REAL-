@@ -13,6 +13,7 @@ public class StorageFinder : MonoBehaviour
 	tempHolder tH;
 	void Start()
 	{
+		//Debug.Log("STORAGE FINDER HAS AWOKEN");
 		foreach (GameObject g in GameObject.FindGameObjectsWithTag("Player")){
 			if(g.GetComponent<tempHolder>() != null){
 				player = g;
@@ -44,11 +45,7 @@ public class StorageFinder : MonoBehaviour
 		tH.HoldItem(storage.GetComponent<Inven>(), this.gameObject.transform.parent.name);
 	}
 	public void SendReleaseItem(){
-		//Debug.Log("Made it to release Item in storage Finder");
+		Debug.Log("Made it to release Item in storage Finder, passing " + storage.GetComponent<Inven>().name);
 		tH.DropItem(storage.GetComponent<Inven>(), this.gameObject.transform.parent.name);
-	}
-	public void TryShiftClickCheck(){
-		//Debug.Log("Shift click check #1");
-		tH.ShiftClickCheck(storage.GetComponent<Inven>(), this.gameObject.transform.parent.name);
 	}
 }

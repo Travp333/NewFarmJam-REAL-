@@ -10,7 +10,7 @@ public class RotationPointer : MonoBehaviour
     GameObject player = default;
     Movement sphere; 
     [SerializeField]
-    Transform playerinputSpace = default;
+    public Transform playerinputSpace = default;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +19,7 @@ public class RotationPointer : MonoBehaviour
 
     // Update is called once per frame
 	void Update () {
-		Vector3 playerInput;
-		playerInput.x = Input.GetAxis("Horizontal");
-		playerInput.y = Input.GetAxis("Vertical");
-        transform.localPosition = sphere.ProjectDirectionOnPlane(playerinputSpace.TransformDirection(playerInput.x, 0f, playerInput.y) * maxSpeed, CustomGravity.GetUpAxis(transform.position) );
+        transform.localPosition = (sphere.ProjectDirectionOnPlane(playerinputSpace.TransformDirection(sphere.playerInput.x, 0f, sphere.playerInput.y) * maxSpeed, CustomGravity.GetUpAxis(transform.position))*10f );
         
 		//transform.localPosition = new Vector3(playerInput.x, 0.5f, playerInput.y);
 	}

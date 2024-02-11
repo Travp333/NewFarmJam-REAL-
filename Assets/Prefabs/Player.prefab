@@ -493,10 +493,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe7c2d89d61e2641ae0e571f7542a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptyModel: {fileID: 27165495037626258, guid: 39bbee5c39a9ef64aa44985a72bfd64f,
+    type: 3}
   tempRow: -1
   tempColumn: -1
   tempCount: -1
   tempName: 
+  tempModel: {fileID: 27165495037626258, guid: 39bbee5c39a9ef64aa44985a72bfd64f, type: 3}
   emptyImage: {fileID: 21300000, guid: 3ec8a875a27c20540b5ae876d0239d5c, type: 3}
   slotAmount: 0
 --- !u!1 &3486547431117684658
