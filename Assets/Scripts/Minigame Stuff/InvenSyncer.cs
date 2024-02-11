@@ -13,12 +13,19 @@ public class InvenSyncer : MonoBehaviour
 		//Debug.Log("Updating World Model!");
 		foreach (Transform t in cropPositions){
 			if (t.name ==  (row + ","+ column)){
-				Instantiate(worldModel, t.transform.position, Quaternion.identity);
+				Instantiate(worldModel, t.transform.position, Quaternion.identity, t);
 			}
 		}
 	}
-	public void ClearWorldModel(){
-		
+	public void ClearWorldModel(int row, int column){
+		foreach (Transform t in cropPositions){
+			if (t.name ==  (row + ","+ column)){
+				foreach(Transform child in t.transform)
+				{
+					Destroy(child.gameObject);
+				}
+			}
+		}
 	}
     void Start()
     {

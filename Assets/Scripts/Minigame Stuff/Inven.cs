@@ -106,15 +106,17 @@ public class Inven : MonoBehaviour
 		
 	}
 	public void lateStart(){
-		foreach( Item g in startingInvenPrefabs){
+		Debug.Log("Late Start");
+		foreach(Item g in startingInvenPrefabs){
+			Debug.Log(g);
 			for (int i = 0; i < startingInvenCount[i2]; i++) {
 				SmartPickUp(g);	
 				if(isPickedUp){
-					//Debug.Log("Successfull pickup!");
+					Debug.Log("Successfull pickup!");
 					isPickedUp = false;
 				}
 				else{
-					//Debug.Log("No room in inventory, dropping on floor");
+					Debug.Log("No room in inventory, dropping on floor");
 					//SpawnItem(g.GetComponent<pickUpableItem>().item.prefab);
 				}
 			}
@@ -125,6 +127,7 @@ public class Inven : MonoBehaviour
 
 	//This handles picking up a new valid Inventory Item 
 	public void PickUp(Item item){
+		Debug.Log("Made it to Pickup");
 		//iterating through colomns
 		for (int i = 0; i < vSize; i++)
 		{
@@ -145,7 +148,11 @@ public class Inven : MonoBehaviour
 					array[i, i2].image = item.img;
 					array[i, i2].worldModel = item.worldModel;
 					//updating UI to match new change
-					plug.SyncWorldModel(i, i2, array[i,i2].Name, array[i, i2].worldModel[Random.Range(0, item.worldModel.Length-1)]);
+
+					if(this.gameObject.tag != "Player"){
+						plug.SyncWorldModel(i, i2, array[i,i2].Name, array[i, i2].worldModel[Random.Range(0, item.worldModel.Length-1)]);
+					}
+					
 					plug.ChangeItem(i, i2, item.img, array[i,i2].Amount, array[i,i2].Name);
 					i=0;
 					i2=0;
@@ -178,63 +185,9 @@ public class Inven : MonoBehaviour
 	}
 	
 	
-	//Overload that allows picking up itemstat objects
-	/*
-	public void PickUp(ItemStat item){
-		//iterating through colomns
-		for (int i = 0; i < vSize; i++)
-		{
-			//Debug.Log("Column " + i);
-			//iterating through rows
-			for (int i2 = 0; i2 < hSize; i2++)
-			{
-				//Debug.Log("Row" + i2);
-				//is this slot empty?
-				if(array[i,i2].Name == ""){
-					//yes empty, filling slot
-					//Debug.Log("Slot (" + i + " , "+ i2 + " ) is empty, putting " + item.Objname + " in slot");
-					isPickedUp = true;
-					//Debug.Log("ispickedup set to "+ isPickedUp);
-					array[i,i2].Name = item.Name;
-					array[i,i2].Amount = array[i,i2].Amount + 1;
-					array[i,i2].StackSize = item.StackSize;
-					array[i,i2].prefab = item.prefab;
-					array[i, i2].image = item.image;
-					//updating UI to match new change
-					plug.ChangeItem(i, i2, item.image, array[i,i2].Amount, array[i,i2].Name, ItemStat);
-					i=0;
-					i2=0;
-					return;
-				}
-				//no theres something here
-				else{
-					//Debug.Log("Slot (" + i + " , " + i2 + " ) has " + array[i,i2].Amount + " " + array[i,i2].Name + " in it, checking if it matches the new " + item.Objname);
-					//basically is there room for it, is it the same object
-					if(array[i,i2].Name == item.Name && array[i,i2].StackSize !>= array[i,i2].Amount + 1){
-						//Debug.Log("Slot (" + i + " , "+ i2 + " ) has room, adding " + item.Objname + " to stack");
-						//same object, room in the stack, adding to stack
-						isPickedUp = true;
-						//Debug.Log("ispickedup set to "+ isPickedUp);
-						array[i,i2].Amount = array[i,i2].Amount + 1;
-						//Debug.Log("we now have " + array[i,i2].Amount + " "+ array[i,i2].Name + " in " + "Slot (" + i + " , "+ i2 + " ) ");
-						//updating UI to match new change
-						plug.UpdateItem(i, i2, array[i,i2].Amount);
-						i=0;
-						i2=0;
-						return;
-					}
-					else if(array[i,i2].StackSize <= array[i,i2].Amount + 1){
-						//Debug.Log("cant hold more than " + array[i,i2].Amount + " " + array[i,i2].Name + " in one stack, starting new stack... ");
-					}
-					//otherwise theres something here but its not the same type or theres no room for it
-				}
-			}
-		}
-	}
-	*/
-	
 	//this handles picking up new inventory items in a way that prioritizes existing stacks
 	public void SmartPickUp(Item item){
+		Debug.Log("Made it to Smart Pickup");
 		//Debug.Log("Starting "+ this.gameObject.name + " with a " + item.name);
 		//iterating through colomns
 		for (int i = 0; i < vSize; i++)
@@ -271,45 +224,6 @@ public class Inven : MonoBehaviour
 			}
 		}
 	}
-	//overload that allows picking up itemstat objects
-	/*
-	public void SmartPickUp(ItemStat item){
-		//Debug.Log("Starting "+ this.gameObject.name + " with a " + item.name);
-		//iterating through colomns
-		for (int i = 0; i < vSize; i++)
-		{
-			//Debug.Log("Column " + i);
-			//iterating through rows
-			for (int i2 = 0; i2 < hSize; i2++)
-			{
-				if((array[i,i2].Name == item.Name) && (loopCounter <= (hSize * vSize)) && (array[i,i2].StackSize !>= array[i,i2].Amount + 1)){
-					//found a stack of the existing item in inventory
-					isPickedUp = true;
-					//Debug.Log("ispickedup set to "+ isPickedUp);
-					array[i,i2].Amount = array[i,i2].Amount + 1;
-					plug.UpdateItem(i,i2,array[i,i2].Amount);
-					i=0;
-					i2=0;
-					loopCounter = 0;
-					return;
-				}
-				else{
-					//this slot doesnt have the same name or doesnt have space
-					//Debug.Log(loopCounter);
-					loopCounter++;
-					if(loopCounter >= (hSize * vSize)){
-						//Debug.Log("made it to finishLine");
-						//searched whole inventory, nothing shares name, calling normal PickUp()
-						PickUp(item);
-						loopCounter = 0;
-						return;
-					}
-				}
-			}
-		}
-	}
-	*/
-
 
 	//This script actually Instantiates a new object with the same stats as the object stored in the inventory
 	public void SpawnItem(GameObject item){

@@ -17,6 +17,7 @@ public class InventorySpawner : MonoBehaviour
 		foreach(Inven i in GameObject.FindObjectsOfType<Inven>()){
 			if(i.gameObject.tag == "Player"){
 				Player = i.gameObject;	
+				i.jumpStart();
 			}
 		}
 		foreach(Inven i in GameObject.FindObjectsOfType<Inven>()){

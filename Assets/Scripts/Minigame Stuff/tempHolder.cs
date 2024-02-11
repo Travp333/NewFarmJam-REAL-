@@ -89,6 +89,7 @@ public class tempHolder : MonoBehaviour
 				tempImage = slot.image;
 				tempCount = slot.Amount;
 				tempInven = inventoryObject;
+				tempModel = slot.worldModel[Random.Range(0,slot.worldModel.Length-1)];
 				//Debug.Log(slot.Name + " was selected");
 				//This turns the button pressed darker, to indicate to the player that that inventory slot is being stored in the temp slot
 				//plug.ButtonSelected(row, column);	
@@ -156,18 +157,18 @@ public class tempHolder : MonoBehaviour
 				}
 			}
 			else{
-				//GameObject g2 = inventoryObject.array[row, column].worldModel[Random.Range(0, inventoryObject.array[row, column].worldModel.Length-1)];
+
 				//Debug.Log("Clean swap, two different objects, doing swap. Object 1 is "+ tempInven.array[tempRow, tempColumn].image.name + " and Object 2 is " + inventoryObject.array[row, column].image.name + " and finally, this is Slot: "+ slot.Name);
 				//clean swap, two different objects
 				//we find the inventory slot the tempslot object is pointing to, and set it equal to the second button's data
 				tempInven.array[tempRow, tempColumn] = inventoryObject.array[row, column];
 				//we then update the Ui to follow suit
-				//tempPlug.SyncWorldModel(tempRow,tempColumn, inventoryObject.array[row, column].Name, g2); 
+				tempPlug.ClearWorldModel(tempRow, tempColumn);
 				tempPlug.ChangeItem(tempRow, tempColumn, inventoryObject.array[row, column].image, inventoryObject.array[row, column].Amount, inventoryObject.array[row, column].Name);
 				//then we set the second button equal to the temp slot's data
 				inventoryObject.array[row, column] = slot;
 				//we also have the Ui update
-				plug.SyncWorldModel(row,column, tempName, emptyModel);
+				plug.SyncWorldModel(row, column, tempName, tempModel);
 				plug.ChangeItem(row,column, tempImage, tempCount, tempName);
 				ClearSlot();		
 			}

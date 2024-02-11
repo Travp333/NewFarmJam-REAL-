@@ -98,10 +98,20 @@ public class UiPlugger : MonoBehaviour
 		//Debug.LogError("WORLD MODEL HERE" + worldModel + "SYNC HERE" + sync.name);
 		if(worldModel != null){
 			if(sync != null){
-				Debug.Log("CHANGED WORLD MODEL");
+				//Debug.Log("CHANGED WORLD MODEL");
 				sync.UpdateWorldModel(row, column, name, worldModel);
 			}
 		}
+		else{
+			if(sync != null){
+				Debug.Log("SOMETHING SOMETHING?????");
+			}
+		}
+	}
+	public void ClearWorldModel(int row, int column){
+		if(sync != null){
+			sync.ClearWorldModel(row, column);
+		}	
 	}
 	public void ChangeItem(int row, int column, Sprite img, int count, string name){
 		//Debug.Log(slots.Count + this.gameObject.name);
@@ -123,7 +133,7 @@ public class UiPlugger : MonoBehaviour
 	//this is used when simply changing the amount of an inventory object.
 	public void UpdateItem(int row, int column, int count){
 		foreach(GameObject g in slots){
-			Debug.Log("Made it to Update item");
+			//Debug.Log("Made it to Update item");
             if(slots[i].name == row+","+column){
                 reff = slots[i].GetComponent<UIReferenceHolder>();
                 reff.count.GetComponent<TextMeshProUGUI>().text = "x"+count;
