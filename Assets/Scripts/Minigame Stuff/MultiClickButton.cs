@@ -84,7 +84,7 @@ public class MultiClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 		}
 	}
 	public void OnEndDrag(PointerEventData eventData){
-		GetComponent<StorageFinder>().storage.GetComponent<Inven>().UIPlugger.GetComponent<Canvas>().sortingOrder = 0;
+		GetComponent<StorageFinder>().storage.GetComponent<Inven>().UIPlugger.GetComponent<Canvas>().sortingOrder = 1;
 		//Debug.Log("End Drag on "+ heldItemName);
 		heldItemName = null;
 		canvasGroup.alpha = 1f;
@@ -95,8 +95,8 @@ public class MultiClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 		
 	}
 	public void OnDrop(PointerEventData eventData){
-		GetComponent<StorageFinder>().storage.GetComponent<Inven>().UIPlugger.GetComponent<Canvas>().sortingOrder = 0;
-		//Debug.Log("End Drop on " + this.transform.parent.name + " and " + heldItemName);
+		GetComponent<StorageFinder>().storage.GetComponent<Inven>().UIPlugger.GetComponent<Canvas>().sortingOrder = 1;
+		Debug.Log("End Drop on " + this.transform.parent.name + " and " + heldItemName);
 		canvasGroup.alpha = 1f;
 		canvasGroup.blocksRaycasts = true;
 		leftRelease.Invoke();
@@ -111,7 +111,7 @@ public class MultiClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 	
 	public void resetPosition(){
 		if(startingPos != null){
-			GetComponent<StorageFinder>().storage.GetComponent<Inven>().UIPlugger.GetComponent<Canvas>().sortingOrder = 0;
+			GetComponent<StorageFinder>().storage.GetComponent<Inven>().UIPlugger.GetComponent<Canvas>().sortingOrder = 1;
 			this.transform.position = startingPos;
 			canvasGroup.alpha = 1f;
 			canvasGroup.blocksRaycasts = true;

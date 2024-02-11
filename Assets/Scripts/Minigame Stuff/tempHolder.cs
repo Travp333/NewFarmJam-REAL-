@@ -178,7 +178,7 @@ public class tempHolder : MonoBehaviour
 			else{
 				//only swap with empty slots, we dont need swapping behavior that much
 				if(inventoryObject.array[row, column].image.name == "empty"){
-					Debug.Log("Clean swap, two different objects, doing swap. Object 1 is "+ tempInven.array[tempRow, tempColumn].image.name + " and Object 2 is " + inventoryObject.array[row, column].image.name + " and finally, this is Slot: "+ slot.Name);
+					//Debug.Log("Clean swap, two different objects, doing swap. Object 1 is "+ tempInven.array[tempRow, tempColumn].image.name + " and Object 2 is " + inventoryObject.array[row, column].image.name + " and finally, this is Slot: "+ slot.Name);
 					//clean swap, two different objects
 					//we find the inventory slot the tempslot object is pointing to, and set it equal to the second button's data
 					tempInven.array[tempRow, tempColumn] = inventoryObject.array[row, column];

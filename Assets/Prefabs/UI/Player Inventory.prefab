@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4353276008651055479}
   - component: {fileID: 4353276008651055478}
   - component: {fileID: 4353276008651055474}
-  - component: {fileID: 8479812746902769279}
+  - component: {fileID: 6221634467903294857}
   m_Layer: 6
   m_Name: Player Inventory
   m_TagString: Player
@@ -63,7 +63,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &4353276008651055479
 MonoBehaviour:
@@ -122,22 +122,20 @@ MonoBehaviour:
   buttonPrefab: {fileID: 5137595416538600720, guid: 30f3d29061e651246ab5768f01e4c2c4,
     type: 3}
   inven: {fileID: 0}
+  sync: {fileID: 0}
   slots: []
   slotsPos: []
+  reff: {fileID: 0}
   hPadding: 100
   vPadding: 100
---- !u!114 &8479812746902769279
-MonoBehaviour:
+--- !u!222 &6221634467903294857
+CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4353276008651055477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44c2cb689a9c590408f0d320efd3071e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_CullTransparentMesh: 1
 --- !u!1 &4353276009733245878
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +147,7 @@ GameObject:
   - component: {fileID: 4353276009733245879}
   - component: {fileID: 4353276009733245873}
   - component: {fileID: 4353276009733245872}
+  - component: {fileID: 3753507803242601563}
   m_Layer: 6
   m_Name: Panel
   m_TagString: Untagged
@@ -213,6 +212,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3753507803242601563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4353276009733245878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c2cb689a9c590408f0d320efd3071e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4353276010095314659
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +233,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4353276010095314652}
-  - component: {fileID: 6520062110087169541}
   m_Layer: 6
   m_Name: Inven UI Backdrop
   m_TagString: Untagged
@@ -250,18 +260,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1204, y: -134.0625}
   m_SizeDelta: {x: 416.39, y: 346.39}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6520062110087169541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4353276010095314659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44c2cb689a9c590408f0d320efd3071e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8880376442547687401
 GameObject:
   m_ObjectHideFlags: 0
