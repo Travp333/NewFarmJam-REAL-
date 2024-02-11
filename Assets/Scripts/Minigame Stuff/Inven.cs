@@ -18,6 +18,10 @@ public class ItemStat {
     public GameObject prefab = null;
 	public Sprite image = null;
 	public GameObject[] worldModel;
+	public Item requiredIngredient;
+    public Item craftsInto;
+	public Item growsInto;
+	public bool grabbable;
 }
 public class Inven : MonoBehaviour
 {
@@ -73,6 +77,10 @@ public class Inven : MonoBehaviour
 		array[row, column].prefab = null;
 		array[row, column].image = temp.emptyImage;
 		array[row, column].worldModel = null;
+		array[row, column].requiredIngredient = null;
+		array[row, column].craftsInto = null;
+		array[row, column].growsInto = null;
+		array[row, column].grabbable = false;
 		//updating UI to match new change
 		plug.ClearSlot(row, column, temp.emptyImage);
 	}
@@ -90,6 +98,10 @@ public class Inven : MonoBehaviour
 			array[row, column].prefab = null;
 			array[row, column].image = temp.emptyImage;
 			array[row, column].worldModel = null;
+			array[row, column].requiredIngredient = null;
+			array[row, column].craftsInto = null;
+			array[row, column].growsInto = null;
+			array[row, column].grabbable = false;
 			//updating UI to match new change
 			plug.ClearSlot(row, column, temp.emptyImage);
 		}
@@ -106,17 +118,17 @@ public class Inven : MonoBehaviour
 		
 	}
 	public void lateStart(){
-		Debug.Log("Late Start");
+		//Debug.Log("Late Start");
 		foreach(Item g in startingInvenPrefabs){
-			Debug.Log(g);
+			//Debug.Log(g);
 			for (int i = 0; i < startingInvenCount[i2]; i++) {
 				SmartPickUp(g);	
 				if(isPickedUp){
-					Debug.Log("Successfull pickup!");
+					//Debug.Log("Successfull pickup!");
 					isPickedUp = false;
 				}
 				else{
-					Debug.Log("No room in inventory, dropping on floor");
+					//Debug.Log("No room in inventory, dropping on floor");
 					//SpawnItem(g.GetComponent<pickUpableItem>().item.prefab);
 				}
 			}
@@ -127,7 +139,7 @@ public class Inven : MonoBehaviour
 
 	//This handles picking up a new valid Inventory Item 
 	public void PickUp(Item item){
-		Debug.Log("Made it to Pickup");
+		//Debug.Log("Made it to Pickup");
 		//iterating through colomns
 		for (int i = 0; i < vSize; i++)
 		{
@@ -147,6 +159,11 @@ public class Inven : MonoBehaviour
 					array[i,i2].StackSize = item.stackSize;
 					array[i, i2].image = item.img;
 					array[i, i2].worldModel = item.worldModel;
+					array[i, i2].requiredIngredient = item.requiredIngredient;
+					array[i, i2].craftsInto = item.craftsInto;
+					array[i, i2].growsInto = item.growsInto;
+					array[i, i2].grabbable = item.grabbable;
+
 					//updating UI to match new change
 
 					if(this.gameObject.tag != "Player"){
@@ -187,7 +204,7 @@ public class Inven : MonoBehaviour
 	
 	//this handles picking up new inventory items in a way that prioritizes existing stacks
 	public void SmartPickUp(Item item){
-		Debug.Log("Made it to Smart Pickup");
+		//Debug.Log("Made it to Smart Pickup");
 		//Debug.Log("Starting "+ this.gameObject.name + " with a " + item.name);
 		//iterating through colomns
 		for (int i = 0; i < vSize; i++)
@@ -256,7 +273,10 @@ public class Inven : MonoBehaviour
 	                array[row, column].prefab = null;
 		            array[row, column].image = temp.emptyImage;
 					array[row, column].worldModel = null;
-					
+					array[row, column].requiredIngredient = null;
+					array[row, column].craftsInto = null;
+					array[row, column].growsInto = null;
+					array[row, column].grabbable = false;
 	                //updating UI to match new change
 		            plug.ClearSlot(row, column, temp.emptyImage);
 	            }
@@ -294,6 +314,10 @@ public class Inven : MonoBehaviour
 				array[row, column].prefab = null;
 				array[row, column].image = temp.emptyImage;
 				array[row, column].worldModel = null;
+				array[row, column].requiredIngredient = null;
+				array[row, column].craftsInto = null;
+				array[row, column].growsInto = null;
+				array[row, column].grabbable = false;
 				//updating UI to match new change
 				plug.ClearSlot(row, column, temp.emptyImage);
 			}

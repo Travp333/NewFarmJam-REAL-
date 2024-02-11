@@ -16965,23 +16965,56 @@ PrefabInstance:
     - target: {fileID: 5454272457432824959, guid: 00eca0cb1733ba847a75ecd01b5c1dfa,
         type: 3}
       propertyPath: startingInvenCount.Array.size
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5454272457432824959, guid: 00eca0cb1733ba847a75ecd01b5c1dfa,
         type: 3}
       propertyPath: startingInvenPrefabs.Array.size
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5454272457432824959, guid: 00eca0cb1733ba847a75ecd01b5c1dfa,
         type: 3}
       propertyPath: startingInvenCount.Array.data[0]
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5454272457432824959, guid: 00eca0cb1733ba847a75ecd01b5c1dfa,
+        type: 3}
+      propertyPath: startingInvenCount.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5454272457432824959, guid: 00eca0cb1733ba847a75ecd01b5c1dfa,
+        type: 3}
+      propertyPath: startingInvenCount.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5454272457432824959, guid: 00eca0cb1733ba847a75ecd01b5c1dfa,
+        type: 3}
+      propertyPath: startingInvenCount.Array.data[3]
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5454272457432824959, guid: 00eca0cb1733ba847a75ecd01b5c1dfa,
         type: 3}
       propertyPath: startingInvenPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 308542c5be35d044ea4515aa0cf0eebf,
+        type: 2}
+    - target: {fileID: 5454272457432824959, guid: 00eca0cb1733ba847a75ecd01b5c1dfa,
+        type: 3}
+      propertyPath: startingInvenPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 19a7f6b83a1e5814abbb51f801c9ea4f,
+        type: 2}
+    - target: {fileID: 5454272457432824959, guid: 00eca0cb1733ba847a75ecd01b5c1dfa,
+        type: 3}
+      propertyPath: startingInvenPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 03221ee60d7aedd4dacf53aea57f7ba8,
+        type: 2}
+    - target: {fileID: 5454272457432824959, guid: 00eca0cb1733ba847a75ecd01b5c1dfa,
+        type: 3}
+      propertyPath: startingInvenPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 77fb4bb3b9df8ab47a4bb2a589be573a,
         type: 2}
     - target: {fileID: 8317499754182701664, guid: 00eca0cb1733ba847a75ecd01b5c1dfa,
         type: 3}

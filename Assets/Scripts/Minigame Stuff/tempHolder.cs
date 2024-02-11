@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 //This script handles the Swap mechanic in the inventory. it has a tempslot that we store inventory objects we are looking to swap in,
 //and also handles the logic of doing the actual swap.
@@ -22,6 +23,10 @@ public class tempHolder : MonoBehaviour
 	Inven playerInven;
 	Inven openStorageInven;
 	public int slotAmount;
+	public Item tempCraftsInto;
+	public Item tempGrowsInto;
+	public bool tempGrabbable;
+	public Item tempRequiredIngredient;
 	
 
 	private void Start()
@@ -60,6 +65,11 @@ public class tempHolder : MonoBehaviour
 		tempName = null;
 		tempImage = emptyImage;
 		tempInven = null;
+		tempModel = null;
+		tempCraftsInto = null;
+		tempGrowsInto = null;
+		tempRequiredIngredient = null;
+		tempGrabbable = false;
 	}
 	public void HoldItem(Inven inventoryObject, string coords){
 		//Debug.Log("running HoldItem()");
@@ -90,6 +100,10 @@ public class tempHolder : MonoBehaviour
 				tempCount = slot.Amount;
 				tempInven = inventoryObject;
 				tempModel = slot.worldModel[Random.Range(0,slot.worldModel.Length-1)];
+				tempCraftsInto = slot.craftsInto;
+				tempGrowsInto = slot.growsInto;
+				tempRequiredIngredient = slot.requiredIngredient;
+				tempGrabbable = slot.grabbable;
 				//Debug.Log(slot.Name + " was selected");
 				//This turns the button pressed darker, to indicate to the player that that inventory slot is being stored in the temp slot
 				//plug.ButtonSelected(row, column);	
@@ -149,29 +163,46 @@ public class tempHolder : MonoBehaviour
 						plug.UpdateItem(row, column, inventoryObject.array[row, column].Amount);
 						tempInven.array[tempRow, tempColumn].Name = "";
 						tempInven.array[tempRow, tempColumn].Amount = 0;
-						tempInven.array[tempRow, tempColumn].image = emptyImage;
-						//tempPlug.SyncWorldModel(tempRow,tempColumn, "", emptyModel); 
+						tempInven.array[tempRow, tempColumn].image = emptyImage;; 
 						tempPlug.ChangeItem(tempRow,tempColumn, emptyImage, 0, "");
+						tempModel = null;
+						tempCraftsInto = null;
+						tempGrowsInto = null;
+						tempRequiredIngredient = null;
+						tempGrabbable = false;
 						ClearSlot();
 					}
 				}
 			}
+			
 			else{
+				//only swap with empty slots, we dont need swapping behavior that much
+				if(inventoryObject.array[row, column].image.name == "empty"){
+					Debug.Log("Clean swap, two different objects, doing swap. Object 1 is "+ tempInven.array[tempRow, tempColumn].image.name + " and Object 2 is " + inventoryObject.array[row, column].image.name + " and finally, this is Slot: "+ slot.Name);
+					//clean swap, two different objects
+					//we find the inventory slot the tempslot object is pointing to, and set it equal to the second button's data
+					tempInven.array[tempRow, tempColumn] = inventoryObject.array[row, column];
+					tempCraftsInto = inventoryObject.array[row, column].craftsInto;
+					tempGrowsInto = inventoryObject.array[row, column].growsInto;
+					tempRequiredIngredient = inventoryObject.array[row, column].requiredIngredient;
+					tempGrabbable = inventoryObject.array[row, column].grabbable;
+					//we then update the Ui to follow suit
+					tempPlug.ClearWorldModel(tempRow, tempColumn);
+					tempPlug.ChangeItem(tempRow, tempColumn, inventoryObject.array[row, column].image, inventoryObject.array[row, column].Amount, inventoryObject.array[row, column].Name);
+					//then we set the second button equal to the temp slot's data
+					inventoryObject.array[row, column] = slot;
+					inventoryObject.array[row, column].growsInto = slot.growsInto;
+					inventoryObject.array[row, column].requiredIngredient = slot.requiredIngredient;
+					inventoryObject.array[row, column].craftsInto = slot.growsInto;
+					inventoryObject.array[row, column].grabbable = slot.grabbable;
+					//we also have the Ui update
+					plug.SyncWorldModel(row, column, tempName, tempModel);
+					plug.ChangeItem(row,column, tempImage, tempCount, tempName);
 
-				//Debug.Log("Clean swap, two different objects, doing swap. Object 1 is "+ tempInven.array[tempRow, tempColumn].image.name + " and Object 2 is " + inventoryObject.array[row, column].image.name + " and finally, this is Slot: "+ slot.Name);
-				//clean swap, two different objects
-				//we find the inventory slot the tempslot object is pointing to, and set it equal to the second button's data
-				tempInven.array[tempRow, tempColumn] = inventoryObject.array[row, column];
-				//we then update the Ui to follow suit
-				tempPlug.ClearWorldModel(tempRow, tempColumn);
-				tempPlug.ChangeItem(tempRow, tempColumn, inventoryObject.array[row, column].image, inventoryObject.array[row, column].Amount, inventoryObject.array[row, column].Name);
-				//then we set the second button equal to the temp slot's data
-				inventoryObject.array[row, column] = slot;
-				//we also have the Ui update
-				plug.SyncWorldModel(row, column, tempName, tempModel);
-				plug.ChangeItem(row,column, tempImage, tempCount, tempName);
-				ClearSlot();		
+					ClearSlot();		
+				}
 			}
+			
 		}
 	}
 }

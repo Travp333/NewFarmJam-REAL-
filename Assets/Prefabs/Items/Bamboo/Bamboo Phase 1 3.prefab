@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5379369230490231627}
   - component: {fileID: 6829428682629329563}
   - component: {fileID: 8966587322402209787}
-  - component: {fileID: 5448520874621342498}
+  - component: {fileID: 4057080782932765670}
   m_Layer: 0
   m_Name: Bamboo Phase 1 3
   m_TagString: Untagged
@@ -109,7 +109,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 308542c5be35d044ea4515aa0cf0eebf, type: 2}
---- !u!65 &5448520874621342498
+--- !u!65 &4057080782932765670
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +143,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.013498678, y: 0.012004909, z: 0.013733048}
-  m_Center: {x: -0.000000004656613, y: 0, z: 0.0046458347}
+  m_Size: {x: 0.013498678, y: 0.013733042, z: 0.01200491}
+  m_Center: {x: -0.000000004656613, y: 0.0017441462, z: 0.00021968479}

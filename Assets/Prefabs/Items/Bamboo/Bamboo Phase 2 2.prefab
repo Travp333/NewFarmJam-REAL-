@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5379369230490231627}
   - component: {fileID: 6829428682629329563}
   - component: {fileID: 8966587322402209787}
-  - component: {fileID: 6142201033319840298}
+  - component: {fileID: -3565173652357564848}
   m_Layer: 0
   m_Name: Bamboo Phase 2 2
   m_TagString: Untagged
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 19a7f6b83a1e5814abbb51f801c9ea4f, type: 2}
---- !u!65 &6142201033319840298
+--- !u!65 &-3565173652357564848
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,5 +145,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.014343452, y: 0.0149442665, z: 0.046914607}
-  m_Center: {x: 0, y: 0, z: 0.020407796}
+  m_Size: {x: 0.014343452, y: 0.046914607, z: 0.0149442665}
+  m_Center: {x: 0, y: 0.017506108, z: 0.00021968479}

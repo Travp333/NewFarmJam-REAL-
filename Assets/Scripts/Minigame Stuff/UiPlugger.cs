@@ -23,7 +23,7 @@ public class UiPlugger : MonoBehaviour
 	public List<GameObject> slots = new List<GameObject>();
 	public List<Vector3> slotsPos = new List<Vector3>();
 	//public GameObject[] slots;
-    UIReferenceHolder reff;
+    public UIReferenceHolder reff;
     int i = 0;
 	bool firstSlotSkip;
 	[SerializeField]
@@ -112,6 +112,7 @@ public class UiPlugger : MonoBehaviour
 		if(sync != null){
 			sync.ClearWorldModel(row, column);
 		}	
+		
 	}
 	public void ChangeItem(int row, int column, Sprite img, int count, string name){
 		//Debug.Log(slots.Count + this.gameObject.name);
