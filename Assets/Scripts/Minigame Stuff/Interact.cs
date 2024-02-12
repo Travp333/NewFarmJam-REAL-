@@ -154,7 +154,7 @@ public class Interact : MonoBehaviour
 	            Collider[] colliders = Physics.OverlapSphere(this.transform.position, sphereCastRadius);
 	            foreach (Collider hit in colliders)
 	            {
-	            	Debug.Log(hit.gameObject.name);
+	            	//Debug.Log(hit.gameObject.name);
 		            if(hit.transform.gameObject.GetComponent<Inven>() != null){
 			            if(hit.transform.gameObject.tag != "Player"){
 			            	//Debug.Log("HIT NON PLAYER INVENTORY");

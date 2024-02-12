@@ -5,6 +5,10 @@ using UnityEngine;
 //This script handles the Swap mechanic in the inventory. it has a tempslot that we store inventory objects we are looking to swap in,
 //and also handles the logic of doing the actual swap.
 //written by Conor and Travis
+
+
+//Currently broken
+
 public class tempHolder : MonoBehaviour
 {
 	[SerializeField]
@@ -86,7 +90,6 @@ public class tempHolder : MonoBehaviour
 		// here, slot refers to the temporary slot in which you are holding an item you selected which you want to swap
 		// if it is null, we know it it empty, therefore we just need to store the clicked item to the slot 
 		if (slot == null) {
-			//check if the player is holding shift, behaviour changes in that case
 			//NOTE make sure to tie this shift to the input system
 			//find out what inventory slot the coordiantes you were passed points to, and store that data in the temp slot
 			slot = inventoryObject.array[row,column];
@@ -116,9 +119,10 @@ public class tempHolder : MonoBehaviour
 	}
 	//second half of Swap
 	public void DropItem(Inven inventoryObject, string coords){
-		//Debug.Log("Made it to drop item in tempHolder");
+		Debug.Log("Made it to drop item in tempHolder");
 		//store a reference to the Ui script, as we will use it often
 		UiPlugger plug = inventoryObject.UIPlugger.GetComponent<UiPlugger>();
+		openStorageInven = plug.inven;
 		//gets reference to uiplugger component on the item stored in the slot, if there is one
 		if(tempInven != null){
 			tempPlug = tempInven.UIPlugger.GetComponent<UiPlugger>();
@@ -131,7 +135,7 @@ public class tempHolder : MonoBehaviour
 		// if it is null, we know it it empty, therefore we just need to store the clicked item to the slot 
 		
 		if (slot != null) {
-			//Debug.Log("The slot was not null in tempHolder, here data " + slot + ", " + slot.Name);
+			Debug.Log("The slot was not null in tempHolder, here data " + slot + ", " + slot.Name);
 			//if the temp slot is not null, we know it is holding a valid inventory object. So, we must initiate the swap
 			//if we are swapping two objects with the same name, prepare to stack!
 			if(tempInven.array[tempRow, tempColumn].Name == inventoryObject.array[row, column].Name) {
@@ -176,8 +180,7 @@ public class tempHolder : MonoBehaviour
 			}
 			
 			else{
-				//only swap with empty slots, we dont need swapping behavior that much
-				if(inventoryObject.array[row, column].image.name == "empty"){
+				if((inventoryObject.array[row, column].image.name == "empty") ||(inventoryObject.array[row, column].grabbable && tempInven.array[tempRow, tempColumn].grabbable && tempRequiredIngredient.name != inventoryObject.array[row, column].Name)){
 					//Debug.Log("Clean swap, two different objects, doing swap. Object 1 is "+ tempInven.array[tempRow, tempColumn].image.name + " and Object 2 is " + inventoryObject.array[row, column].image.name + " and finally, this is Slot: "+ slot.Name);
 					//clean swap, two different objects
 					//we find the inventory slot the tempslot object is pointing to, and set it equal to the second button's data
@@ -200,6 +203,28 @@ public class tempHolder : MonoBehaviour
 					plug.ChangeItem(row,column, tempImage, tempCount, tempName);
 
 					ClearSlot();		
+				}
+				else if(tempRequiredIngredient != null && inventoryObject != null){
+					Debug.Log("Dropped on real object! " + tempRequiredIngredient.name + " and " +inventoryObject.array[row, column].Name);
+					if(tempRequiredIngredient.name == inventoryObject.array[row, column].Name){
+						Debug.Log("Matching requirement and name");
+						if(tempCraftsInto != null){
+							Debug.Log("creating new object");		
+						}
+						else{
+							Debug.Log("Clearing slot via crafting");	
+						}
+						if(tempInven.array[tempRow, tempColumn].Amount - 1 <= 0){
+							Debug.Log("drained amount of ingredient #1");
+							ClearSlot();
+						}
+						else{
+							Debug.Log("Deducting one of ingredient #1");
+							ClearSlot();
+						}
+						
+						
+					}
 				}
 			}
 			

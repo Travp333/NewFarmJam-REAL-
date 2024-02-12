@@ -31,9 +31,9 @@ public class StorageFinder : MonoBehaviour
 			tH = player.GetComponent<tempHolder>();
 		}
 		slotname = this.transform.parent.gameObject.name;
-		Debug.Log(int.Parse(slotname.Substring(0,1))+", " + int.Parse(slotname.Substring(2,1)));
+		//Debug.Log(int.Parse(slotname.Substring(0,1))+", " + int.Parse(slotname.Substring(2,1)));
 		item = storageInven.array[int.Parse(slotname.Substring(0,1)),int.Parse(slotname.Substring(2,1))];
-		Debug.Log(slotname + " contains " + item.Name);
+		//Debug.Log(slotname + " contains " + item.Name);
 		
 	}
 	public void UpdateHeldItem(){
@@ -62,8 +62,8 @@ public class StorageFinder : MonoBehaviour
 	public void SendReleaseItem(){
 		UpdateHeldItem();
 		//Debug.Log("Made it to release Item in storage Finder, passing " + storage.GetComponent<Inven>().name);
-		if(item.grabbable || item.Name == ""){
-			tH.DropItem(storage.GetComponent<Inven>(), this.gameObject.transform.parent.name);
-		}
+		//if(item.grabbable || item.Name == ""){
+		tH.DropItem(storage.GetComponent<Inven>(), this.gameObject.transform.parent.name);
+		//}
 	}
 }
