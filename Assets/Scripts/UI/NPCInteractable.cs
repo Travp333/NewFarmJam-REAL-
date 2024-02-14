@@ -27,7 +27,7 @@ public class NPCInteractable : MonoBehaviour
 
     private void Start()
     {
-        cameraMovement = GameObject.Find("3rd Person Camera Empty").GetComponent<3rdPersonCamera>();
+        cameraMovement = GameObject.Find("3rd Person Camera Empty").GetComponent < 3rdPersonCamera > ();
         npcDiag = this.GetComponent<NpcDialogue>();
     }
 

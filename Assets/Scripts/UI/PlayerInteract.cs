@@ -10,7 +10,7 @@ public class PlayerInteract : MonoBehaviour
     DialogueManager manager;
     public bool interactiveConvo;
     public bool nonDiagPopUp;
-    
+
 
     private void Start()
     {
@@ -19,42 +19,51 @@ public class PlayerInteract : MonoBehaviour
 
     private void Update()
     {
+
         Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(controls.keys["interact"]))
         {
             foreach (Collider collider in colliderArray)
             {
                 if (collider.gameObject.tag == "Interactable" || collider.gameObject.tag == "NPC")
                 {
-                    if (collider.TryGetcomponent(out Interactable interactable))
+                    if (collider.TryGetComponent(out Interactable interactable))
                     {
-                        interactable.Interact();
+                        interactables.Interact();
                     }
-                }
-
-                if (collider TryGetComponent(out NPCInteractable npcInteractable))
+                    if (collider.TryGetComponent(out NPCInteractables npcInteractable))
                     {
-                    if (!inDialogue)
-                    {
-                        nonDiagPopUp = false;
-                        npcInteractable.NPCInteract();
-                        inDialogue = true;
-                        if (npcInteractable.hasEvent)
+                        if (!inDialogue)
                         {
-                            interactiveConvo = true;
-                        }
-                    }
-                    else
-                    {
-                        if (npcInteractable.nonDiagPopUp)
-                        {
-                            nonDiagPopUp = true;
+                            nonDiagPopUp = false;
+                            npcInteractable.NPCInteract();
+                            inDialogue = true;
+                            if (npcInteractable.hasEvent)
+                            {
+                                interactiveConvo = true;
+                            }
                         }
                         else
                         {
-                            nonDiagPopUp = false;
-                            manager.DisplayNextSentence();
+                            if (npcInteractable.nonDiagPopUp)
+                            {
+                                nonDiagPopUp = true;
+                            }
+                            else
+                            {
+                                nonDiagPopUp = false;
+                                manager.DisplayNextSentence();
+                            }
+
+                        }
+
+                    }
+                    if (collider.TryGetComponent(out Console console))
+                    {
+                        if (collider.gameObject.tag != "NPC")
+                        {
+                            console.Interact();
                         }
                     }
                 }
