@@ -291,44 +291,44 @@ public class Inven : MonoBehaviour
 	}
 	//this drops a specific item that is found using its exact coordinates
 	public void DropSpecificItem(string coords){
-		//Debug.Log(temp.tempRow + ", " +temp.tempColumn);
+		
 		string [] coords2 = coords.Split(",");
 		int row = int.Parse(coords2[0]);
 		int column = int.Parse(coords2[1]);
-		if(!((temp.tempRow == row)&&(temp.tempColumn == column))){
-			//parsing incoming string into ints
-			//This slot does in fact have an object in it
-			if(array[row, column].Amount > 0){
-				//make the button flash grey for a second to give feedback
-				plug.ButtonPress(row, column);
-				//Debug.Log("Dropping one " + array[row, column].Name + " from slot (" + row + " , "+ column + " ) , now we have" + (array[row,column].Amount - 1));
-				//deduct one of the items from the stack
-				array[row, column].Amount = array[row, column].Amount - 1;
-				//spawn a prefab with the same info as that item
-				//SpawnItem(array[row, column].prefab);
-				//you just dropped the last item in that slot, reverting to default
-	            if(array[row, column].Amount <= 0){
-		            //Debug.Log("Out of " + array[row, column].Name + " in slot (" + row + " , "+ column + " ) , slot now empty ");
-	                array[row, column].Name = "";
-	                array[row, column].Amount = 0;
-	                array[row, column].StackSize = 0;
-	                array[row, column].prefab = null;
-		            array[row, column].image = temp.emptyImage;
-					array[row, column].worldModel = null;
-					array[row, column].requiredIngredient = null;
-					array[row, column].craftsInto = null;
-					array[row, column].growsInto = null;
-					array[row, column].grabbable = false;
-	                //updating UI to match new change
-		            plug.ClearSlot(row, column, temp.emptyImage);
-	            }
-	            else{
-		            //there are still more of that item in the slot, updating UI to match new change
-		            plug.UpdateItem(row, column, array[row,column].Amount);
-	            }
-	            return;
-			}
+		//Debug.Log( "Dropping "+row + ", " +column + " from inven " + this.gameObject.name);
+		//parsing incoming string into ints
+		//This slot does in fact have an object in it
+		if(array[row, column].Amount > 0){
+			//make the button flash grey for a second to give feedback
+			plug.ButtonPress(row, column);
+			Debug.Log("Dropping one " + array[row, column].Name + " from slot (" + row + " , "+ column + " ) , now we have" + (array[row,column].Amount - 1));
+			//deduct one of the items from the stack
+			array[row, column].Amount = array[row, column].Amount - 1;
+			//spawn a prefab with the same info as that item
+			//SpawnItem(array[row, column].prefab);
+			//you just dropped the last item in that slot, reverting to default
+            if(array[row, column].Amount <= 0){
+	            //Debug.Log("Out of " + array[row, column].Name + " in slot (" + row + " , "+ column + " ) , slot now empty ");
+                array[row, column].Name = "";
+                array[row, column].Amount = 0;
+                array[row, column].StackSize = 0;
+                array[row, column].prefab = null;
+	            array[row, column].image = temp.emptyImage;
+				array[row, column].worldModel = null;
+				array[row, column].requiredIngredient = null;
+				array[row, column].craftsInto = null;
+				array[row, column].growsInto = null;
+				array[row, column].grabbable = false;
+                //updating UI to match new change
+	            plug.ClearSlot(row, column, temp.emptyImage);
+            }
+            else{
+	            //there are still more of that item in the slot, updating UI to match new change
+	            plug.UpdateItem(row, column, array[row,column].Amount);
+            }
+            return;
 		}
+		
 	}
 	public void DropWholeStack(string coords){
 		//Debug.Log("Made it to inventory with coords "+ coords);

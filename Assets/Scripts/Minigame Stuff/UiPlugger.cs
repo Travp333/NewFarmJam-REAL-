@@ -134,7 +134,7 @@ public class UiPlugger : MonoBehaviour
 	//this is used when simply changing the amount of an inventory object.
 	public void UpdateItem(int row, int column, int count){
 		foreach(GameObject g in slots){
-			Debug.Log("Made it to Update item");
+			//Debug.Log("Made it to Update item");
             if(slots[i].name == row+","+column){
                 reff = slots[i].GetComponent<UIReferenceHolder>();
                 reff.count.GetComponent<TextMeshProUGUI>().text = "x"+count;

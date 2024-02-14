@@ -96,7 +96,7 @@ public class MultiClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 	}
 	public void OnDrop(PointerEventData eventData){
 		GetComponent<StorageFinder>().storage.GetComponent<Inven>().UIPlugger.GetComponent<Canvas>().sortingOrder = 1;
-		Debug.Log("End Drop on " + this.transform.parent.name + " and " + heldItemName);
+		//Debug.Log("End Drop on " + this.transform.parent.name + " and " + heldItemName);
 		canvasGroup.alpha = 1f;
 		canvasGroup.blocksRaycasts = true;
 		leftRelease.Invoke();
