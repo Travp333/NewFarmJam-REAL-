@@ -16,7 +16,7 @@ MonoBehaviour:
   stackSize: 99
   img: {fileID: 21300000, guid: 1810e063680304446b7750fc50fc80ec, type: 3}
   worldModel:
-  - {fileID: 1246674325083502988, guid: 7145180a103bae04e8414a7c8a8db3b4, type: 3}
+  - {fileID: 8796099755938566433, guid: d8f09af457dec8441a15b84bc4103df1, type: 3}
   requiredIngredient: {fileID: 11400000, guid: 7954e188a5225704289cc122b29f2bc6, type: 2}
   craftsInto: {fileID: 0}
   growsInto: {fileID: 0}
