@@ -187,7 +187,7 @@ public class tempHolder : MonoBehaviour
 			}
 			
 			else{
-				if(tempCraftsInto != null && tempRequiredIngredient == null && inventoryObject.gameObject.tag == "Plantable"){
+				if(tempCraftsInto != null && tempRequiredIngredient == null && inventoryObject.gameObject.tag == "Plantable" && inventoryObject.array[row, column].Name == ""){
 					GameObject tempModel2 = tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length-1)];
 					Debug.Log("Crafting with nothing!");
 					inventoryObject.array[row, column].Name = tempCraftsInto.name;
@@ -245,7 +245,7 @@ public class tempHolder : MonoBehaviour
 					if(tempRequiredIngredient.name == inventoryObject.array[row, column].Name){
 						//Debug.Log("Matching requirement and name");
 						if(tempCraftsInto != null){
-							if(inventoryObject.array[row, column].requiredIngredient.name == tempInven.array[tempRow, tempColumn].Name || tempInven.array[tempRow, tempColumn].requiredIngredient.name == inventoryObject.array[row, column].Name){
+							if((inventoryObject.array[row, column].requiredIngredient.name == tempInven.array[tempRow, tempColumn].Name || tempInven.array[tempRow, tempColumn].requiredIngredient.name == inventoryObject.array[row, column].Name)&&inventoryObject.gameObject.tag == "Plantable"){
 								Debug.Log("Crafting with something! making " + tempCraftsInto.name);
 								inventoryObject.array[row, column].Name = tempCraftsInto.name;
 								inventoryObject.array[row, column].Amount = 1;
