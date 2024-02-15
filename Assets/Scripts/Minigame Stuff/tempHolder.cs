@@ -187,12 +187,12 @@ public class tempHolder : MonoBehaviour
 			}
 			
 			else{
-				if(tempRequiredIngredient.name != null){
-					if(tempRequiredIngredient.name != inventoryObject.array[row, column].Name){
+				//if(tempRequiredIngredient.name != null){
+				//	if(tempRequiredIngredient.name != inventoryObject.array[row, column].Name){
 						//PUT STUFF HERE
-					}
-				}
-				if((inventoryObject.array[row, column].image.name == "empty") ||(inventoryObject.array[row, column].grabbable && tempInven.array[tempRow, tempColumn].grabbable )){
+				//	}
+				//}
+				if(inventoryObject.array[row, column].image.name == "empty"){
 					//Debug.Log("Clean swap, two different objects, doing swap. Object 1 is "+ tempInven.array[tempRow, tempColumn].Name + " with " + tempInven.array[tempRow, tempColumn].Amount + " remaining in stock, and Object 2 is " + inventoryObject.array[row, column].Name + " with " + inventoryObject.array[row, column].Amount + "remaining in stock, and finally, this is Slot: "+ row + ", " + column);
 					//clean swap, two different objects
 					//STILL A PROBLEM HERE WHEN SWAPPING TWO ITEMS, WORLD MODELS STACK ON EACHOTHER AND GET A NULL ERROR EVENTUALLY 
@@ -212,9 +212,8 @@ public class tempHolder : MonoBehaviour
 					inventoryObject.array[row, column].craftsInto = slot.growsInto;
 					inventoryObject.array[row, column].grabbable = slot.grabbable;
 					//we also have the Ui update
-					plug.ClearWorldModel(row, column);
+					plug.SyncWorldModel(row, column, tempName, tempModel);
 					plug.ChangeItem(row,column, tempImage, inventoryObject.array[row, column].Amount, tempName);
-
 					ClearSlot();		
 				}
 				else if(tempRequiredIngredient != null && inventoryObject != null){
@@ -246,6 +245,12 @@ public class tempHolder : MonoBehaviour
 					
 						
 					}
+					else{
+						ClearSlot();
+					}
+				}
+				else{
+					ClearSlot();
 				}
 			}
 			
