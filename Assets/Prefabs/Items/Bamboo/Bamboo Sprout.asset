@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a0295687fa01a4c9b3188f6da3b7d5, type: 3}
   m_Name: Bamboo Sprout
   m_EditorClassIdentifier: 
-  Objname: Bamboo Phase 3
+  Objname: Bamboo Sprout
   stackSize: 1
   img: {fileID: 21300000, guid: 1810e063680304446b7750fc50fc80ec, type: 3}
   worldModel:
@@ -21,4 +21,6 @@ MonoBehaviour:
   - {fileID: 1246674325083502988, guid: 48b921a0e4de47747b5c55cbe2f4e427, type: 3}
   - {fileID: 1246674325083502988, guid: 4484939aa7d43ff42a4b8343e93f8c38, type: 3}
   requiredIngredient: {fileID: 0}
+  craftsInto: {fileID: 0}
   growsInto: {fileID: 11400000, guid: 77fb4bb3b9df8ab47a4bb2a589be573a, type: 2}
+  grabbable: 0

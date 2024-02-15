@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79a0295687fa01a4c9b3188f6da3b7d5, type: 3}
-  m_Name: Vine Phase 2
+  m_Name: Vine Seeds
   m_EditorClassIdentifier: 
-  Objname: 
-  stackSize: 0
-  img: {fileID: 0}
-  worldModel: []
+  Objname: Vine Seeds
+  stackSize: 99
+  img: {fileID: 21300000, guid: 1810e063680304446b7750fc50fc80ec, type: 3}
+  worldModel:
+  - {fileID: 1246674325083502988, guid: 4874c202bb87bce408465f4f3e0eae33, type: 3}
   requiredIngredient: {fileID: 0}
-  craftsInto: {fileID: 0}
+  craftsInto: {fileID: 11400000, guid: e00e0ac398ab13747a1e728f5bc76095, type: 2}
   growsInto: {fileID: 0}
-  grabbable: 0
+  grabbable: 1

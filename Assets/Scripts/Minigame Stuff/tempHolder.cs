@@ -32,12 +32,12 @@ public class tempHolder : MonoBehaviour
 	public bool tempGrabbable;
 	public Item tempRequiredIngredient;
 	
-	protected void Update()
-	{
-		if(tempRequiredIngredient != null){
-			Debug.Log("TRI: " + tempRequiredIngredient);
-		}
-	}
+	//protected void Update()
+	//{
+		//if(tempRequiredIngredient != null){
+			//	Debug.Log("TRI: " + tempRequiredIngredient);
+			//}
+		//}
 	
 	private void Start()
 	{
@@ -190,7 +190,6 @@ public class tempHolder : MonoBehaviour
 				if(tempCraftsInto != null && tempRequiredIngredient == null && inventoryObject.gameObject.tag == "Plantable"){
 					GameObject tempModel2 = tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length-1)];
 					Debug.Log("Crafting with nothing!");
-					// ISSUE HERE< IT DELETES THE ENTIRE STACK 1 INSTEAD OF DEDUCTING ONE OOPS
 					inventoryObject.array[row, column].Name = tempCraftsInto.name;
 					inventoryObject.array[row, column].Amount = 1;
 					inventoryObject.array[row, column].StackSize = tempCraftsInto.stackSize;
@@ -217,7 +216,7 @@ public class tempHolder : MonoBehaviour
 					//}
 				}
 				else if(inventoryObject.array[row, column].image.name == "empty"){
-					//Debug.Log("Clean swap, two different objects, doing swap. Object 1 is "+ tempInven.array[tempRow, tempColumn].Name + " with " + tempInven.array[tempRow, tempColumn].Amount + " remaining in stock, and Object 2 is " + inventoryObject.array[row, column].Name + " with " + inventoryObject.array[row, column].Amount + "remaining in stock, and finally, this is Slot: "+ row + ", " + column);
+					Debug.Log("Clean swap, two different objects, doing swap. Object 1 is "+ tempInven.array[tempRow, tempColumn].Name + " with " + tempInven.array[tempRow, tempColumn].Amount + " remaining in stock, and Object 2 is " + inventoryObject.array[row, column].Name + " with " + inventoryObject.array[row, column].Amount + "remaining in stock, and finally, this is Slot: "+ row + ", " + column);
 					//clean swap, two different objects
 					//STILL A PROBLEM HERE WHEN SWAPPING TWO ITEMS, WORLD MODELS STACK ON EACHOTHER AND GET A NULL ERROR EVENTUALLY 
 					//we find the inventory slot the tempslot object is pointing to, and set it equal to the second button's data
@@ -240,8 +239,9 @@ public class tempHolder : MonoBehaviour
 					plug.ChangeItem(row,column, tempImage, inventoryObject.array[row, column].Amount, tempName);
 					ClearSlot();		
 				}
-				else if(tempRequiredIngredient != null && inventoryObject != null){
-					//Debug.Log("Dropped on real object! " + tempRequiredIngredient.name + " and " +inventoryObject.array[row, column].Name);
+				//Debug.Log(tempInven.array[tempRow, tempColumn].requiredIngredient.name +", "0 + tempInven.array[tempRow, tempColumn].Name + ", "+ inventoryObject.array[tempRow, tempColumn].requiredIngredient.name + ", " + )
+				else if((tempRequiredIngredient != null && inventoryObject != null) && (inventoryObject.array[row, column].requiredIngredient.name != tempInven.array[tempRow, tempColumn].Name && tempInven.array[tempRow, tempColumn].requiredIngredient.name != inventoryObject.array[row, column].Name)){
+					Debug.Log("Dropped on real object! " + tempRequiredIngredient.name + " and " +inventoryObject.array[row, column].Name);
 					if(tempRequiredIngredient.name == inventoryObject.array[row, column].Name){
 						//Debug.Log("Matching requirement and name");
 						if(tempCraftsInto != null){
@@ -272,6 +272,35 @@ public class tempHolder : MonoBehaviour
 					else{
 						ClearSlot();
 					}
+				}
+				//crafting two object together!
+				else if(inventoryObject.array[row, column].requiredIngredient.name == tempInven.array[tempRow, tempColumn].Name || tempInven.array[tempRow, tempColumn].requiredIngredient.name == inventoryObject.array[row, column].Name){
+					Debug.Log("Crafting with something! making " + tempCraftsInto.name);
+					inventoryObject.array[row, column].Name = tempCraftsInto.name;
+					inventoryObject.array[row, column].Amount = 1;
+					inventoryObject.array[row, column].StackSize = tempCraftsInto.stackSize;
+					inventoryObject.array[row, column].image = tempCraftsInto.img;
+					inventoryObject.array[row, column].worldModel = tempCraftsInto.worldModel;
+					inventoryObject.array[row, column].growsInto = tempCraftsInto.growsInto;
+					inventoryObject.array[row, column].requiredIngredient = tempCraftsInto.requiredIngredient;
+					inventoryObject.array[row, column].craftsInto = tempCraftsInto.craftsInto;
+					inventoryObject.array[row, column].grabbable = tempCraftsInto.grabbable;
+					plug.ClearWorldModel(row, column);
+					plug.SyncWorldModel(row, column, tempCraftsInto.name, tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length-1)]);
+					plug.ChangeItem(row,column, tempCraftsInto.img, 1 , tempCraftsInto.name);
+					tempInven.DropSpecificItem(tempRow.ToString() +", "+ tempColumn.ToString());
+					if(tempInven.array[tempRow, tempColumn].Amount <= 0){
+						tempPlug.ClearWorldModel(tempRow, tempColumn);
+						tempPlug.ClearSlot(tempRow, tempColumn, emptyImage);
+					}
+					else{
+						tempPlug.UpdateItem(tempRow, tempColumn, tempInven.array[tempRow, tempColumn].Amount);
+					}
+
+					ClearSlot();
+					//if(tempRequiredIngredient.name == inventoryObject.array[row, column].Name){
+					//PUT STUFF HERE
+					//}
 				}
 				else{
 					ClearSlot();
