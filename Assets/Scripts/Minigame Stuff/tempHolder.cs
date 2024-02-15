@@ -240,17 +240,45 @@ public class tempHolder : MonoBehaviour
 					ClearSlot();		
 				}
 				//Debug.Log(tempInven.array[tempRow, tempColumn].requiredIngredient.name +", "0 + tempInven.array[tempRow, tempColumn].Name + ", "+ inventoryObject.array[tempRow, tempColumn].requiredIngredient.name + ", " + )
-				else if((tempRequiredIngredient != null && inventoryObject != null) && (inventoryObject.array[row, column].requiredIngredient.name != tempInven.array[tempRow, tempColumn].Name && tempInven.array[tempRow, tempColumn].requiredIngredient.name != inventoryObject.array[row, column].Name)){
+				else if((tempRequiredIngredient != null && inventoryObject != null)){
 					Debug.Log("Dropped on real object! " + tempRequiredIngredient.name + " and " +inventoryObject.array[row, column].Name);
 					if(tempRequiredIngredient.name == inventoryObject.array[row, column].Name){
 						//Debug.Log("Matching requirement and name");
 						if(tempCraftsInto != null){
+							if(inventoryObject.array[row, column].requiredIngredient.name == tempInven.array[tempRow, tempColumn].Name || tempInven.array[tempRow, tempColumn].requiredIngredient.name == inventoryObject.array[row, column].Name){
+								Debug.Log("Crafting with something! making " + tempCraftsInto.name);
+								inventoryObject.array[row, column].Name = tempCraftsInto.name;
+								inventoryObject.array[row, column].Amount = 1;
+								inventoryObject.array[row, column].StackSize = tempCraftsInto.stackSize;
+								inventoryObject.array[row, column].image = tempCraftsInto.img;
+								inventoryObject.array[row, column].worldModel = tempCraftsInto.worldModel;
+								inventoryObject.array[row, column].growsInto = tempCraftsInto.growsInto;
+								inventoryObject.array[row, column].requiredIngredient = tempCraftsInto.requiredIngredient;
+								inventoryObject.array[row, column].craftsInto = tempCraftsInto.craftsInto;
+								inventoryObject.array[row, column].grabbable = tempCraftsInto.grabbable;
+								plug.ClearWorldModel(row, column);
+								plug.SyncWorldModel(row, column, tempCraftsInto.name, tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length-1)]);
+								plug.ChangeItem(row,column, tempCraftsInto.img, 1 , tempCraftsInto.name);
+								tempInven.DropSpecificItem(tempRow.ToString() +", "+ tempColumn.ToString());
+								if(tempInven.array[tempRow, tempColumn].Amount <= 0){
+									tempPlug.ClearWorldModel(tempRow, tempColumn);
+									tempPlug.ClearSlot(tempRow, tempColumn, emptyImage);
+								}
+								else{
+									tempPlug.UpdateItem(tempRow, tempColumn, tempInven.array[tempRow, tempColumn].Amount);
+								}
+	
+								ClearSlot();
+								//if(tempRequiredIngredient.name == inventoryObject.array[row, column].Name){
+								//PUT STUFF HERE
+								//}
+							}
 							//Debug.Log("creating new object");	
 							//Debug.Log("TempRow+Column" + tempRow + ", " + tempColumn);
 							//Debug.Log("Row+Column" + row + ", " + column);
-							tempInven.DropSpecificItem(tempRow.ToString() +", "+ tempColumn.ToString());
-							inventoryObject.DropSpecificItem(row.ToString() + ", " + column.ToString());
-							ClearSlot();
+							//tempInven.DropSpecificItem(tempRow.ToString() +", "+ tempColumn.ToString());
+							//inventoryObject.DropSpecificItem(row.ToString() + ", " + column.ToString());
+							//ClearSlot();
 						}
 						else{
 							//Debug.Log("Clearing slot via crafting");	
@@ -272,35 +300,6 @@ public class tempHolder : MonoBehaviour
 					else{
 						ClearSlot();
 					}
-				}
-				//crafting two object together!
-				else if(inventoryObject.array[row, column].requiredIngredient.name == tempInven.array[tempRow, tempColumn].Name || tempInven.array[tempRow, tempColumn].requiredIngredient.name == inventoryObject.array[row, column].Name){
-					Debug.Log("Crafting with something! making " + tempCraftsInto.name);
-					inventoryObject.array[row, column].Name = tempCraftsInto.name;
-					inventoryObject.array[row, column].Amount = 1;
-					inventoryObject.array[row, column].StackSize = tempCraftsInto.stackSize;
-					inventoryObject.array[row, column].image = tempCraftsInto.img;
-					inventoryObject.array[row, column].worldModel = tempCraftsInto.worldModel;
-					inventoryObject.array[row, column].growsInto = tempCraftsInto.growsInto;
-					inventoryObject.array[row, column].requiredIngredient = tempCraftsInto.requiredIngredient;
-					inventoryObject.array[row, column].craftsInto = tempCraftsInto.craftsInto;
-					inventoryObject.array[row, column].grabbable = tempCraftsInto.grabbable;
-					plug.ClearWorldModel(row, column);
-					plug.SyncWorldModel(row, column, tempCraftsInto.name, tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length-1)]);
-					plug.ChangeItem(row,column, tempCraftsInto.img, 1 , tempCraftsInto.name);
-					tempInven.DropSpecificItem(tempRow.ToString() +", "+ tempColumn.ToString());
-					if(tempInven.array[tempRow, tempColumn].Amount <= 0){
-						tempPlug.ClearWorldModel(tempRow, tempColumn);
-						tempPlug.ClearSlot(tempRow, tempColumn, emptyImage);
-					}
-					else{
-						tempPlug.UpdateItem(tempRow, tempColumn, tempInven.array[tempRow, tempColumn].Amount);
-					}
-
-					ClearSlot();
-					//if(tempRequiredIngredient.name == inventoryObject.array[row, column].Name){
-					//PUT STUFF HERE
-					//}
 				}
 				else{
 					ClearSlot();
