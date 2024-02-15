@@ -14,12 +14,12 @@ public class GrowingManager : MonoBehaviour, SaveInterface
         {
             plants = new List<Growable>();
         }
-        ClockCheck();
+        
 
     }
 	private void Awake()
 	{
-        ClockCheck();
+        
 	}
 
 	public void GrowStepUpdate() {
@@ -29,15 +29,7 @@ public class GrowingManager : MonoBehaviour, SaveInterface
             
         }
     }
-    void ClockCheck() {
-        if (GameClock = null) {
-            GameClock = FindObjectOfType<GameClock>();
-            if (GameClock = null) {
-                Debug.Log("Clock is still null");
-            }
-        }
-        GameClock.growingManager = this;
-    }
+    
     public void LoadData(SaveData s) {
         this.plants = s.plants;
     }
@@ -45,12 +37,5 @@ public class GrowingManager : MonoBehaviour, SaveInterface
     {
         s.plants = this.plants;
     }
-    void AddCrop(Vector3 pos) 
-    {
-        GrowableCrop c = new GrowableCrop();
-        c.position = pos;
-        
-        plants.Add(c);
-        
-    }
+    
 }
