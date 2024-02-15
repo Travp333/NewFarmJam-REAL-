@@ -78,21 +78,41 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5183088840726433253, guid: 88506a9e8f9f88b4fa3cacff39d13fc9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -2990411210473268187, guid: 88506a9e8f9f88b4fa3cacff39d13fc9,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6c83f9fea897c6141ad1fb62634b5009, type: 2}
+    - target: {fileID: -1684543897826104800, guid: 88506a9e8f9f88b4fa3cacff39d13fc9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 88506a9e8f9f88b4fa3cacff39d13fc9,
         type: 3}
       propertyPath: m_Name
       value: Vine Plant phase 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 88506a9e8f9f88b4fa3cacff39d13fc9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3750067842734949869, guid: 88506a9e8f9f88b4fa3cacff39d13fc9,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 40ca817607359d04f9a85ce314252325, type: 2}
+    - target: {fileID: 4694403432790717876, guid: 88506a9e8f9f88b4fa3cacff39d13fc9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

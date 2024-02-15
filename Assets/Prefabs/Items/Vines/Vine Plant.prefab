@@ -78,6 +78,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5183088840726433253, guid: 0903e1a068420d24c8d5858165659035,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -4010980779470094544, guid: 0903e1a068420d24c8d5858165659035,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -88,10 +93,35 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6c83f9fea897c6141ad1fb62634b5009, type: 2}
+    - target: {fileID: -2100681930374150874, guid: 0903e1a068420d24c8d5858165659035,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -1684543897826104800, guid: 0903e1a068420d24c8d5858165659035,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 359312179909449575, guid: 0903e1a068420d24c8d5858165659035,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0903e1a068420d24c8d5858165659035,
         type: 3}
       propertyPath: m_Name
       value: Vine Plant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0903e1a068420d24c8d5858165659035,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050902552516334510, guid: 0903e1a068420d24c8d5858165659035,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2504684441949758045, guid: 0903e1a068420d24c8d5858165659035,
         type: 3}
@@ -165,7 +195,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.42, y: 5.37, z: 0.29}
   m_Center: {x: 0, y: 2.57, z: 0}

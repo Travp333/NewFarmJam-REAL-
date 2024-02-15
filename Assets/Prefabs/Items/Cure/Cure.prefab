@@ -78,10 +78,20 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4d20c6a71b92f7440bd77fce4ab01e70, type: 2}
+    - target: {fileID: -5568371526223589888, guid: 582237ed18ff1ab49a673fa7e2f5b172,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 582237ed18ff1ab49a673fa7e2f5b172,
         type: 3}
       propertyPath: m_Name
       value: Cure
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 582237ed18ff1ab49a673fa7e2f5b172,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7071182760956848314, guid: 582237ed18ff1ab49a673fa7e2f5b172,
         type: 3}
@@ -93,6 +103,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8565257a8a2dcc24a8008046c00ed0b7, type: 2}
+    - target: {fileID: 8513859187771203891, guid: 582237ed18ff1ab49a673fa7e2f5b172,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
