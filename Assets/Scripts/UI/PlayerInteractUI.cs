@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class PlayerInteractUI : MonoBehaviour
 {
     [SerializeField]
@@ -46,3 +46,4 @@ public class PlayerInteractUI : MonoBehaviour
         interactableIcon.SetActive(false);
     }
 }
+*/
