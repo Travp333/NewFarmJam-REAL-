@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bamboo Seed
   m_EditorClassIdentifier: 
   Objname: Bamboo Seed
-  stackSize: 1
+  stackSize: 99
   img: {fileID: 21300000, guid: 1810e063680304446b7750fc50fc80ec, type: 3}
   worldModel:
   - {fileID: 1246674325083502988, guid: 519ffff3bd687644b86b2f99dd5591d9, type: 3}

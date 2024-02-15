@@ -187,12 +187,36 @@ public class tempHolder : MonoBehaviour
 			}
 			
 			else{
-				//if(tempRequiredIngredient.name != null){
-				//	if(tempRequiredIngredient.name != inventoryObject.array[row, column].Name){
+				if(tempCraftsInto != null && tempRequiredIngredient == null && inventoryObject.gameObject.tag == "Plantable"){
+					GameObject tempModel2 = tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length-1)];
+					Debug.Log("Crafting with nothing!");
+					// ISSUE HERE< IT DELETES THE ENTIRE STACK 1 INSTEAD OF DEDUCTING ONE OOPS
+					inventoryObject.array[row, column].Name = tempCraftsInto.name;
+					inventoryObject.array[row, column].Amount = 1;
+					inventoryObject.array[row, column].StackSize = tempCraftsInto.stackSize;
+					inventoryObject.array[row, column].image = tempCraftsInto.img;
+					inventoryObject.array[row, column].worldModel = tempCraftsInto.worldModel;
+					inventoryObject.array[row, column].growsInto = tempCraftsInto.growsInto;
+					inventoryObject.array[row, column].requiredIngredient = tempCraftsInto.requiredIngredient;
+					inventoryObject.array[row, column].craftsInto = tempCraftsInto.craftsInto;
+					inventoryObject.array[row, column].grabbable = tempCraftsInto.grabbable;
+					plug.SyncWorldModel(row, column, tempCraftsInto.name, tempModel2);
+					plug.ChangeItem(row,column, tempCraftsInto.img, 1 , tempCraftsInto.name);
+					tempInven.DropSpecificItem(tempRow.ToString() +", "+ tempColumn.ToString());
+					if(tempInven.array[tempRow, tempColumn].Amount <= 0){
+						tempPlug.ClearWorldModel(tempRow, tempColumn);
+						tempPlug.ClearSlot(tempRow, tempColumn, emptyImage);
+					}
+					else{
+						tempPlug.UpdateItem(tempRow, tempColumn, tempInven.array[tempRow, tempColumn].Amount);
+					}
+
+					ClearSlot();
+					//if(tempRequiredIngredient.name == inventoryObject.array[row, column].Name){
 						//PUT STUFF HERE
-				//	}
-				//}
-				if(inventoryObject.array[row, column].image.name == "empty"){
+					//}
+				}
+				else if(inventoryObject.array[row, column].image.name == "empty"){
 					//Debug.Log("Clean swap, two different objects, doing swap. Object 1 is "+ tempInven.array[tempRow, tempColumn].Name + " with " + tempInven.array[tempRow, tempColumn].Amount + " remaining in stock, and Object 2 is " + inventoryObject.array[row, column].Name + " with " + inventoryObject.array[row, column].Amount + "remaining in stock, and finally, this is Slot: "+ row + ", " + column);
 					//clean swap, two different objects
 					//STILL A PROBLEM HERE WHEN SWAPPING TWO ITEMS, WORLD MODELS STACK ON EACHOTHER AND GET A NULL ERROR EVENTUALLY 
@@ -209,7 +233,7 @@ public class tempHolder : MonoBehaviour
 					inventoryObject.array[row, column] = slot;
 					inventoryObject.array[row, column].growsInto = slot.growsInto;
 					inventoryObject.array[row, column].requiredIngredient = slot.requiredIngredient;
-					inventoryObject.array[row, column].craftsInto = slot.growsInto;
+					inventoryObject.array[row, column].craftsInto = slot.craftsInto;
 					inventoryObject.array[row, column].grabbable = slot.grabbable;
 					//we also have the Ui update
 					plug.SyncWorldModel(row, column, tempName, tempModel);

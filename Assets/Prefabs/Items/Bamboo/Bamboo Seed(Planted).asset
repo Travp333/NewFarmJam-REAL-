@@ -23,4 +23,4 @@ MonoBehaviour:
   requiredIngredient: {fileID: 0}
   craftsInto: {fileID: 0}
   growsInto: {fileID: 11400000, guid: 19a7f6b83a1e5814abbb51f801c9ea4f, type: 2}
-  grabbable: 1
+  grabbable: 0
