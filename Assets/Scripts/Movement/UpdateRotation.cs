@@ -43,6 +43,7 @@ public class UpdateRotation : MonoBehaviour
 	}
     void UpdateSpins()
     {
+		//point.GetComponent<RotationPointer>().playerinputSpace.TransformDirection(sphere.playerInput.x, 0f, sphere.playerInput.y)
 		Vector3 player2Pointer = sphere.ProjectDirectionOnPlane(point.transform.position - transform.parent.gameObject.transform.position, CustomGravity.GetUpAxis(transform.position));
         Vector3 gravity = CustomGravity.GetUpAxis(this.transform.position);
 		if(DummyGrav == gravity){
@@ -64,6 +65,7 @@ public class UpdateRotation : MonoBehaviour
 				transform.rotation = Quaternion.RotateTowards (transform.rotation, toRotation, airRotationSpeed * Time.deltaTime);
 			}
 			else{
+				//Quaternion.LookRotation(ProjectDirectionOnPlane(player2Pointer, gravity), gravity);
 				Quaternion toRotation = Quaternion.LookRotation(ProjectDirectionOnPlane(player2Pointer, gravity), gravity);
 				transform.rotation = Quaternion.RotateTowards (transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
 			}

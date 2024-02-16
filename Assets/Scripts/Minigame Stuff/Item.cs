@@ -16,6 +16,8 @@ public class Item : ScriptableObject
 	public GameObject[] worldModel;
 	[SerializeField]
 	public Item requiredIngredient;
+    [SerializeField]
+    public Item craftsInto;
 	[SerializeField]
 	public Item growsInto;
 	[SerializeField]

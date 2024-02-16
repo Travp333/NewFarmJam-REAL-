@@ -473,8 +473,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingInvenPrefabs:
-  - {fileID: 1246674325083502988, guid: 4874c202bb87bce408465f4f3e0eae33, type: 3}
-  startingInvenCount: 01000000
+  - {fileID: 11400000, guid: 308542c5be35d044ea4515aa0cf0eebf, type: 2}
+  - {fileID: 11400000, guid: 77fb4bb3b9df8ab47a4bb2a589be573a, type: 2}
+  - {fileID: 11400000, guid: 03221ee60d7aedd4dacf53aea57f7ba8, type: 2}
+  - {fileID: 11400000, guid: 4bea83fa5be61ec48828dc71adb48ebf, type: 2}
+  - {fileID: 11400000, guid: 7954e188a5225704289cc122b29f2bc6, type: 2}
+  startingInvenCount: 0200000002000000020000000100000001000000
   droppedItemSpawnPoint: {fileID: 4975230396845720203}
   UIPlugger: {fileID: 0}
   hSize: 4
@@ -493,10 +497,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe7c2d89d61e2641ae0e571f7542a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptyModel: {fileID: 27165495037626258, guid: 39bbee5c39a9ef64aa44985a72bfd64f,
+    type: 3}
   tempRow: -1
   tempColumn: -1
   tempCount: -1
   tempName: 
+  tempModel: {fileID: 27165495037626258, guid: 39bbee5c39a9ef64aa44985a72bfd64f, type: 3}
   emptyImage: {fileID: 21300000, guid: 3ec8a875a27c20540b5ae876d0239d5c, type: 3}
   slotAmount: 0
 --- !u!1 &3486547431117684658

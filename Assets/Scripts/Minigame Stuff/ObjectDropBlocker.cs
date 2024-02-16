@@ -19,6 +19,6 @@ public class ObjectDropBlocker : MonoBehaviour, IDropHandler
 	public void OnDrop(PointerEventData eventData){
 		eventData.pointerDrag.GetComponent<MultiClickButton>().resetPosition();
 		tmp.ClearSlot();
-		//Debug.Log("Dropped a thing heres a bunch of info " + eventData.pointerDrag.transform.parent.name);
+		Debug.Log("Dropped a thing heres a bunch of info " + eventData.pointerDrag.transform.parent.name);
 	}
 }

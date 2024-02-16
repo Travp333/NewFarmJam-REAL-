@@ -18,10 +18,12 @@ public class UiPlugger : MonoBehaviour
 	[SerializeField]
 	public Inven inven;
 	[SerializeField]
+	public InvenSyncer sync;
+	[SerializeField]
 	public List<GameObject> slots = new List<GameObject>();
 	public List<Vector3> slotsPos = new List<Vector3>();
 	//public GameObject[] slots;
-    UIReferenceHolder reff;
+    public UIReferenceHolder reff;
     int i = 0;
 	bool firstSlotSkip;
 	[SerializeField]
@@ -92,15 +94,38 @@ public class UiPlugger : MonoBehaviour
 		//rt.anchorMax = new Vector2(0,1);
 		//rt.pivot = new Vector2(.5f, .5f);
 	}
+	public void SyncWorldModel(int row, int column, string name, GameObject worldModel){
+		//Debug.LogError("WORLD MODEL HERE" + worldModel + "SYNC HERE" + sync.name);
+		if(worldModel != null){
+			if(sync != null){
+				//Debug.Log("CHANGED WORLD MODEL");
+				sync.UpdateWorldModel(row, column, name, worldModel);
+			}
+		}
+		else{
+			if(sync != null){
+				Debug.Log("SOMETHING SOMETHING?????");
+			}
+		}
+	}
+	public void ClearWorldModel(int row, int column){
+		if(sync != null){
+			sync.ClearWorldModel(row, column);
+		}	
+		
+	}
 	public void ChangeItem(int row, int column, Sprite img, int count, string name){
-		Debug.Log(slots.Count + this.gameObject.name);
+		//Debug.Log(slots.Count + this.gameObject.name);
 		foreach(GameObject g in slots){
-			Debug.Log("Made it to changeItem");
+			//Debug.Log("Made it to changeItem");
 	        if(slots[i].name == row+","+column){
                 reff = slots[i].GetComponent<UIReferenceHolder>();
                 reff.button.GetComponent<UnityEngine.UI.Image>().sprite = img;
                 reff.text.GetComponent<TextMeshProUGUI>().text = name;
                 reff.count.GetComponent<TextMeshProUGUI>().text = "x"+count;
+				//changes the mesh to match the inventory's contents
+				
+
             }
             i++;
         }

@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4298360192026832617
 Transform:
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.6144512, y: -0.34992754, z: -0.34992784, w: 0.6144518}
   m_LocalPosition: {x: -41.785, y: 10.83, z: -32.818}
-  m_LocalScale: {x: 30, y: 30, z: 30}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246674325083502988}
-  m_Mesh: {fileID: 8925704111712730334, guid: ecd9b99d70076604a892ee4e5d088a35, type: 3}
+  m_Mesh: {fileID: -5864397587013202776, guid: 09c50b8d04bf378468108ad4efc2b596, type: 3}
 --- !u!23 &5379369230490231627
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -109,7 +109,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -143,7 +143,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.024779089, y: 0.023119101, z: 0.012170947}
   m_Center: {x: 0.0000000013969839, y: 0, z: 0.0039379285}

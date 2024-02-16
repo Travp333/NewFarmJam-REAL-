@@ -35,21 +35,25 @@ public class MultiClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 	private Vector3 startingPos;
 	private bool leftBlock;
 	private string heldItemName;
-	
+	public bool grabbable;
+	public StorageFinder finder;
 	
 	private void Awake()
 	
 	{
-		
+		finder = GetComponent<StorageFinder>();
+		//slotname = this.gameObject.name;
+		//grabbable = GetComponent<StorageFinder>().storage.GetComponent<Inven>().array[int.Parse(slotname.Substring(0,1)),int.Parse(slotname.Substring(2,1))].grabbable;
 		rectTransform = GetComponent<RectTransform>();
 		canvasGroup = GetComponent<CanvasGroup>();
 		
 	}
 	
 	public void OnBeginDrag(PointerEventData eventData){
+		finder.UpdateHeldItem();
 		//if object isnt an empty slot
 		startingPos = this.transform.position;
-		if(GetComponent<Image>().sprite.name != "empty"){
+		if(GetComponent<Image>().sprite.name != "empty" && finder.item.grabbable){
 			
 			GetComponent<StorageFinder>().storage.GetComponent<Inven>().UIPlugger.GetComponent<Canvas>().sortingOrder = 999;
 			
@@ -64,24 +68,24 @@ public class MultiClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 			leftDown.Invoke();
 		}
 		else{
-			Debug.Log("Grabbed empty");
+			//Debug.Log("Grabbed empty");
 			this.transform.position = startingPos;
 		}
 	}
 	public void OnDrag(PointerEventData eventData){
-		
-		if(GetComponent<Image>().sprite.name != "empty"){
+		finder.UpdateHeldItem();
+		if(GetComponent<Image>().sprite.name != "empty" && finder.item.grabbable){
 			GetComponent<StorageFinder>().storage.GetComponent<Inven>().UIPlugger.GetComponent<Canvas>().sortingOrder = 999;
 			//Debug.Log("On Drag");
 			rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
 		}
 		else{
-			Debug.Log("Dragging Empty");
+			//Debug.Log("Dragging Empty");
 		}
 	}
 	public void OnEndDrag(PointerEventData eventData){
-		GetComponent<StorageFinder>().storage.GetComponent<Inven>().UIPlugger.GetComponent<Canvas>().sortingOrder = 0;
-		Debug.Log("End Drag on "+ heldItemName);
+		GetComponent<StorageFinder>().storage.GetComponent<Inven>().UIPlugger.GetComponent<Canvas>().sortingOrder = 1;
+		//Debug.Log("End Drag on "+ heldItemName);
 		heldItemName = null;
 		canvasGroup.alpha = 1f;
 		canvasGroup.blocksRaycasts = true;
@@ -91,8 +95,8 @@ public class MultiClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 		
 	}
 	public void OnDrop(PointerEventData eventData){
-		GetComponent<StorageFinder>().storage.GetComponent<Inven>().UIPlugger.GetComponent<Canvas>().sortingOrder = 0;
-		Debug.Log("End Drop on " + this.transform.parent.name + " and " + heldItemName);
+		GetComponent<StorageFinder>().storage.GetComponent<Inven>().UIPlugger.GetComponent<Canvas>().sortingOrder = 1;
+		//Debug.Log("End Drop on " + this.transform.parent.name + " and " + heldItemName);
 		canvasGroup.alpha = 1f;
 		canvasGroup.blocksRaycasts = true;
 		leftRelease.Invoke();
@@ -101,13 +105,13 @@ public class MultiClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 			eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
 		}
 		else{
-			Debug.Log("INVALID DROP POS!!!");
+			//Debug.Log("INVALID DROP POS!!!");
 		}
 	}
 	
 	public void resetPosition(){
 		if(startingPos != null){
-			GetComponent<StorageFinder>().storage.GetComponent<Inven>().UIPlugger.GetComponent<Canvas>().sortingOrder = 0;
+			GetComponent<StorageFinder>().storage.GetComponent<Inven>().UIPlugger.GetComponent<Canvas>().sortingOrder = 1;
 			this.transform.position = startingPos;
 			canvasGroup.alpha = 1f;
 			canvasGroup.blocksRaycasts = true;
@@ -124,6 +128,7 @@ public class MultiClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 	public void Update(){
 		//Mouse button is being held down
 		if(pointerDown && GetComponent<Image>().sprite.name != "empty"){
+
 			//Debug.Log(GetComponent<Image>().sprite.name);
 			if(eventData2.button == PointerEventData.InputButton.Left){
 				if(!leftBlock){

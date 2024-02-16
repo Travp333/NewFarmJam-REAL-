@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79a0295687fa01a4c9b3188f6da3b7d5, type: 3}
-  m_Name: Bamboo Phase 1
+  m_Name: Bamboo Seed
   m_EditorClassIdentifier: 
-  Objname: Bamboo Phase 1
-  stackSize: 1
+  Objname: Bamboo Seed
+  stackSize: 99
   img: {fileID: 21300000, guid: 1810e063680304446b7750fc50fc80ec, type: 3}
   worldModel:
   - {fileID: 1246674325083502988, guid: 519ffff3bd687644b86b2f99dd5591d9, type: 3}
@@ -21,5 +21,6 @@ MonoBehaviour:
   - {fileID: 1246674325083502988, guid: bcac7b4dd734f924b927db44102377fc, type: 3}
   - {fileID: 1246674325083502988, guid: 2883d74a8190e4942a74b58a371f2bdd, type: 3}
   requiredIngredient: {fileID: 0}
+  craftsInto: {fileID: 11400000, guid: ecac43ab73507e94a9b0799cd5b2a02e, type: 2}
   growsInto: {fileID: 11400000, guid: 19a7f6b83a1e5814abbb51f801c9ea4f, type: 2}
   grabbable: 1
