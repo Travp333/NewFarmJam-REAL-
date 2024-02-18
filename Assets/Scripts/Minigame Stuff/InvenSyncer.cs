@@ -13,7 +13,11 @@ public class InvenSyncer : MonoBehaviour
 		//Debug.Log("Updating World Model!");
 		foreach (Transform t in cropPositions){
 			if (t.name ==  (row + ","+ column)){
-				Instantiate(worldModel, t.transform.position, Quaternion.identity, t);
+				GameObject g = Instantiate(worldModel, t.transform.position, Quaternion.identity, t);
+				pickUpableItem g2 = g.GetComponent<pickUpableItem>();
+				g2.inven = this.gameObject.GetComponent<Inven>();
+				g2.row = row;
+				g2.column = column;
 			}
 		}
 	}

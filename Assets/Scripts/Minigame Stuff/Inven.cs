@@ -44,7 +44,7 @@ public class Inven : MonoBehaviour
     public Item item;
 	public ItemStat [,] array;
 	UiPlugger plug;
-	tempHolder temp;
+	public tempHolder temp;
 	int loopCounter;
 	int i2;
 	int i3;
@@ -386,9 +386,9 @@ public class Inven : MonoBehaviour
 			//make the button flash grey for a second to give feedback
 			plug.ButtonPress(row, column);
 			//spawn a prefab with the same info as that item
-			for (int i = 0; i < array[row, column].Amount; i++) {
-				SpawnItem(array[row, column].prefab);
-			}
+			//for (int i = 0; i < array[row, column].Amount; i++) {
+			//	SpawnItem(array[row, column].prefab);
+			//}
 			array[row, column].Amount = 0;
 			//you just dropped the last item in that slot, reverting to default
 			if(array[row, column].Amount <= 0){
