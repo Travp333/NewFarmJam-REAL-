@@ -134,7 +134,50 @@ public class Inven : MonoBehaviour
 		}
 		i2 = 0;
 	}
+	public void SpecificPickUpAndCount(Item item, int row, int column, int amount){
+		if(array[row,column].Name == ""){
+		//yes empty, filling slot
+		//Debug.Log("Slot (" + i + " , "+ i2 + " ) is empty, putting " + item.Objname + " in slot");
+		isPickedUp = true;
+		//Debug.Log("ispickedup set to "+ isPickedUp);
+		array[row,column].Name = item.Objname;
+		array[row,column].Amount = amount;
+		array[row,column].StackSize = item.stackSize;
+		array[row, column].image = item.img;
+		array[row, column].worldModel = item.worldModel;
+		array[row, column].requiredIngredient = item.requiredIngredient;
+		array[row, column].craftsInto = item.craftsInto;
+		array[row, column].growsInto = item.growsInto;
+		array[row, column].grabbable = item.grabbable;
 
+		//updating UI to match new change
+
+		if(this.gameObject.tag != "Player"){
+			plug.SyncWorldModel(row, column, array[row,column].Name, array[row, column].worldModel[Random.Range(0, item.worldModel.Length-1)]);
+		}
+		
+		plug.ChangeItem(row, column, item.img, array[row,column].Amount, array[row,column].Name);
+		}
+		//no theres something here
+		else{
+			//Debug.Log("Slot (" + i + " , " + i2 + " ) has " + array[i,i2].Amount + " " + array[i,i2].Name + " in it, checking if it matches the new " + item.Objname);
+			//basically is there room for it, is it the same object
+			if(array[row,column].Name == item.Objname && array[row,column].StackSize !>= amount){
+				//Debug.Log("Slot (" + i + " , "+ i2 + " ) has room, adding " + item.Objname + " to stack");
+				//same object, room in the stack, adding to stack
+				isPickedUp = true;
+				//Debug.Log("ispickedup set to "+ isPickedUp);
+				array[row,column].Amount = amount;
+				//Debug.Log("we now have " + array[i,i2].Amount + " "+ array[i,i2].Name + " in " + "Slot (" + i + " , "+ i2 + " ) ");
+				//updating UI to match new change*/
+				plug.UpdateItem(row, column, array[row,column].Amount);
+			}
+			else if(array[row,column].StackSize <= array[row,column].Amount + 1){
+				//Debug.Log("cant hold more than " + array[i,i2].Amount + " " + array[i,i2].Name + " in one stack, starting new stack... ");
+			}
+			//otherwise theres something here but its not the same type or theres no room for it
+		}
+	}
 	public void SpecificPickUp(Item item, int row, int column){
 		if(array[row,column].Name == ""){
 		//yes empty, filling slot

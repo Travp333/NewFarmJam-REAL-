@@ -10,6 +10,5 @@ public class ObjectDropAllower : MonoBehaviour, IDropHandler
 		//Debug.Log("Get DROPPED ON SON");
 		eventData.pointerDrag.GetComponent<MultiClickButton>().quickDropAll();
 		eventData.pointerDrag.GetComponent<MultiClickButton>().resetPosition();
-		
 	}
 }

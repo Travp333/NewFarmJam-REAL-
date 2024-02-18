@@ -187,6 +187,7 @@ public class tempHolder : MonoBehaviour
 			}
 			
 			else{
+				//planting seeds
 				if(tempCraftsInto != null && tempRequiredIngredient == null && inventoryObject.gameObject.tag == "Plantable" && inventoryObject.array[row, column].Name == ""){
 					GameObject tempModel2 = tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length-1)];
 					Debug.Log("Crafting with nothing!");
