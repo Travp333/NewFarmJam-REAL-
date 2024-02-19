@@ -288,7 +288,7 @@ public class tempHolder : MonoBehaviour
 							tempInven.DropSpecificItem(tempRow.ToString() +", "+ tempColumn.ToString());
 							inventoryObject.DropSpecificItem(row.ToString() + ", " + column.ToString());
 							plug.ClearWorldModel(row, column);
-							if(inventoryObject.array[tempRow, tempColumn].Amount <=0){
+							if(inventoryObject.array[row, column].Amount <=0){
 								tempPlug.ClearWorldModel(tempRow,tempColumn);
 							}
 							//Debug.Log("TOTAL COUNT SLOT 2: "+ inventoryObject.array[row, column].Name + ", " + inventoryObject.array[row, column].Amount );

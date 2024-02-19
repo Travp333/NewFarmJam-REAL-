@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 998965137959712868}
   - component: {fileID: 998965137959712870}
   - component: {fileID: 998965137959712871}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Text BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 998965138200280327}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: placeHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -100, y: 100}
+  m_AnchoredPosition: {x: -720, y: 163}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &998965138367444383
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 998965138367444382}
   - component: {fileID: 998965138367444355}
   - component: {fileID: 998965138367444352}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 998965138818707072}
   - component: {fileID: 998965138818707074}
   - component: {fileID: 998965138818707075}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 998965139094098072}
   - component: {fileID: 998965139094098074}
   - component: {fileID: 998965139094098075}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Button BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 998965139501767923}
   - component: {fileID: 998965139501767925}
   - component: {fileID: 998965139501767922}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 998965139695096075}
   - component: {fileID: 998965139695096077}
   - component: {fileID: 998965139695096074}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: CountBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 5370990761619445498}
   - component: {fileID: 8905618290104864804}
   - component: {fileID: 8186337450899167753}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Storage Inven
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -728,15 +728,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placeHolderButton: {fileID: 998965138200280327}
   canvasBG: {fileID: 5370990762718297147}
-  buttonPrefab: {fileID: 5137595416538600720, guid: 30f3d29061e651246ab5768f01e4c2c4,
+  buttonPrefab: {fileID: 5137595416538600720, guid: 01a189055153d0b4589164b49407d1c6,
     type: 3}
   inven: {fileID: 0}
   sync: {fileID: 0}
   slots: []
   slotsPos: []
   reff: {fileID: 0}
-  hPadding: 100
-  vPadding: 100
+  hPadding: 150
+  vPadding: 150
 --- !u!222 &8186337450899167753
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 5370990762718297149}
   - component: {fileID: 5370990762718297148}
   - component: {fileID: 8849400620886718557}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -773,8 +773,8 @@ RectTransform:
   m_GameObject: {fileID: 5370990762718297146}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5370990762860032336}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -804,15 +804,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b0691ff2a51e3b846b8c35ee0f601eaf, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -843,7 +843,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5370990762860032336}
   - component: {fileID: 380835027595173462}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -867,7 +867,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 473.55, y: -195.20007}
+  m_AnchoredPosition: {x: -16, y: -195.20007}
   m_SizeDelta: {x: 416.39, y: 346.39}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &380835027595173462
