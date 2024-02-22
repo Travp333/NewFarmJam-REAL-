@@ -7,8 +7,7 @@ public class Movement : MonoBehaviour {
 	PlayerStates state;
 	[SerializeField]
 	public GameObject center;
-	[SerializeField]
-	public GameObject neck;
+
 	[SerializeField]
 	GameObject feet;
 	public InputAction jumpAction;

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerStates : MonoBehaviour
-{   
+{   [SerializeField]
+	bool turnSnapping;
 	[SerializeField]
 	GameObject northPointer;
 	[SerializeField]
@@ -14,8 +15,6 @@ public class PlayerStates : MonoBehaviour
 	GameObject southPointer;
 	[SerializeField]
 	GameObject root;
-	[SerializeField]
-	SimpleCameraMovement fpscamscript;
 	Vector3 playerRotation;
 	[SerializeField]
 	UpdateRotation rot;
@@ -63,90 +62,9 @@ public class PlayerStates : MonoBehaviour
 		else{
 			walking = false;
 		}
-		if(turnLeftAction.WasPressedThisFrame() && !move.moveBlocked){
-			if(facing == "North"){
-				facing = "West";
-				SnapRotationToWest();
-			}
-			else if(facing == "West"){
-				facing = "South";
-				SnapRotationToSouth();
-			}
-			else if(facing == "South"){
-				facing = "East";
-				SnapRotationToEast();
-			}
-			else if(facing == "East"){
-				facing = "North";
-				SnapRotationToNorth();
-			}
-			
-		}
-		if(turnRightAction.WasPressedThisFrame() && !move.moveBlocked){
-			if(facing == "North"){
-				facing = "East";
-				SnapRotationToEast();
-			}
-			else if(facing == "West"){
-				facing = "North";
-				SnapRotationToNorth();
-			}
-			else if(facing == "South"){
-				facing = "West";
-				SnapRotationToWest();
-			}
-			else if(facing == "East"){
-				facing = "South";
-				SnapRotationToSouth();
-			}
-			
-		}
         
 	}
-	void FixedUpdate()
-	{
-		if(this.transform.rotation.y != facingDir.y){
-			Vector3 gravity = CustomGravity.GetUpAxis(this.transform.position);
-			if(facing == "North"){
-				Vector3 player2Pointer = sphere.ProjectDirectionOnPlane(northPointer.transform.position - transform.parent.gameObject.transform.position, CustomGravity.GetUpAxis(transform.position));
-				Quaternion toRotation = Quaternion.LookRotation(ProjectDirectionOnPlane(player2Pointer, gravity), gravity);
-				transform.rotation = Quaternion.RotateTowards (transform.rotation, toRotation, rotSpeed * Time.deltaTime);
-			}
-			else if(facing == "West"){
-				Vector3 player2Pointer = sphere.ProjectDirectionOnPlane(westPointer.transform.position - transform.parent.gameObject.transform.position, CustomGravity.GetUpAxis(transform.position));
-				Quaternion toRotation = Quaternion.LookRotation(ProjectDirectionOnPlane(player2Pointer, gravity), gravity);
-				transform.rotation = Quaternion.RotateTowards (transform.rotation, toRotation, rotSpeed * Time.deltaTime);
-			}
-			else if(facing == "South"){
-				Vector3 player2Pointer = sphere.ProjectDirectionOnPlane(southPointer.transform.position - transform.parent.gameObject.transform.position, CustomGravity.GetUpAxis(transform.position));
-				Quaternion toRotation = Quaternion.LookRotation(ProjectDirectionOnPlane(player2Pointer, gravity), gravity);
-				transform.rotation = Quaternion.RotateTowards (transform.rotation, toRotation, rotSpeed * Time.deltaTime);
-			}
-			else if(facing == "East"){
-				Vector3 player2Pointer = sphere.ProjectDirectionOnPlane(eastPointer.transform.position - transform.parent.gameObject.transform.position, CustomGravity.GetUpAxis(transform.position));
-				Quaternion toRotation = Quaternion.LookRotation(ProjectDirectionOnPlane(player2Pointer, gravity), gravity);
-				transform.rotation = Quaternion.RotateTowards (transform.rotation, toRotation, rotSpeed * Time.deltaTime);
-			}
-			
 
-		}
-	}
-	public void SnapRotationToNorth(){
-		Vector3 player2Pointer = sphere.ProjectDirectionOnPlane(northPointer.transform.position - transform.parent.gameObject.transform.position, CustomGravity.GetUpAxis(transform.position));
-		facingDir = player2Pointer;
-	}
-	public void SnapRotationToWest(){
-		Vector3 player2Pointer = sphere.ProjectDirectionOnPlane(westPointer.transform.position - transform.parent.gameObject.transform.position, CustomGravity.GetUpAxis(transform.position));
-		facingDir = player2Pointer; 
-	}
-	public void SnapRotationToSouth(){
-		Vector3 player2Pointer = sphere.ProjectDirectionOnPlane(southPointer.transform.position - transform.parent.gameObject.transform.position, CustomGravity.GetUpAxis(transform.position));
-		facingDir = player2Pointer;
-	}
-	public void SnapRotationToEast(){
-		Vector3 player2Pointer = sphere.ProjectDirectionOnPlane(eastPointer.transform.position - transform.parent.gameObject.transform.position, CustomGravity.GetUpAxis(transform.position));
-		facingDir = player2Pointer;
-	}
 	Vector3 ProjectDirectionOnPlane (Vector3 direction, Vector3 normal) {
 		return (direction - normal * Vector3.Dot(direction, normal)).normalized;
 	}
