@@ -12,5 +12,8 @@ public class SaveData
         this.gameHour = 0;
         this.totalPlayTime = 0f;
         this.plants = new List<Growable>();
+ 
     }
+
+    
 }

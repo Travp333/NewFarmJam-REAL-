@@ -24,3 +24,6 @@ MonoBehaviour:
   craftsInto: {fileID: 0}
   growsInto: {fileID: 11400000, guid: 77fb4bb3b9df8ab47a4bb2a589be573a, type: 2}
   grabbable: 0
+  isSeed: 0
+  age: 0
+  matureAge: 4
