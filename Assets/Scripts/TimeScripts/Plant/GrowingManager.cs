@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GrowingManager : MonoBehaviour, SaveInterface
 {
-    List<Growable> plants;
+    List<Inven> plants;
     [SerializeField]
     GameClock GameClock;
 
@@ -12,30 +12,41 @@ public class GrowingManager : MonoBehaviour, SaveInterface
     {
         if (plants == null)
         {
-            plants = new List<Growable>();
+            plants = new List<Inven>();
         }
-        
-
+       
     }
 	private void Awake()
 	{
         
 	}
 
-	public void GrowStepUpdate() {
-        foreach (Growable g in plants) 
+    public void GrowStepUpdate()
+    {
+        plants.Clear();
+        foreach (Inven i in GameObject.FindObjectsOfType<Inven>())
         {
-            g.UpdateGrowth();
-            
+            if (i.gameObject.tag != "Player")
+            {
+                plants.Add(i);
+            }
+        }
+        foreach (Inven i in plants)
+        {
+            i.PlantAgeUpdate();
         }
     }
     
+    
+            
+        
+    
     public void LoadData(SaveData s) {
-        this.plants = s.plants;
+        //this.plants = s.plants;
     }
     public void SaveData(ref SaveData s)
     {
-        s.plants = this.plants;
+        //s.plants = this.plants;
     }
     
 }

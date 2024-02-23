@@ -22,3 +22,5 @@ MonoBehaviour:
   growsInto: {fileID: 0}
   grabbable: 1
   isSeed: 1
+  age: 0
+  matureAge: 4

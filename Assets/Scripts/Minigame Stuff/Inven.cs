@@ -23,6 +23,11 @@ public class ItemStat {
 	public Item growsInto;
 	public bool grabbable;
 	public bool isSeed;
+	public int age;
+	public int matureAge;
+	public int x, y;
+
+	
 }
 public class Inven : MonoBehaviour
 {
@@ -64,6 +69,8 @@ public class Inven : MonoBehaviour
             {
                 array[i,i2] = new ItemStat();
 	            array[i,i2].image = temp.emptyImage;
+				array[i, i2].x = i;
+				array[i, i2].y = i2;
             }
         }
 		//Invoke("jumpStart", .1f);
@@ -83,6 +90,9 @@ public class Inven : MonoBehaviour
 		array[row, column].growsInto = null;
 		array[row, column].grabbable = false;
 		array[row, column].isSeed = false;
+		array[row, column].age = 0;
+		array[row, column].matureAge = -1;
+		
 		//updating UI to match new change
 		plug.ClearSlot(row, column, temp.emptyImage);
 	}
@@ -105,6 +115,9 @@ public class Inven : MonoBehaviour
 			array[row, column].growsInto = null;
 			array[row, column].grabbable = false;
 			array[row, column].isSeed = false;
+			array[row, column].age = 0;
+			array[row, column].matureAge = -1;
+			
 			//updating UI to match new change
 			plug.ClearSlot(row, column, temp.emptyImage);
 		}
@@ -153,9 +166,14 @@ public class Inven : MonoBehaviour
 			array[row, column].growsInto = item.growsInto;
 			array[row, column].grabbable = item.grabbable;
 			array[row, column].isSeed = item.isSeed;
+			array[row, column].age = item.age;
+			array[row, column].matureAge = item.matureAge;
+			
+
+
 			//updating UI to match new change
-	
-			if(this.gameObject.tag != "Player"){
+
+			if (this.gameObject.tag != "Player"){
 				plug.SyncWorldModel(row, column, array[row,column].Name, array[row, column].worldModel[Random.Range(0, item.worldModel.Length-1)]);
 			}
 			
@@ -197,9 +215,13 @@ public class Inven : MonoBehaviour
 			array[row, column].growsInto = item.growsInto;
 			array[row, column].grabbable = item.grabbable;
 			array[row, column].isSeed = item.isSeed;
+			array[row, column].age = item.age;
+			array[row, column].matureAge = item.matureAge;
+			
+
 			//updating UI to match new change
-	
-			if(this.gameObject.tag != "Player"){
+
+			if (this.gameObject.tag != "Player"){
 				plug.SyncWorldModel(row, column, array[row,column].Name, array[row, column].worldModel[Random.Range(0, item.worldModel.Length-1)]);
 			}
 			
@@ -252,9 +274,12 @@ public class Inven : MonoBehaviour
 					array[i, i2].growsInto = item.growsInto;
 					array[i, i2].grabbable = item.grabbable;
 					array[i, i2].isSeed = item.isSeed;
+					array[i, i2].age = item.age;
+					array[i, i2].matureAge = item.matureAge;
+					
 					//updating UI to match new change
 
-					if(this.gameObject.tag != "Player"){
+					if (this.gameObject.tag != "Player"){
 						plug.SyncWorldModel(i, i2, array[i,i2].Name, array[i, i2].worldModel[Random.Range(0, item.worldModel.Length-1)]);
 					}
 					
@@ -366,6 +391,8 @@ public class Inven : MonoBehaviour
 				array[row, column].growsInto = null;
 	            array[row, column].grabbable = false;
 	            array[row,column].isSeed = false;
+				array[row, column].age = 0;
+				array[row, column].matureAge = -1;
                 //updating UI to match new change
 	            plug.ClearSlot(row, column, temp.emptyImage);
             }
@@ -408,6 +435,9 @@ public class Inven : MonoBehaviour
 				array[row, column].growsInto = null;
 				array[row, column].grabbable = false;
 				array[row, column].isSeed = false;
+				array[row, column].age = 0;
+				array[row, column].matureAge = -1;
+				
 				//updating UI to match new change
 				plug.ClearSlot(row, column, temp.emptyImage);
 			}
@@ -419,5 +449,42 @@ public class Inven : MonoBehaviour
 		}
 		
 	}
+	public void PlantAgeUpdate() {
+		plug = UIPlugger.GetComponent<UiPlugger>();
+		foreach (ItemStat b in array)
+		{
+			if (b.matureAge != -1)
+			{
 
+
+				b.age++;
+				if (b.age >= b.matureAge && b.growsInto != null)
+				{
+					Item item = b.growsInto;
+
+					b.Name = item.Objname;
+
+					b.StackSize = item.stackSize;
+					b.image = item.img;
+					b.worldModel = item.worldModel;
+					b.requiredIngredient = item.requiredIngredient;
+					b.craftsInto = item.craftsInto;
+					b.growsInto = item.growsInto;
+					b.grabbable = item.grabbable;
+					b.isSeed = item.isSeed;
+					b.age = item.age;
+					Debug.Log(b.Name + " " + b.age);
+					b.matureAge = item.matureAge;
+					if (b.worldModel != null)
+					{
+						plug.ClearWorldModel(b.x, b.y);
+						plug.SyncWorldModel(b.x, b.y, b.Name, b.worldModel[Random.Range(0, b.worldModel.Length - 1)]);
+
+					}
+				}
+				
+				plug.ChangeItem(b.x, b.y, b.image, b.Amount, b.Name);
+			}
+		}
+	}
 }

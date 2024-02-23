@@ -24,6 +24,10 @@ public class Item : ScriptableObject
 	public bool grabbable;
 	[SerializeField]
 	public bool isSeed;
+    [SerializeField]
+    public int age;
+    [SerializeField]
+    public int matureAge;
     
 
 }

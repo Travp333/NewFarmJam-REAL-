@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -14799,6 +14799,8 @@ GameObject:
   - component: {fileID: 410087041}
   - component: {fileID: 410087040}
   - component: {fileID: 410087042}
+  - component: {fileID: 410087044}
+  - component: {fileID: 410087043}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -14906,6 +14908,36 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!114 &410087043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410087039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 103e5844b674b53419e67c328e1a9ec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameClock: {fileID: 410087044}
+--- !u!114 &410087044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410087039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb203604bfd725428fde0fefb11d0f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DirectionalLight: {fileID: 410087040}
+  preset: {fileID: 11400000, guid: a7dc5e3fd4e715945a072101dbb6cbe6, type: 2}
+  growingManager: {fileID: 410087043}
+  gameTimeScale: 360
+  gameHour: 0
 --- !u!4 &411923357 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 735363220334402062, guid: c3b6255e8b4379745a5ef514c75093e2,

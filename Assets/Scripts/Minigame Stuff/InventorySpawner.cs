@@ -10,6 +10,8 @@ public class InventorySpawner : MonoBehaviour
 	GameObject Player;
 	[SerializeField]
 	public tempHolder temp;
+	/*[SerializeField]
+	GrowingManager growingManager;*/
 	
     // Start is called before the first frame update
     void Start()

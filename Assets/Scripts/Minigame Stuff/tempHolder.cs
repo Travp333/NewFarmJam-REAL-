@@ -32,6 +32,9 @@ public class tempHolder : MonoBehaviour
 	public bool tempGrabbable;
 	public Item tempRequiredIngredient;
 	public bool tempIsSeed;
+	public int tempAge;
+	public int tempMatureAge;
+
 	
 	//protected void Update()
 	//{
@@ -82,6 +85,8 @@ public class tempHolder : MonoBehaviour
 		tempRequiredIngredient = null;
 		tempGrabbable = false;
 		tempIsSeed = false;
+		tempAge = 0;
+		tempMatureAge = -1;
 	}
 	public void HoldItem(Inven inventoryObject, string coords){
 		//Debug.Log("running HoldItem()");
@@ -116,6 +121,8 @@ public class tempHolder : MonoBehaviour
 				tempRequiredIngredient = slot.requiredIngredient;
 				tempGrabbable = slot.grabbable;
 				tempIsSeed = slot.isSeed;
+				tempAge = slot.age;
+				tempMatureAge = slot.matureAge;
 				//Debug.Log(slot.Name + " was selected");
 				//This turns the button pressed darker, to indicate to the player that that inventory slot is being stored in the temp slot
 				//plug.ButtonSelected(row, column);	
@@ -234,6 +241,8 @@ public class tempHolder : MonoBehaviour
 					inventoryObject.array[row, column].craftsInto = tempCraftsInto;
 					inventoryObject.array[row, column].grabbable = tempGrabbable;
 					inventoryObject.array[row, column].isSeed = tempIsSeed;
+					inventoryObject.array[row, column].age = tempAge;
+					inventoryObject.array[row, column].matureAge = tempMatureAge;
 					plug.SyncWorldModel(row, column, tempName, tempModel);
 					plug.ChangeItem(row,column, tempImage, 1 , tempName);
 					tempInven.DropSpecificItem(tempRow.ToString() +", "+ tempColumn.ToString());
@@ -294,6 +303,7 @@ public class tempHolder : MonoBehaviour
 								inventoryObject.array[row, column].craftsInto = tempCraftsInto.craftsInto;
 								inventoryObject.array[row, column].grabbable = tempCraftsInto.grabbable;
 								inventoryObject.array[row, column].isSeed = tempIsSeed;
+
 								plug.ClearWorldModel(row, column);
 								plug.SyncWorldModel(row, column, tempCraftsInto.name, tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length-1)]);
 								plug.ChangeItem(row,column, tempCraftsInto.img, 1 , tempCraftsInto.name);

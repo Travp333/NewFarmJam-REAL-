@@ -43,6 +43,7 @@ public class BambooPrinter : MonoBehaviour
 			}
 			
 		}
+		
 
 	}
 	void ScanMap(int size) {
@@ -113,7 +114,7 @@ public class BambooPrinter : MonoBehaviour
 			float a = 1 / (maxH - minH);
 			float b = -minH / (maxH - minH);
 			Texture2D t = new Texture2D(resolution, resolution);
-			
+
 			for (int x = 0; x < size; x++)
 			{
 				for (int y = 0; y < size; y++)
@@ -128,7 +129,10 @@ public class BambooPrinter : MonoBehaviour
 			output.texture = t;
 		}
 		else
+			if (output != null)
+		{
 			output.enabled = false;
+		}
 	}
 	public void PrintObjects(List<Vector3> customPositions) {
 		Debug.Log("Printer called with "+ customPositions.Count);
@@ -143,7 +147,7 @@ public class BambooPrinter : MonoBehaviour
 				float yHeight = heights[x, z];
 
 				Vector3 spawnPos = new Vector3(startPos.x + (x * stepSize), yHeight, startPos.z + (z * stepSize));
-			Quaternion rot = Quaternion.Euler(-90f, 0f, Random.Range(0f,360f));
+			Quaternion rot = Quaternion.Euler(0f, 0f, Random.Range(0f,360f));
 			Instantiate(spawnPrefab, spawnPos, rot);
 			Debug.Log("Tried to spawn at " + heights[x, z]) ;
 			}
