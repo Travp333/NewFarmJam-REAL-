@@ -22,6 +22,8 @@ public class Item : ScriptableObject
 	public Item growsInto;
 	[SerializeField]
 	public bool grabbable;
+	[SerializeField]
+	public bool isSeed;
     
 
 }

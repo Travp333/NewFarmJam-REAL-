@@ -22,6 +22,7 @@ public class ItemStat {
     public Item craftsInto;
 	public Item growsInto;
 	public bool grabbable;
+	public bool isSeed;
 }
 public class Inven : MonoBehaviour
 {
@@ -81,6 +82,7 @@ public class Inven : MonoBehaviour
 		array[row, column].craftsInto = null;
 		array[row, column].growsInto = null;
 		array[row, column].grabbable = false;
+		array[row, column].isSeed = false;
 		//updating UI to match new change
 		plug.ClearSlot(row, column, temp.emptyImage);
 	}
@@ -102,6 +104,7 @@ public class Inven : MonoBehaviour
 			array[row, column].craftsInto = null;
 			array[row, column].growsInto = null;
 			array[row, column].grabbable = false;
+			array[row, column].isSeed = false;
 			//updating UI to match new change
 			plug.ClearSlot(row, column, temp.emptyImage);
 		}
@@ -136,27 +139,27 @@ public class Inven : MonoBehaviour
 	}
 	public void SpecificPickUpAndCount(Item item, int row, int column, int amount){
 		if(array[row,column].Name == ""){
-		//yes empty, filling slot
-		//Debug.Log("Slot (" + i + " , "+ i2 + " ) is empty, putting " + item.Objname + " in slot");
-		isPickedUp = true;
-		//Debug.Log("ispickedup set to "+ isPickedUp);
-		array[row,column].Name = item.Objname;
-		array[row,column].Amount = amount;
-		array[row,column].StackSize = item.stackSize;
-		array[row, column].image = item.img;
-		array[row, column].worldModel = item.worldModel;
-		array[row, column].requiredIngredient = item.requiredIngredient;
-		array[row, column].craftsInto = item.craftsInto;
-		array[row, column].growsInto = item.growsInto;
-		array[row, column].grabbable = item.grabbable;
-
-		//updating UI to match new change
-
-		if(this.gameObject.tag != "Player"){
-			plug.SyncWorldModel(row, column, array[row,column].Name, array[row, column].worldModel[Random.Range(0, item.worldModel.Length-1)]);
-		}
-		
-		plug.ChangeItem(row, column, item.img, array[row,column].Amount, array[row,column].Name);
+			//yes empty, filling slot
+			//Debug.Log("Slot (" + i + " , "+ i2 + " ) is empty, putting " + item.Objname + " in slot");
+			isPickedUp = true;
+			//Debug.Log("ispickedup set to "+ isPickedUp);
+			array[row,column].Name = item.Objname;
+			array[row,column].Amount = amount;
+			array[row,column].StackSize = item.stackSize;
+			array[row, column].image = item.img;
+			array[row, column].worldModel = item.worldModel;
+			array[row, column].requiredIngredient = item.requiredIngredient;
+			array[row, column].craftsInto = item.craftsInto;
+			array[row, column].growsInto = item.growsInto;
+			array[row, column].grabbable = item.grabbable;
+			array[row, column].isSeed = item.isSeed;
+			//updating UI to match new change
+	
+			if(this.gameObject.tag != "Player"){
+				plug.SyncWorldModel(row, column, array[row,column].Name, array[row, column].worldModel[Random.Range(0, item.worldModel.Length-1)]);
+			}
+			
+			plug.ChangeItem(row, column, item.img, array[row,column].Amount, array[row,column].Name);
 		}
 		//no theres something here
 		else{
@@ -180,27 +183,27 @@ public class Inven : MonoBehaviour
 	}
 	public void SpecificPickUp(Item item, int row, int column){
 		if(array[row,column].Name == ""){
-		//yes empty, filling slot
-		//Debug.Log("Slot (" + i + " , "+ i2 + " ) is empty, putting " + item.Objname + " in slot");
-		isPickedUp = true;
-		//Debug.Log("ispickedup set to "+ isPickedUp);
-		array[row,column].Name = item.Objname;
-		array[row,column].Amount = array[row,column].Amount + 1;
-		array[row,column].StackSize = item.stackSize;
-		array[row, column].image = item.img;
-		array[row, column].worldModel = item.worldModel;
-		array[row, column].requiredIngredient = item.requiredIngredient;
-		array[row, column].craftsInto = item.craftsInto;
-		array[row, column].growsInto = item.growsInto;
-		array[row, column].grabbable = item.grabbable;
-
-		//updating UI to match new change
-
-		if(this.gameObject.tag != "Player"){
-			plug.SyncWorldModel(row, column, array[row,column].Name, array[row, column].worldModel[Random.Range(0, item.worldModel.Length-1)]);
-		}
-		
-		plug.ChangeItem(row, column, item.img, array[row,column].Amount, array[row,column].Name);
+			//yes empty, filling slot
+			//Debug.Log("Slot (" + i + " , "+ i2 + " ) is empty, putting " + item.Objname + " in slot");
+			isPickedUp = true;
+			//Debug.Log("ispickedup set to "+ isPickedUp);
+			array[row,column].Name = item.Objname;
+			array[row,column].Amount = array[row,column].Amount + 1;
+			array[row,column].StackSize = item.stackSize;
+			array[row, column].image = item.img;
+			array[row, column].worldModel = item.worldModel;
+			array[row, column].requiredIngredient = item.requiredIngredient;
+			array[row, column].craftsInto = item.craftsInto;
+			array[row, column].growsInto = item.growsInto;
+			array[row, column].grabbable = item.grabbable;
+			array[row, column].isSeed = item.isSeed;
+			//updating UI to match new change
+	
+			if(this.gameObject.tag != "Player"){
+				plug.SyncWorldModel(row, column, array[row,column].Name, array[row, column].worldModel[Random.Range(0, item.worldModel.Length-1)]);
+			}
+			
+			plug.ChangeItem(row, column, item.img, array[row,column].Amount, array[row,column].Name);
 		}
 		//no theres something here
 		else{
@@ -248,7 +251,7 @@ public class Inven : MonoBehaviour
 					array[i, i2].craftsInto = item.craftsInto;
 					array[i, i2].growsInto = item.growsInto;
 					array[i, i2].grabbable = item.grabbable;
-
+					array[i, i2].isSeed = item.isSeed;
 					//updating UI to match new change
 
 					if(this.gameObject.tag != "Player"){
@@ -361,7 +364,8 @@ public class Inven : MonoBehaviour
 				array[row, column].requiredIngredient = null;
 				array[row, column].craftsInto = null;
 				array[row, column].growsInto = null;
-				array[row, column].grabbable = false;
+	            array[row, column].grabbable = false;
+	            array[row,column].isSeed = false;
                 //updating UI to match new change
 	            plug.ClearSlot(row, column, temp.emptyImage);
             }
@@ -403,6 +407,7 @@ public class Inven : MonoBehaviour
 				array[row, column].craftsInto = null;
 				array[row, column].growsInto = null;
 				array[row, column].grabbable = false;
+				array[row, column].isSeed = false;
 				//updating UI to match new change
 				plug.ClearSlot(row, column, temp.emptyImage);
 			}

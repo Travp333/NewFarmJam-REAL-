@@ -17,7 +17,8 @@ MonoBehaviour:
   img: {fileID: 21300000, guid: 1810e063680304446b7750fc50fc80ec, type: 3}
   worldModel:
   - {fileID: 5641501220634067805, guid: a8823abe4c487c74a9cb93fa1aff7121, type: 3}
-  requiredIngredient: {fileID: 0}
-  craftsInto: {fileID: 11400000, guid: 4aa2d76e172d1dd40a3d8dff3934de02, type: 2}
+  requiredIngredient: {fileID: 11400000, guid: 5ec74faf62814c241b8a88358b33b5f5, type: 2}
+  craftsInto: {fileID: 11400000, guid: f1afb27bcb36bff4fa940ecdb14a7c12, type: 2}
   growsInto: {fileID: 0}
   grabbable: 1
+  isSeed: 1
