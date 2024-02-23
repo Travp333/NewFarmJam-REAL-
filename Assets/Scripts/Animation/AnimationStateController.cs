@@ -18,35 +18,31 @@ public class AnimationStateController : MonoBehaviour
 	int isOnWallHash;
 	int isWalkingHash;
 	int isFallingHash;
+    int isSwingingHash;
     bool isOnGround;
     bool isOnWall;
+    bool isAttacking;
 	bool moveBlockGate;
     [HideInInspector]
     public bool isOnGroundADJ;
     bool isOnSteep;
-    //bool isOnSteepADJ;
-    bool JumpPressed;
     [SerializeField]
     [Tooltip("how long you need to be in the air before the 'onGround' bool triggers")]
     float OnGroundBuffer = .5f;
-    [SerializeField]
-    [Tooltip("how long isJumping stays true after pressing it ( maybe should be in movingsphere?)")]
-    float JumpBuffer = .5f;
-    bool JumpSwitch = true;
     float Groundstopwatch = 0;
-	float Jumpstopwatch = 0;
     
-
-
-	public void JumpAnimEvent(){
-		sphere.JumpTrigger();
-    }
 	public void BlockMovement(){
 		sphere.blockMovement();
 	}
 	public void UnBlockMovement(){
 		sphere.unblockMovement();
 	}
+    public void ResetSwinging(){
+        animator.SetBool(isSwingingHash, false);
+        animator.SetLayerWeight(1,0);
+        isAttacking = false;
+        state.macheteHitbox.SetActive(false);
+    }
 
 	void Start() { 
 		state = player.GetComponent<PlayerStates>();
@@ -59,6 +55,7 @@ public class AnimationStateController : MonoBehaviour
         onGroundHash = Animator.StringToHash("OnGround");
         isOnWallHash = Animator.StringToHash("isOnWall");
 		isFallingHash = Animator.StringToHash("isFalling");
+        isSwingingHash = Animator.StringToHash("isSwinging");
     }
     
 	
@@ -66,34 +63,24 @@ public class AnimationStateController : MonoBehaviour
     void BoolAdjuster(){
         isOnGround = sphere.OnGround;
         isOnSteep = sphere.OnSteep;
-        if (!isOnGround && !JumpPressed){
+        if (!isOnGround){
             Groundstopwatch += Time.deltaTime;
             if (Groundstopwatch >= OnGroundBuffer){
                 isOnGroundADJ = false;
             }
-        }
-        if (!isOnGround && JumpPressed){
-            isOnGroundADJ = false;
         }
         if(isOnGround){
             Groundstopwatch = 0;
             isOnGroundADJ = true;
         }
     }
-	public void ResetArmedLayerWeight(){
-		animator.SetLayerWeight(1, 0);
-	}
-	public void EnterNullState(){
-		animator.Play("NullState", 1);
-	}
-	public void ExitNullState(){
-		animator.Play("Sling empty", 1);
-	}
 	
-    float jumpCount;
-    float jumpCap = .2f;
 	void Update() {
 	
+        if(animator.GetBool("SwingResetter") == true){
+            animator.SetBool("SwingResetter", false);
+            ResetSwinging();
+        }
 		if(animator.GetBool("MoveBlocked") == true){
 			if(!moveBlockGate){
 				rotation.SnapRotationToDirection();
@@ -109,15 +96,16 @@ public class AnimationStateController : MonoBehaviour
 		}
         //Debug.Log(sphere.velocity.magnitude);
         BoolAdjuster();
-	    bool JumpPressed = sphere.jumpAction.IsPressed();
         isOnGround = isOnGroundADJ;
         bool isFalling = animator.GetBool(isFallingHash);
         bool isOnWall = animator.GetBool(isOnWallHash);
 	    bool isRunning = animator.GetBool(isRunningHash);
 	    bool isWalking = animator.GetBool(isWalkingHash);
 		bool isJumping = animator.GetBool(isJumpingHash);
+        isAttacking = animator.GetBool(isSwingingHash);
 	    bool movementPressed = state.moving;
 		bool WalkPressed = state.walking;
+        bool attackPressed = state.attacking;
 
         if (isOnGroundADJ){
             animator.SetBool(onGroundHash, true);
@@ -125,40 +113,11 @@ public class AnimationStateController : MonoBehaviour
         else if (!isOnGroundADJ){
 	        animator.SetBool(onGroundHash, false);
         }
-        //This makes jump stay true a little longer after you press it, dependent on "JumpBuffer"
-		if (JumpPressed && !sphere.moveBlocked){
-            if(JumpSwitch){
-                Jumpstopwatch = 0;
-                animator.SetBool(isJumpingHash, true);
-                JumpSwitch = false;
-            }
-            else{
-                Jumpstopwatch += Time.deltaTime;
-                    if(Jumpstopwatch >= JumpBuffer){
-                        animator.SetBool(isJumpingHash, false);
-                    }
-            }   
-        }
-        //this activates when jump is not pressed, counts until jumpbuffer, then disables jump
-        if(!JumpPressed){
-            JumpSwitch = true;
-            Jumpstopwatch += Time.deltaTime;
-            if(Jumpstopwatch >= JumpBuffer){
-                animator.SetBool(isJumpingHash, false);
-            }
-        }
         // if you are in the air, adding timer to give a little time before the falling animation plays
         if (!isOnGroundADJ && !isOnSteep){
-            jumpCount += Time.deltaTime;
-            if(jumpCount > jumpCap){
-                animator.SetBool(isFallingHash, true);
-	            animator.SetBool(isRunningHash, false);
-	            animator.SetBool(isWalkingHash, false);
-                jumpCount = 0f;
-            }
-        }
-        else if(isOnGroundADJ || isOnSteep){
-            jumpCount = 0f;
+            animator.SetBool(isFallingHash, true);
+	        animator.SetBool(isRunningHash, false);
+	        animator.SetBool(isWalkingHash, false);
         }
         else if (!isOnGroundADJ && isOnSteep){
             animator.SetBool(isOnWallHash, true);
@@ -173,6 +132,13 @@ public class AnimationStateController : MonoBehaviour
         if (!isOnSteep){
             animator.SetBool("isOnSteep", false);
             animator.SetBool(isOnWallHash, false);
+        }
+        if(!isAttacking && attackPressed && !sphere.moveBlocked){
+            isAttacking = true;
+            //Debug.Log("SWING!@!");
+            animator.SetBool(isSwingingHash, true);
+            animator.SetLayerWeight(1,1);
+            state.macheteHitbox.SetActive(true);
         }
 		if (!isWalking && (movementPressed && WalkPressed) && !sphere.moveBlocked){
 		    animator.SetBool(isWalkingHash, true);

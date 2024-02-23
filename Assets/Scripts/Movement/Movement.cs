@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour {
 
 	[SerializeField]
 	GameObject feet;
-	public InputAction jumpAction;
+	//public InputAction jumpAction;
 
 	//reference to the script that controls limits on your movement speed
 	public MovementSpeedController speedController;
@@ -121,7 +121,7 @@ public class Movement : MonoBehaviour {
 	//runs when object becomes active
 	void Awake () {
 		state = GetComponent<PlayerStates>();
-		jumpAction = GetComponent<PlayerInput>().currentActionMap.FindAction("Jump");
+		//jumpAction = GetComponent<PlayerInput>().currentActionMap.FindAction("Jump");
 		speedController = GetComponent<MovementSpeedController>();
 		body = GetComponent<Rigidbody>();
 		//turn gravity off for the rigid body
@@ -134,7 +134,7 @@ public class Movement : MonoBehaviour {
 		//responds to the jump keybind to allow jumping
 		//Debug.Log("IS ON GROUND "+ OnGround);
 		//Debug.Log("IS ON STEEP "+ OnSteep);
-		desiredJump |= jumpAction.WasPressedThisFrame() && !moveBlocked;
+		//desiredJump |= jumpAction.WasPressedThisFrame() && !moveBlocked;
 		//stores the horizontal and vertical input axes
 		if(!moveBlocked){
 			playerInput.x = state.movementAction.ReadValue<Vector2>().x;

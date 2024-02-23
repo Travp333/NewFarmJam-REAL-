@@ -14,6 +14,24 @@ public class PropBuster : MonoBehaviour
     [SerializeField]
     bool oneShot = false;
     Shatter otherExplosive;
+    /// <summary>
+    /// OnTriggerEnter is called when the Collider other enters the trigger.
+    /// </summary>
+    /// <param name="other">The other Collider involved in this collision.</param>
+    void OnTriggerEnter(Collider other)
+    {
+        //if(other.gameObject.tag != "Player" && punchSounds.Length != 0){
+        //    int index = Random.Range(0, punchSounds.Length - 1);
+        //    punchSounds[index].Play();
+        //}
+        
+	    if(other.gameObject.GetComponent<Rigidbody>() != null){
+            Debug.Log("Hit " + other.gameObject.name);
+            if(other.GetComponent<Shatter>()!= null){
+                other.GetComponent<Shatter>().oneShot(0);
+            }
+        }
+    }
     void OnCollisionEnter(Collision other) {
 
         //if(other.gameObject.tag != "Player" && punchSounds.Length != 0){

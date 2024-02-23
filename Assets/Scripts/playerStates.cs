@@ -3,16 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerStates : MonoBehaviour
-{   [SerializeField]
-	bool turnSnapping;
+{   
 	[SerializeField]
-	GameObject northPointer;
-	[SerializeField]
-	GameObject westPointer;
-	[SerializeField]
-	GameObject eastPointer;
-	[SerializeField]
-	GameObject southPointer;
+	public GameObject macheteHitbox;
 	[SerializeField]
 	GameObject root;
 	Vector3 playerRotation;
@@ -23,20 +16,15 @@ public class PlayerStates : MonoBehaviour
 	Movement move;
 	public bool walking;
 	public bool moving;
+	public bool attacking;
 	public InputAction openMenuAction;
 	public InputAction movementAction;
 	public InputAction walkAction;
 	public InputAction interactAction;
 	public InputAction attackAction;
-	public InputAction turnLeftAction;
-	public InputAction turnRightAction;
 	[SerializeField]
     GameObject player = default;
     Movement sphere; 
-	string facing = "North";
-	Vector3 facingDir;
-	[SerializeField]
-	float rotSpeed;
 	// Start is called before the first frame update
 	void Awake()
 	{
@@ -48,8 +36,6 @@ public class PlayerStates : MonoBehaviour
 		attackAction = GetComponent<PlayerInput>().currentActionMap.FindAction("Attack");
 		walkAction = GetComponent<PlayerInput>().currentActionMap.FindAction("Walk");
 		movementAction = GetComponent<PlayerInput>().currentActionMap.FindAction("Move");
-		turnLeftAction = GetComponent<PlayerInput>().currentActionMap.FindAction("Turn Left");
-		turnRightAction = GetComponent<PlayerInput>().currentActionMap.FindAction("Turn Right");
 	}
 
     // Update is called once per frame
@@ -61,6 +47,13 @@ public class PlayerStates : MonoBehaviour
 		}
 		else{
 			walking = false;
+		}
+		if(attackAction.IsPressed() && !move.moveBlocked){
+			//Debug.Log("SWIONG!!");
+			attacking = true;
+		}
+		else{
+			attacking = false;
 		}
         
 	}

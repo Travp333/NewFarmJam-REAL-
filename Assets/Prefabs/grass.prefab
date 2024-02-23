@@ -170,7 +170,7 @@ MonoBehaviour:
   throwableBreak: 0
   bombBreak: 0
   hasEvent: 0
-  paperThin: 1
+  paperThin: 0
 --- !u!54 &8797626505833928939
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -230,8 +230,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9997562, y: 7.7163234, z: 0.16}
-  m_Center: {x: 0.03342032, y: 1.6732516, z: 0.011243719}
+  m_Size: {x: 4.16, y: 18.27, z: 0.16}
+  m_Center: {x: 0.03342032, y: 3.86, z: 0.011243719}
 --- !u!4 &735363220334402062 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 566eabee20527434a9fba987ccfb08c7,
