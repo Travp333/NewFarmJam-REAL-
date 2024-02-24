@@ -43,6 +43,16 @@ public class AnimationStateController : MonoBehaviour
         isAttacking = false;
         state.macheteHitbox.SetActive(false);
     }
+    public void ForceIdle(){
+        animator.SetBool(isFallingHash, false);
+        animator.SetBool(isOnWallHash, false);
+        animator.SetBool(isRunningHash, false);
+        animator.SetBool(isWalkingHash, false);
+        animator.SetBool(isJumpingHash, false);
+        animator.SetBool(isSwingingHash, false);
+        //*animator.Play("IDLE", 0);
+
+    }
 
 	void Start() { 
 		state = player.GetComponent<PlayerStates>();

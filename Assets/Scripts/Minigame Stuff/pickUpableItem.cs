@@ -16,14 +16,15 @@ public class pickUpableItem : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player"){
-            DropMe();
-        }
+        //if(other.gameObject.tag == "Player"){
+        //    DropMe();
+        //}
     }
     public void DropMe(){
         Debug.Log("TESTING@!!@!!");
         inven.DropWholeStack(row.ToString() +", "+ column.ToString());
         inven.UIPlugger.GetComponent<UiPlugger>().ClearWorldModel(row, column);
         inven.UIPlugger.GetComponent<UiPlugger>().ClearSlot(row, column, inven.temp.emptyImage);
+        GameObject.Find("3rd Person Character").GetComponent<Inven>().SmartPickUp(item.harvestsInto);
     }
 }

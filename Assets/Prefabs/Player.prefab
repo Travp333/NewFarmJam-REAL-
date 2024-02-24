@@ -336,6 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e5fbe0af27fb34b98bc5cda3ad4bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  macheteHitbox: {fileID: 0}
   root: {fileID: 2954477620609877087}
   rot: {fileID: 4326226717063166594}
   ThirdPersonCam: {fileID: 1628303910357674839}
@@ -478,6 +479,9 @@ MonoBehaviour:
   tempGrabbable: 0
   tempRequiredIngredient: {fileID: 0}
   tempIsSeed: 0
+  tempAge: 0
+  tempMatureAge: 0
+  tempHarvestsInto: {fileID: 0}
 --- !u!1 &3956782676507730881
 GameObject:
   m_ObjectHideFlags: 0

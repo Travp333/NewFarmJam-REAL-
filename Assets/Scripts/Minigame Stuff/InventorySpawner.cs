@@ -5,6 +5,8 @@ using UnityEngine;
 public class InventorySpawner : MonoBehaviour
 {
 	[SerializeField]
+	GameObject PlantableUIPrefab;
+		[SerializeField]
 	GameObject UIPrefab;
 	
 	GameObject Player;
@@ -23,8 +25,9 @@ public class InventorySpawner : MonoBehaviour
 			}
 		}
 		foreach(Inven i in GameObject.FindObjectsOfType<Inven>()){
-			if(i.gameObject.tag != "Player"){
-				GameObject g = Instantiate(UIPrefab, this.transform);
+			if(i.gameObject.tag == "Plantable"){
+				//Debug.Log("SPawning plantable inven");
+				GameObject g = Instantiate(PlantableUIPrefab, this.transform);
 				//Debug.Log("Pluggin Ui Plugger");
 				i.UIPlugger = g.gameObject;
 				g.GetComponent<UiPlugger>().inven = i;
@@ -33,6 +36,17 @@ public class InventorySpawner : MonoBehaviour
 				g.name = i.gameObject.name + " Inventory";
 				Player.GetComponent<Interact>().HideAllInventories();
 				
+			}
+			else if(i.gameObject.tag != "Player"){
+				//Debug.Log("SPawning regular inven");
+				GameObject g = Instantiate(UIPrefab, this.transform);
+				//Debug.Log("Pluggin Ui Plugger");
+				i.UIPlugger = g.gameObject;
+				g.GetComponent<UiPlugger>().inven = i;
+				g.GetComponent<UiPlugger>().sync = i.GetComponent<InvenSyncer>();
+				i.jumpStart();
+				g.name = i.gameObject.name + " Inventory";
+				Player.GetComponent<Interact>().HideAllInventories();
 			}
 		}
 		temp.LateStart();

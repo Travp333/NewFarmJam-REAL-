@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6829428682629329563}
   - component: {fileID: 8966587322402209787}
   - component: {fileID: 2935690529569406892}
+  - component: {fileID: 465241444352250410}
   m_Layer: 0
   m_Name: Bamboo Phase 4 3
   m_TagString: Untagged
@@ -150,3 +151,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.037724458, y: 0.32300657, z: 0.01744462}
   m_Center: {x: -0.006487024, y: 0.15889412, z: 0.00021970831}
+--- !u!114 &465241444352250410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246674325083502988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f86a5e3c3f23645bae0f9e99a54e90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shatterPrefab:
+  - {fileID: 3036581624169874738, guid: 1ba7a14ef45062e4fb0ad66803a176c9, type: 3}
+  shatterSpawnPos: {fileID: 1246674325083502988}
+  hitPoints: 2
+  breakSpeed: 40
+  throwableBreak: 0
+  bombBreak: 0
+  hasEvent: 0
+  paperThin: 0

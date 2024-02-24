@@ -26,7 +26,7 @@ public class GrowingManager : MonoBehaviour, SaveInterface
         plants.Clear();
         foreach (Inven i in GameObject.FindObjectsOfType<Inven>())
         {
-            if (i.gameObject.tag != "Player")
+            if (i.gameObject.tag == "Plantable")
             {
                 plants.Add(i);
             }

@@ -73,6 +73,9 @@ public class Shatter : MonoBehaviour
     public void oneShot(float time){
         if (!boomBlocked){
 	        Invoke("spawnShatter", time);
+			if(this.gameObject.GetComponent<pickUpableItem>()!= null){
+				this.gameObject.GetComponent<pickUpableItem>().DropMe();
+			}
 
         }
     }

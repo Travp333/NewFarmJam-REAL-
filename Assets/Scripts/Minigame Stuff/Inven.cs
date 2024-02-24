@@ -26,7 +26,7 @@ public class ItemStat {
 	public int age;
 	public int matureAge;
 	public int x, y;
-
+	public Item harvestsInto;
 	
 }
 public class Inven : MonoBehaviour
@@ -79,19 +79,7 @@ public class Inven : MonoBehaviour
 		string [] coords2 = coords.Split(",");
 		int row = int.Parse(coords2[0]);
 		int column = int.Parse(coords2[1]);
-		array[row, column].Name = "";
-		array[row, column].Amount = 0;
-		array[row, column].StackSize = 0;
-		array[row, column].prefab = null;
-		array[row, column].image = temp.emptyImage;
-		array[row, column].worldModel = null;
-		array[row, column].requiredIngredient = null;
-		array[row, column].craftsInto = null;
-		array[row, column].growsInto = null;
-		array[row, column].grabbable = false;
-		array[row, column].isSeed = false;
-		array[row, column].age = 0;
-		array[row, column].matureAge = -1;
+		ClearInfo(row, column);
 		
 		//updating UI to match new change
 		plug.ClearSlot(row, column, temp.emptyImage);
@@ -104,19 +92,7 @@ public class Inven : MonoBehaviour
 		//you just dropped the last item in that slot, reverting to default
 		if(array[row, column].Amount <= 0){
 			//Debug.Log("Out of " + array[row, column].Name + " in slot (" + row + " , "+ column + " ) , slot now empty ");
-			array[row, column].Name = "";
-			array[row, column].Amount = 0;
-			array[row, column].StackSize = 0;
-			array[row, column].prefab = null;
-			array[row, column].image = temp.emptyImage;
-			array[row, column].worldModel = null;
-			array[row, column].requiredIngredient = null;
-			array[row, column].craftsInto = null;
-			array[row, column].growsInto = null;
-			array[row, column].grabbable = false;
-			array[row, column].isSeed = false;
-			array[row, column].age = 0;
-			array[row, column].matureAge = -1;
+			ClearInfo(row, column);
 			
 			//updating UI to match new change
 			plug.ClearSlot(row, column, temp.emptyImage);
@@ -168,9 +144,7 @@ public class Inven : MonoBehaviour
 			array[row, column].isSeed = item.isSeed;
 			array[row, column].age = item.age;
 			array[row, column].matureAge = item.matureAge;
-			
-
-
+			array[row, column].harvestsInto = item.harvestsInto;
 			//updating UI to match new change
 
 			if (this.gameObject.tag != "Player"){
@@ -217,6 +191,7 @@ public class Inven : MonoBehaviour
 			array[row, column].isSeed = item.isSeed;
 			array[row, column].age = item.age;
 			array[row, column].matureAge = item.matureAge;
+			array[row, column].harvestsInto = item.harvestsInto;
 			
 
 			//updating UI to match new change
@@ -276,6 +251,7 @@ public class Inven : MonoBehaviour
 					array[i, i2].isSeed = item.isSeed;
 					array[i, i2].age = item.age;
 					array[i, i2].matureAge = item.matureAge;
+					array[i, i2].harvestsInto = item.harvestsInto;
 					
 					//updating UI to match new change
 
@@ -380,19 +356,7 @@ public class Inven : MonoBehaviour
 			//you just dropped the last item in that slot, reverting to default
             if(array[row, column].Amount <= 0){
 	            //Debug.Log("Out of " + array[row, column].Name + " in slot (" + row + " , "+ column + " ) , slot now empty ");
-                array[row, column].Name = "";
-                array[row, column].Amount = 0;
-                array[row, column].StackSize = 0;
-                array[row, column].prefab = null;
-	            array[row, column].image = temp.emptyImage;
-				array[row, column].worldModel = null;
-				array[row, column].requiredIngredient = null;
-				array[row, column].craftsInto = null;
-				array[row, column].growsInto = null;
-	            array[row, column].grabbable = false;
-	            array[row,column].isSeed = false;
-				array[row, column].age = 0;
-				array[row, column].matureAge = -1;
+				ClearInfo(row,column);
                 //updating UI to match new change
 	            plug.ClearSlot(row, column, temp.emptyImage);
             }
@@ -424,20 +388,7 @@ public class Inven : MonoBehaviour
 			//you just dropped the last item in that slot, reverting to default
 			if(array[row, column].Amount <= 0){
 				//Debug.Log("Out of " + array[row, column].Name + " in slot (" + row + " , "+ column + " ) , slot now empty ");
-				array[row, column].Name = "";
-				array[row, column].Amount = 0;
-				array[row, column].StackSize = 0;
-				array[row, column].prefab = null;
-				array[row, column].image = temp.emptyImage;
-				array[row, column].worldModel = null;
-				array[row, column].requiredIngredient = null;
-				array[row, column].craftsInto = null;
-				array[row, column].growsInto = null;
-				array[row, column].grabbable = false;
-				array[row, column].isSeed = false;
-				array[row, column].age = 0;
-				array[row, column].matureAge = -1;
-				
+				ClearInfo(row, column);
 				//updating UI to match new change
 				plug.ClearSlot(row, column, temp.emptyImage);
 			}
@@ -449,41 +400,54 @@ public class Inven : MonoBehaviour
 		}
 		
 	}
+	public void ClearInfo(int row, int column){
+		array[row, column].Name = "";
+		array[row, column].Amount = 0;
+		array[row, column].StackSize = 0;
+		array[row, column].prefab = null;
+		array[row, column].image = temp.emptyImage;
+		array[row, column].worldModel = null;
+		array[row, column].requiredIngredient = null;
+		array[row, column].craftsInto = null;
+		array[row, column].growsInto = null;
+		array[row, column].grabbable = false;
+		array[row, column].isSeed = false;
+		array[row, column].age = 0;
+		array[row, column].matureAge = -1;
+		array[row, column].harvestsInto = null;
+	}
 	public void PlantAgeUpdate() {
 		plug = UIPlugger.GetComponent<UiPlugger>();
 		foreach (ItemStat b in array)
 		{
-			if (b.matureAge != -1)
-			{
-
-
-				b.age++;
-				if (b.age >= b.matureAge && b.growsInto != null)
+			if(b!= null){
+				if (b.matureAge != -1)
 				{
-					Item item = b.growsInto;
-
-					b.Name = item.Objname;
-
-					b.StackSize = item.stackSize;
-					b.image = item.img;
-					b.worldModel = item.worldModel;
-					b.requiredIngredient = item.requiredIngredient;
-					b.craftsInto = item.craftsInto;
-					b.growsInto = item.growsInto;
-					b.grabbable = item.grabbable;
-					b.isSeed = item.isSeed;
-					b.age = item.age;
-					Debug.Log(b.Name + " " + b.age);
-					b.matureAge = item.matureAge;
-					if (b.worldModel != null)
+					b.age++;
+					if (b.age >= b.matureAge && b.growsInto != null)
 					{
-						plug.ClearWorldModel(b.x, b.y);
-						plug.SyncWorldModel(b.x, b.y, b.Name, b.worldModel[Random.Range(0, b.worldModel.Length - 1)]);
-
+						Item item = b.growsInto;
+						b.Name = item.Objname;
+						b.StackSize = item.stackSize;
+						b.image = item.img;
+						b.worldModel = item.worldModel;
+						b.requiredIngredient = item.requiredIngredient;
+						b.craftsInto = item.craftsInto;
+						b.growsInto = item.growsInto;
+						b.grabbable = item.grabbable;
+						b.isSeed = item.isSeed;
+						b.age = item.age;
+						b.harvestsInto = item.harvestsInto;
+						Debug.Log(b.Name + " " + b.age);
+						b.matureAge = item.matureAge;
+						if (b.worldModel != null)
+						{
+							plug.ClearWorldModel(b.x, b.y);
+							plug.SyncWorldModel(b.x, b.y, b.Name, b.worldModel[Random.Range(0, b.worldModel.Length - 1)]);
+						}
 					}
+					plug.ChangeItem(b.x, b.y, b.image, b.Amount, b.Name);
 				}
-				
-				plug.ChangeItem(b.x, b.y, b.image, b.Amount, b.Name);
 			}
 		}
 	}

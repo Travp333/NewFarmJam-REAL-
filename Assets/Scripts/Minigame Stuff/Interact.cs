@@ -95,6 +95,9 @@ public class Interact : MonoBehaviour
 	}
 	//open up the player's Inventory
 	void OpenInventory(){
+		this.gameObject.GetComponentInChildren<AnimationStateController>().ForceIdle();
+		this.gameObject.GetComponent<Movement>().velocity = Vector3.zero;
+		this.gameObject.GetComponent<Movement>().blockMovement();
 		//makes sure the temp slot is empty
 		tempSlot.ClearSlot();
 		//puts cursor on screen
@@ -119,6 +122,8 @@ public class Interact : MonoBehaviour
 	
 	//closes out the inventory and all open storage inventories, mostly just inverse of above
 	void CloseInventory(){
+		
+		this.gameObject.GetComponent<Movement>().unblockMovement();
 		tempSlot.ClearSlot();
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
