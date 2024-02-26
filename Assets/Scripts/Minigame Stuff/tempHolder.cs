@@ -202,9 +202,6 @@ public class tempHolder : MonoBehaviour
 						tempHarvestsInto = null;
 						ClearSlot();
 					}
-					else if (inventoryObject.gameObject.tag == "Plantable" && inventoryObject.array[row, column].isSeed == true && tempIsSeed == true){
-						ClearSlot();
-					}
 					else{
 						Debug.Log("Stacking two stacks of same item type that are NOT two seeds in the planterbox");
 						//we can simply add the temp slot and second button press together
@@ -230,8 +227,41 @@ public class tempHolder : MonoBehaviour
 			else{
 				Debug.Log(inventoryObject.gameObject.tag + ", " + inventoryObject.array[row, column].image.name +", " + tempIsSeed);
 				if(inventoryObject.gameObject.tag == "Plantable" && ((tempIsSeed == true)&&(inventoryObject.array[row, column].isSeed == true))){
-					Debug.Log("DOES THIS EVER RUN??");
-					ClearSlot();
+					if(inventoryObject.array[row, column].requiredIngredient.name == tempName){
+						//crafting two seeds!
+						Debug.Log("Crafting Two Seeds!");
+						inventoryObject.array[row, column].Name = tempCraftsInto.name;
+						inventoryObject.array[row, column].Amount = 1;
+						inventoryObject.array[row, column].StackSize = tempCraftsInto.stackSize;
+						inventoryObject.array[row, column].image = tempCraftsInto.img;
+						inventoryObject.array[row, column].worldModel = tempCraftsInto.worldModel;
+						inventoryObject.array[row, column].growsInto = tempCraftsInto.growsInto;
+						inventoryObject.array[row, column].requiredIngredient = tempCraftsInto.requiredIngredient;
+						inventoryObject.array[row, column].craftsInto = tempCraftsInto.craftsInto;
+						inventoryObject.array[row, column].grabbable = tempCraftsInto.grabbable;
+						inventoryObject.array[row, column].isSeed = tempCraftsInto.isSeed;
+						inventoryObject.array[row, column].age = tempCraftsInto.age;
+						inventoryObject.array[row, column].matureAge = tempCraftsInto.matureAge;
+						inventoryObject.array[row, column].harvestsInto = tempCraftsInto.harvestsInto;
+							
+						plug.SyncWorldModel(row, column, tempCraftsInto.name, tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length-1)]);
+						plug.ChangeItem(row,column, tempCraftsInto.img, 1 , tempCraftsInto.name);
+						tempInven.DropSpecificItem(tempRow.ToString() +", "+ tempColumn.ToString());
+						if(tempInven.array[tempRow, tempColumn].Amount <= 0){
+							tempPlug.ClearWorldModel(tempRow, tempColumn);
+							tempPlug.ClearSlot(tempRow, tempColumn, emptyImage);
+						}
+						else{
+							tempPlug.UpdateItem(tempRow, tempColumn, tempInven.array[tempRow, tempColumn].Amount);
+						}
+	
+						ClearSlot();
+					}
+					else{
+						//trying to stack seeds!
+						Debug.Log("Trying to stack seeds");
+						ClearSlot();								
+					}
 				}
 				
 				else if((inventoryObject.gameObject.tag == "Plantable") && (inventoryObject.array[row, column].image.name == "empty") && (tempIsSeed == true)){
@@ -345,13 +375,13 @@ public class tempHolder : MonoBehaviour
 							//ClearSlot();
 						}
 						else{
-							//Debug.Log("Clearing slot via crafting");	
+							Debug.Log("Clearing slot via crafting");	
 							//Debug.Log("TempRow+Column" + tempRow + ", " + tempColumn);
 							//Debug.Log("Row+Column" + row + ", " + column);
 							tempInven.DropSpecificItem(tempRow.ToString() +", "+ tempColumn.ToString());
 							inventoryObject.DropSpecificItem(row.ToString() + ", " + column.ToString());
 							plug.ClearWorldModel(row, column);
-							if(inventoryObject.array[row, column].Amount <=0){
+							if(tempInven.array[tempRow, tempColumn].Amount <=0){
 								tempPlug.ClearWorldModel(tempRow,tempColumn);
 							}
 							//Debug.Log("TOTAL COUNT SLOT 2: "+ inventoryObject.array[row, column].Name + ", " + inventoryObject.array[row, column].Amount );
