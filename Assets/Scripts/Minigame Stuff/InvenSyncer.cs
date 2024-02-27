@@ -12,7 +12,9 @@ public class InvenSyncer : MonoBehaviour
 	public void UpdateWorldModel(int row, int column, string name, GameObject worldModel){
 		//Debug.Log("Updating World Model!");
 		foreach (Transform t in cropPositions){
+			//Debug.Log("comparing "+ t.name + " to " + row + ","+ column);
 			if (t.name ==  (row + ","+ column)){
+				
 				GameObject g = Instantiate(worldModel, t.transform.position, Quaternion.identity, t);
 				pickUpableItem g2 = g.GetComponent<pickUpableItem>();
 				g2.inven = this.gameObject.GetComponent<Inven>();

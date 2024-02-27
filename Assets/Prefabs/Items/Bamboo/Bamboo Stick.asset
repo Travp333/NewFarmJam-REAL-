@@ -24,3 +24,4 @@ MonoBehaviour:
   isSeed: 1
   age: 0
   matureAge: 4
+  harvestsInto: {fileID: 11400000}

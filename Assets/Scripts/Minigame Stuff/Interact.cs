@@ -131,53 +131,69 @@ public class Interact : MonoBehaviour
 		HideAllInventories();
 		storageInvOpen = false;
 	}
-	
+	public void FlipCamera(Collider hit, bool flip){
+		if(hit.transform.gameObject.tag != "Player"){
+			if(hit.transform.gameObject.tag == "Plantable"){
+				if(hit.transform.gameObject.GetComponent<Inven>().topDownCam != null){
+					this.GetComponent<PlayerStates>().ThirdPersonCam.enabled = flip;
+					hit.transform.gameObject.GetComponent<Inven>().topDownCam.enabled = !flip;
+				}
+			}
+		}
+	}
     void Update()
 	{
-		//Debug.Log(inv.isPickedUp);
-        //Check Inventory
-        if (invIsOpen)
+    	//inventory is not open
+        if (openMenuAction.WasPressedThisFrame())
         {
-        	//pressing tab with the inventory open 
-	        if (openMenuAction.WasPressedThisFrame()) 
-            {
-	            CloseInventory();
-            }
+        	if(invIsOpen){
+        		CloseInventory();
+        		HideAllInventories();
+	        	Collider[] colliders = Physics.OverlapSphere(this.transform.position, sphereCastRadius);
+	        	foreach (Collider hit in colliders)
+	        	{
+	        		if(hit.transform.gameObject.GetComponent<Inven>() != null){
+	        			FlipCamera(hit, true);
+	        		}
+	        		
+	        	}
+        	}
+        	else{
+        		OpenInventory();
+        	}
+            
         }
-        else if (!invIsOpen) 
+        if (interactAction.WasPressedThisFrame())
         {
-        	//inventory is not open
-            if (openMenuAction.WasPressedThisFrame())
+            Collider[] colliders = Physics.OverlapSphere(this.transform.position, sphereCastRadius);
+            foreach (Collider hit in colliders)
             {
-	            OpenInventory();
-            }
-
-            //pickup Items
-	        if (interactAction.WasPressedThisFrame())
-	        {
-		        
-	            Collider[] colliders = Physics.OverlapSphere(this.transform.position, sphereCastRadius);
-	            foreach (Collider hit in colliders)
+	            if (invIsOpen)
 	            {
-	            	//Debug.Log(hit.gameObject.name);
-		            if(hit.transform.gameObject.GetComponent<Inven>() != null){
-			            if(hit.transform.gameObject.tag != "Player"){
-			            	//Debug.Log("HIT NON PLAYER INVENTORY");
-				            Inven inv = hit.transform.gameObject.GetComponent<Inven>();
-				            //enable the relevant UI element
-				            inv.UIPlugger.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-				            storageInvOpen = true;
-				            //force open the player's inventory
-				            OpenInventory();
-				            //Add distance check here
-				            storageObjectPos = inv.gameObject.transform;
-				            distanceGate = true;
-				            return;
-			            }
+		            CloseInventory();
+		            FlipCamera(hit, true);
+		            return;
+	            }
+            	//Debug.Log(hit.gameObject.name);
+	            if(hit.transform.gameObject.GetComponent<Inven>() != null){
+		            if(hit.transform.gameObject.tag != "Player"){
+			            FlipCamera(hit, false);
+		            	//Debug.Log("HIT NON PLAYER INVENTORY");
+			            Inven inv = hit.transform.gameObject.GetComponent<Inven>();
+			            //enable the relevant UI element
+			            inv.UIPlugger.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+			            storageInvOpen = true;
+			            //force open the player's inventory
+			            OpenInventory();
+			            //Add distance check here
+			            storageObjectPos = inv.gameObject.transform;
+			            distanceGate = true;
+			            return;
 		            }
 	            }
             }
         }
+        
 	    if(distanceGate){
 	    	DistanceCheck();
 	    }

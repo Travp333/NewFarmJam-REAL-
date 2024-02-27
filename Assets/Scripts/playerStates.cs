@@ -12,7 +12,7 @@ public class PlayerStates : MonoBehaviour
 	[SerializeField]
 	UpdateRotation rot;
 	[SerializeField]
-	Camera ThirdPersonCam;
+	public Camera ThirdPersonCam;
 	Movement move;
 	public bool walking;
 	public bool moving;

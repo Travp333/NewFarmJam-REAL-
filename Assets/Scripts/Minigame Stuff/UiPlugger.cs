@@ -95,9 +95,10 @@ public class UiPlugger : MonoBehaviour
 		//rt.pivot = new Vector2(.5f, .5f);
 	}
 	public void SyncWorldModel(int row, int column, string name, GameObject worldModel){
-		//Debug.LogError("WORLD MODEL HERE" + worldModel + "SYNC HERE" + sync.name);
+		
 		if(worldModel != null){
 			if(sync != null){
+				Debug.Log("WORLD MODEL HERE" + worldModel + "SYNC HERE" + sync.name);
 				//Debug.Log("CHANGED WORLD MODEL");
 				sync.UpdateWorldModel(row, column, name, worldModel);
 			}

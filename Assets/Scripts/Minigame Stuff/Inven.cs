@@ -32,6 +32,8 @@ public class ItemStat {
 public class Inven : MonoBehaviour
 {
 	[SerializeField]
+	public Camera topDownCam;
+	[SerializeField]
 	[Tooltip("What object to spawn in the player's inventory (match with startingInvenCount, ie startingInvenPrefabs[0] will spawn startingInvenCount[0] times")]
 	public Item[] startingInvenPrefabs;
 	[SerializeField]
@@ -54,8 +56,17 @@ public class Inven : MonoBehaviour
 	int loopCounter;
 	int i2;
 	int i3;
+	string slot00Name, slot01Name, slot10Name, slot11Name;
+	[SerializeField]
+	bool debugLines;
 	RecyclableItem recyclableItem;
-    // Start is called before the first frame update
+	// Start is called before the first frame update
+	protected void Update()
+	{
+		//if(debugLines){
+			//	Debug.Log("slot00Name, " + slot00Name + "slot01Name, " + slot01Name + "slot10Name, "+ slot10Name + "slot10Name, " + slot11Name + "slot11Name");
+			//}
+	}
 	public void Start()
 	{
 		temp = FindObjectOfType<tempHolder>();
