@@ -27,6 +27,7 @@ public class ItemStat {
 	public int matureAge;
 	public int x, y;
 	public Item harvestsInto;
+	public Item me;
 	
 }
 public class Inven : MonoBehaviour
@@ -140,7 +141,7 @@ public class Inven : MonoBehaviour
 	public void SpecificPickUpAndCount(Item item, int row, int column, int amount){
 		if(array[row,column].Name == ""){
 			//yes empty, filling slot
-			//Debug.Log("Slot (" + i + " , "+ i2 + " ) is empty, putting " + item.Objname + " in slot");
+			Debug.Log("Slot (" + row + " , "+ column + " ) is empty, putting " + item.Objname + " in slot");
 			isPickedUp = true;
 			//Debug.Log("ispickedup set to "+ isPickedUp);
 			array[row,column].Name = item.Objname;
@@ -156,6 +157,7 @@ public class Inven : MonoBehaviour
 			array[row, column].age = item.age;
 			array[row, column].matureAge = item.matureAge;
 			array[row, column].harvestsInto = item.harvestsInto;
+			array[row, column].me = item.me;
 			//updating UI to match new change
 
 			if (this.gameObject.tag != "Player"){
@@ -203,7 +205,7 @@ public class Inven : MonoBehaviour
 			array[row, column].age = item.age;
 			array[row, column].matureAge = item.matureAge;
 			array[row, column].harvestsInto = item.harvestsInto;
-			
+			array[row, column].me = item.me;
 
 			//updating UI to match new change
 
@@ -263,7 +265,7 @@ public class Inven : MonoBehaviour
 					array[i, i2].age = item.age;
 					array[i, i2].matureAge = item.matureAge;
 					array[i, i2].harvestsInto = item.harvestsInto;
-					
+					array[i, i2].me = item.me;
 					//updating UI to match new change
 
 					if (this.gameObject.tag != "Player"){
@@ -398,7 +400,7 @@ public class Inven : MonoBehaviour
 			array[row, column].Amount = 0;
 			//you just dropped the last item in that slot, reverting to default
 			if(array[row, column].Amount <= 0){
-				//Debug.Log("Out of " + array[row, column].Name + " in slot (" + row + " , "+ column + " ) , slot now empty ");
+				Debug.Log("Out of " + array[row, column].Name + " in slot (" + row + " , "+ column + " ) , slot now empty ");
 				ClearInfo(row, column);
 				//updating UI to match new change
 				plug.ClearSlot(row, column, temp.emptyImage);
@@ -426,6 +428,7 @@ public class Inven : MonoBehaviour
 		array[row, column].age = 0;
 		array[row, column].matureAge = -1;
 		array[row, column].harvestsInto = null;
+		array[row, column].me = null;
 	}
 	public void PlantAgeUpdate() {
 		plug = UIPlugger.GetComponent<UiPlugger>();
@@ -449,6 +452,7 @@ public class Inven : MonoBehaviour
 						b.isSeed = item.isSeed;
 						b.age = item.age;
 						b.harvestsInto = item.harvestsInto;
+						b.me = item.me;
 						Debug.Log(b.Name + " " + b.age);
 						b.matureAge = item.matureAge;
 						if (b.worldModel != null)

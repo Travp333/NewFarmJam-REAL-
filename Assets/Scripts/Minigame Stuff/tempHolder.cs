@@ -35,6 +35,7 @@ public class tempHolder : MonoBehaviour
 	public int tempAge;
 	public int tempMatureAge;
 	public Item tempHarvestsInto;
+	public Item tempMe;
 	
 
 	
@@ -90,6 +91,7 @@ public class tempHolder : MonoBehaviour
 		tempAge = 0;
 		tempMatureAge = -1;
 		tempHarvestsInto = null;
+		tempMe = null;
 	}
 	public void HoldItem(Inven inventoryObject, string coords){
 		//Debug.Log("running HoldItem()");
@@ -127,6 +129,7 @@ public class tempHolder : MonoBehaviour
 				tempAge = slot.age;
 				tempMatureAge = slot.matureAge;
 				tempHarvestsInto = slot.harvestsInto;
+				tempMe = slot.me;
 				//Debug.Log(slot.Name + " was selected");
 				//This turns the button pressed darker, to indicate to the player that that inventory slot is being stored in the temp slot
 				//plug.ButtonSelected(row, column);	
@@ -200,6 +203,7 @@ public class tempHolder : MonoBehaviour
 						tempGrabbable = false;
 						tempIsSeed = false;
 						tempHarvestsInto = null;
+						tempMe = null;
 						ClearSlot();
 					}
 					else{
@@ -219,6 +223,7 @@ public class tempHolder : MonoBehaviour
 						tempGrabbable = false;
 						tempIsSeed = false;
 						tempHarvestsInto = null;
+						tempMe = null;
 						ClearSlot();
 					}
 				}
@@ -244,6 +249,7 @@ public class tempHolder : MonoBehaviour
 							inventoryObject.array[row, column].age = tempCraftsInto.age;
 							inventoryObject.array[row, column].matureAge = tempCraftsInto.matureAge;
 							inventoryObject.array[row, column].harvestsInto = tempCraftsInto.harvestsInto;
+							inventoryObject.array[row, column].me = tempCraftsInto.me;
 							plug.ClearWorldModel(row, column);
 							plug.SyncWorldModel(row, column, tempCraftsInto.name, tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length-1)]);
 							plug.ChangeItem(row,column, tempCraftsInto.img, 1 , tempCraftsInto.name);
@@ -282,6 +288,7 @@ public class tempHolder : MonoBehaviour
 					inventoryObject.array[row, column].age = 0;
 					inventoryObject.array[row, column].matureAge = tempMatureAge;
 					inventoryObject.array[row, column].harvestsInto = tempHarvestsInto;
+					inventoryObject.array[row, column].me = tempMe;
 					plug.SyncWorldModel(row, column, tempName, tempModel);
 					plug.ChangeItem(row,column, tempImage, 1 , tempName);
 					tempInven.DropSpecificItem(tempRow.ToString() +", "+ tempColumn.ToString());
@@ -317,27 +324,41 @@ public class tempHolder : MonoBehaviour
 					tempMatureAge = inventoryObject.array[row, column].matureAge;
 					*/
 					//we then update the Ui to follow suit
-					tempInven.DropWholeStack(tempRow.ToString() +", "+ tempColumn.ToString());
-					tempPlug.ClearWorldModel(tempRow, tempColumn);
-					tempPlug.ClearSlot(tempRow, tempColumn, emptyImage);
+
 					//tempPlug.ChangeItem(tempRow, tempColumn, inventoryObject.array[row, column].image, inventoryObject.array[row, column].Amount, inventoryObject.array[row, column].Name);
 					//then we set the second button equal to the temp slot's data
-					inventoryObject.array[row, column] = slot;
-					inventoryObject.array[row, column].Name = slot.Name;
-					inventoryObject.array[row, column].image = slot.image;
-					inventoryObject.array[row, column].worldModel = slot.worldModel;
-					inventoryObject.array[row, column].growsInto = slot.growsInto;
-					inventoryObject.array[row, column].requiredIngredient = slot.requiredIngredient;
-					inventoryObject.array[row, column].craftsInto = slot.craftsInto;
-					inventoryObject.array[row, column].grabbable = slot.grabbable;
-					inventoryObject.array[row, column].isSeed = slot.isSeed;
-					inventoryObject.array[row, column].harvestsInto = slot.harvestsInto;
-					inventoryObject.array[row, column].age = slot.age;
-					inventoryObject.array[row, column].matureAge = slot.matureAge;
+
+					//Debug.Log("TESTING  BEFORE !!!" + inventoryObject.array[row, column].Amount + ", " + tempInven.array[tempRow, tempColumn].Amount);
+					//inventoryObject.array[row, column] = slot;
+					//Debug.Log("TESTING  AFTER !!!" + inventoryObject.array[row, column].Amount + ", " + tempInven.array[tempRow, tempColumn].Amount);
+
+					//inventoryObject.array[row, column].Name = slot.Name;
+					//inventoryObject.array[row, column].image = slot.image;
+					//inventoryObject.array[row, column].worldModel = slot.worldModel;
+					//inventoryObject.array[row, column].growsInto = slot.growsInto;
+					//inventoryObject.array[row, column].requiredIngredient = slot.requiredIngredient;
+					//inventoryObject.array[row, column].craftsInto = slot.craftsInto;
+					//inventoryObject.array[row, column].grabbable = slot.grabbable;
+					//inventoryObject.array[row, column].isSeed = slot.isSeed;
+					//inventoryObject.array[row, column].harvestsInto = slot.harvestsInto;
+					//inventoryObject.array[row, column].age = slot.age;
+					//inventoryObject.array[row, column].matureAge = slot.matureAge;
 					//we also have the Ui and worldmodel update
-					Debug.Log("Row = " + row + " Column = " + column);
+					//inventoryObject.array[row, column].StackSize = tempInven.array[tempRow, tempColumn].StackSize;
+					//	inventoryObject.array[row, column].Amount = tempInven.array[tempRow, tempColumn].Amount;
+
+					
+
+
+					//Debug.Log("Row = " + row + " Column = " + column);
+					//plug.SyncWorldModel(row, column, tempName, tempModel);
+					//plug.ClearSlot(row, column, emptyImage);
+					//plug.ChangeItem(row,column, tempImage, inventoryObject.array[row, column].Amount, tempName);
+					inventoryObject.SpecificPickUpAndCount(tempMe, row, column, tempInven.array[tempRow, tempColumn].Amount);
 					plug.SyncWorldModel(row, column, tempName, tempModel);
-					plug.ChangeItem(row,column, tempImage, inventoryObject.array[row, column].Amount, tempName);
+					tempInven.DropWholeStack(tempRow.ToString() +", "+ tempColumn.ToString());
+					tempPlug.ClearWorldModel(tempRow, tempColumn);
+					//tempPlug.ClearSlot(tempRow, tempColumn, emptyImage);
 					ClearSlot();	
 					
 				}
@@ -362,7 +383,7 @@ public class tempHolder : MonoBehaviour
 								inventoryObject.array[row, column].age = 0;
 								inventoryObject.array[row, column].matureAge = tempMatureAge;
 								inventoryObject.array[row, column].harvestsInto = tempHarvestsInto;
-								
+								inventoryObject.array[row, column].me = tempMe;
 								plug.ClearWorldModel(row, column);
 								plug.SyncWorldModel(row, column, tempCraftsInto.name, tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length-1)]);
 								plug.ChangeItem(row,column, tempCraftsInto.img, 1 , tempCraftsInto.name);
