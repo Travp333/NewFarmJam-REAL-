@@ -120,7 +120,7 @@ public class tempHolder : MonoBehaviour
 				tempImage = slot.image;
 				tempCount = slot.Amount;
 				tempInven = inventoryObject;
-				tempModel = slot.worldModel[Random.Range(0,slot.worldModel.Length-1)];
+				tempModel = slot.worldModel[Random.Range(0,slot.worldModel.Length)];
 				tempCraftsInto = slot.craftsInto;
 				tempGrowsInto = slot.growsInto;
 				tempRequiredIngredient = slot.requiredIngredient;
@@ -251,7 +251,7 @@ public class tempHolder : MonoBehaviour
 							inventoryObject.array[row, column].harvestsInto = tempCraftsInto.harvestsInto;
 							inventoryObject.array[row, column].me = tempCraftsInto.me;
 							plug.ClearWorldModel(row, column);
-							plug.SyncWorldModel(row, column, tempCraftsInto.name, tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length-1)]);
+							plug.SyncWorldModel(row, column, tempCraftsInto.name, tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length)]);
 							plug.ChangeItem(row,column, tempCraftsInto.img, 1 , tempCraftsInto.name);
 							tempInven.DropSpecificItem(tempRow.ToString() +", "+ tempColumn.ToString());
 							if(tempInven.array[tempRow, tempColumn].Amount <= 0){
@@ -385,7 +385,7 @@ public class tempHolder : MonoBehaviour
 								inventoryObject.array[row, column].harvestsInto = tempHarvestsInto;
 								inventoryObject.array[row, column].me = tempMe;
 								plug.ClearWorldModel(row, column);
-								plug.SyncWorldModel(row, column, tempCraftsInto.name, tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length-1)]);
+								plug.SyncWorldModel(row, column, tempCraftsInto.name, tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length)]);
 								plug.ChangeItem(row,column, tempCraftsInto.img, 1 , tempCraftsInto.name);
 								tempInven.DropSpecificItem(tempRow.ToString() +", "+ tempColumn.ToString());
 								if(tempInven.array[tempRow, tempColumn].Amount <= 0){

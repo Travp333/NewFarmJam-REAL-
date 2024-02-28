@@ -41,8 +41,10 @@ public class AnimationStateController : MonoBehaviour
         animator.SetBool(isSwingingHash, false);
         animator.SetLayerWeight(1,0);
         isAttacking = false;
-        state.macheteHitbox.SetActive(false);
     }
+	public void ResetHitbox(){
+		state.macheteHitbox.SetActive(false);
+	}
     public void ForceIdle(){
         animator.SetBool(isFallingHash, false);
         animator.SetBool(isOnWallHash, false);

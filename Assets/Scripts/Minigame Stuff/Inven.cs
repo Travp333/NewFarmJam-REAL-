@@ -161,7 +161,7 @@ public class Inven : MonoBehaviour
 			//updating UI to match new change
 
 			if (this.gameObject.tag != "Player"){
-				plug.SyncWorldModel(row, column, array[row,column].Name, array[row, column].worldModel[Random.Range(0, item.worldModel.Length-1)]);
+				plug.SyncWorldModel(row, column, array[row,column].Name, array[row, column].worldModel[Random.Range(0, item.worldModel.Length)]);
 			}
 			
 			plug.ChangeItem(row, column, item.img, array[row,column].Amount, array[row,column].Name);
@@ -210,7 +210,7 @@ public class Inven : MonoBehaviour
 			//updating UI to match new change
 
 			if (this.gameObject.tag != "Player"){
-				plug.SyncWorldModel(row, column, array[row,column].Name, array[row, column].worldModel[Random.Range(0, item.worldModel.Length-1)]);
+				plug.SyncWorldModel(row, column, array[row,column].Name, array[row, column].worldModel[Random.Range(0, item.worldModel.Length)]);
 			}
 			
 			plug.ChangeItem(row, column, item.img, array[row,column].Amount, array[row,column].Name);
@@ -269,7 +269,7 @@ public class Inven : MonoBehaviour
 					//updating UI to match new change
 
 					if (this.gameObject.tag != "Player"){
-						plug.SyncWorldModel(i, i2, array[i,i2].Name, array[i, i2].worldModel[Random.Range(0, item.worldModel.Length-1)]);
+						plug.SyncWorldModel(i, i2, array[i,i2].Name, array[i, i2].worldModel[Random.Range(0, item.worldModel.Length)]);
 					}
 					
 					plug.ChangeItem(i, i2, item.img, array[i,i2].Amount, array[i,i2].Name);
@@ -458,7 +458,7 @@ public class Inven : MonoBehaviour
 						if (b.worldModel != null)
 						{
 							plug.ClearWorldModel(b.x, b.y);
-							plug.SyncWorldModel(b.x, b.y, b.Name, b.worldModel[Random.Range(0, b.worldModel.Length - 1)]);
+							plug.SyncWorldModel(b.x, b.y, b.Name, b.worldModel[Random.Range(0, b.worldModel.Length)]);
 						}
 					}
 					plug.ChangeItem(b.x, b.y, b.image, b.Amount, b.Name);

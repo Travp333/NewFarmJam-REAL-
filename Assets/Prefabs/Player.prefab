@@ -446,7 +446,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 308542c5be35d044ea4515aa0cf0eebf, type: 2}
   - {fileID: 11400000, guid: 5ec74faf62814c241b8a88358b33b5f5, type: 2}
   - {fileID: 11400000, guid: f24fbd883f6dae043a8f97197acf48cb, type: 2}
-  startingInvenCount: 100000000a0000000a0000000a000000
+  - {fileID: 11400000, guid: 40ac304654dc90449a4ce8c5159d8cee, type: 2}
+  startingInvenCount: 100000000a0000000a0000000a0000000a000000
   droppedItemSpawnPoint: {fileID: 4975230396845720203}
   UIPlugger: {fileID: 0}
   hSize: 4
@@ -454,6 +455,7 @@ MonoBehaviour:
   isPickedUp: 0
   item: {fileID: 0}
   temp: {fileID: 5304974068512003932}
+  debugLines: 0
 --- !u!114 &5304974068512003932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,6 +485,7 @@ MonoBehaviour:
   tempAge: 0
   tempMatureAge: 0
   tempHarvestsInto: {fileID: 0}
+  tempMe: {fileID: 0}
 --- !u!1 &3956782676507730881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,8 +1040,8 @@ Transform:
   m_GameObject: {fileID: 8457268168186828464}
   serializedVersion: 2
   m_LocalRotation: {x: 0.015290844, y: 0.04694537, z: -0.05722353, w: 0.9971399}
-  m_LocalPosition: {x: -0.01726, y: 0.01497, z: 0.00272}
-  m_LocalScale: {x: 0.035586163, y: 0.022559615, z: 0.003511477}
+  m_LocalPosition: {x: -0.0155, y: 0.0102, z: 0.0024}
+  m_LocalScale: {x: 0.02757643, y: 0.01610937, z: 0.003511477}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4642698593559094395}
