@@ -448,7 +448,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f24fbd883f6dae043a8f97197acf48cb, type: 2}
   - {fileID: 11400000, guid: 40ac304654dc90449a4ce8c5159d8cee, type: 2}
   - {fileID: 11400000, guid: 300cb7fdad3400b4094284258e617b73, type: 2}
-  startingInvenCount: 100000000a0000000a0000000a0000000a000000
+  - {fileID: 11400000, guid: 8595eab69835e6c469db91a4a453cd69, type: 2}
+  - {fileID: 11400000, guid: fb0259d30aae71240aef96d329bdcf7e, type: 2}
+  startingInvenCount: 100000000a0000000a0000000a0000000a0000000a0000000a0000000a000000
   droppedItemSpawnPoint: {fileID: 4975230396845720203}
   UIPlugger: {fileID: 0}
   hSize: 4
