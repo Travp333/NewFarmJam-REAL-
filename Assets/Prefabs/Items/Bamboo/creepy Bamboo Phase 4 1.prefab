@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inven: {fileID: 0}
-  item: {fileID: 11400000, guid: 77fb4bb3b9df8ab47a4bb2a589be573a, type: 2}
+  item: {fileID: 11400000, guid: 357beffe1e0f5a74987ca5906c2e57fc, type: 2}
   row: 0
   column: 0
 --- !u!65 &-6304491077321875092

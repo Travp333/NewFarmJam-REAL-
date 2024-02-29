@@ -28,6 +28,8 @@ public class ItemStat {
 	public int x, y;
 	public Item harvestsInto;
 	public Item me;
+    public int harvestCount;
+	public Item seed;
 	
 }
 public class Inven : MonoBehaviour
@@ -56,17 +58,9 @@ public class Inven : MonoBehaviour
 	public tempHolder temp;
 	int loopCounter;
 	int i2;
-	int i3;
-	string slot00Name, slot01Name, slot10Name, slot11Name;
-	[SerializeField]
-	bool debugLines;
-	RecyclableItem recyclableItem;
 	// Start is called before the first frame update
 	protected void Update()
 	{
-		//if(debugLines){
-			//	Debug.Log("slot00Name, " + slot00Name + "slot01Name, " + slot01Name + "slot10Name, "+ slot10Name + "slot10Name, " + slot11Name + "slot11Name");
-			//}
 	}
 	public void Start()
 	{
@@ -138,14 +132,8 @@ public class Inven : MonoBehaviour
 		}
 		i2 = 0;
 	}
-	public void SpecificPickUpAndCount(Item item, int row, int column, int amount){
-		if(array[row,column].Name == ""){
-			//yes empty, filling slot
-			Debug.Log("Slot (" + row + " , "+ column + " ) is empty, putting " + item.Objname + " in slot");
-			isPickedUp = true;
-			//Debug.Log("ispickedup set to "+ isPickedUp);
+	public void SetArrayToItem(Item item, int row, int column){
 			array[row,column].Name = item.Objname;
-			array[row,column].Amount = amount;
 			array[row,column].StackSize = item.stackSize;
 			array[row, column].image = item.img;
 			array[row, column].worldModel = item.worldModel;
@@ -158,8 +146,18 @@ public class Inven : MonoBehaviour
 			array[row, column].matureAge = item.matureAge;
 			array[row, column].harvestsInto = item.harvestsInto;
 			array[row, column].me = item.me;
+			array[row, column].harvestCount = item.harvestCount;
+			array[row, column].seed = item.seed;
+	}
+	public void SpecificPickUpAndCount(Item item, int row, int column, int amount){
+		if(array[row,column].Name == ""){
+			//yes empty, filling slot
+			Debug.Log("Slot (" + row + " , "+ column + " ) is empty, putting " + item.Objname + " in slot");
+			isPickedUp = true;
+			//Debug.Log("ispickedup set to "+ isPickedUp);
+			array[row,column].Amount = amount;
+			SetArrayToItem(item, row, column);
 			//updating UI to match new change
-
 			if (this.gameObject.tag != "Player"){
 				plug.SyncWorldModel(row, column, array[row,column].Name, array[row, column].worldModel[Random.Range(0, item.worldModel.Length)]);
 			}
@@ -192,21 +190,8 @@ public class Inven : MonoBehaviour
 			//Debug.Log("Slot (" + i + " , "+ i2 + " ) is empty, putting " + item.Objname + " in slot");
 			isPickedUp = true;
 			//Debug.Log("ispickedup set to "+ isPickedUp);
-			array[row,column].Name = item.Objname;
 			array[row,column].Amount = array[row,column].Amount + 1;
-			array[row,column].StackSize = item.stackSize;
-			array[row, column].image = item.img;
-			array[row, column].worldModel = item.worldModel;
-			array[row, column].requiredIngredient = item.requiredIngredient;
-			array[row, column].craftsInto = item.craftsInto;
-			array[row, column].growsInto = item.growsInto;
-			array[row, column].grabbable = item.grabbable;
-			array[row, column].isSeed = item.isSeed;
-			array[row, column].age = item.age;
-			array[row, column].matureAge = item.matureAge;
-			array[row, column].harvestsInto = item.harvestsInto;
-			array[row, column].me = item.me;
-
+			SetArrayToItem(item, row, column);
 			//updating UI to match new change
 
 			if (this.gameObject.tag != "Player"){
@@ -252,22 +237,9 @@ public class Inven : MonoBehaviour
 					//Debug.Log("Slot (" + i + " , "+ i2 + " ) is empty, putting " + item.Objname + " in slot");
 					isPickedUp = true;
 					//Debug.Log("ispickedup set to "+ isPickedUp);
-					array[i,i2].Name = item.Objname;
 					array[i,i2].Amount = array[i,i2].Amount + 1;
-					array[i,i2].StackSize = item.stackSize;
-					array[i, i2].image = item.img;
-					array[i, i2].worldModel = item.worldModel;
-					array[i, i2].requiredIngredient = item.requiredIngredient;
-					array[i, i2].craftsInto = item.craftsInto;
-					array[i, i2].growsInto = item.growsInto;
-					array[i, i2].grabbable = item.grabbable;
-					array[i, i2].isSeed = item.isSeed;
-					array[i, i2].age = item.age;
-					array[i, i2].matureAge = item.matureAge;
-					array[i, i2].harvestsInto = item.harvestsInto;
-					array[i, i2].me = item.me;
+					SetArrayToItem(item, i, i2);
 					//updating UI to match new change
-
 					if (this.gameObject.tag != "Player"){
 						plug.SyncWorldModel(i, i2, array[i,i2].Name, array[i, i2].worldModel[Random.Range(0, item.worldModel.Length)]);
 					}
@@ -429,6 +401,8 @@ public class Inven : MonoBehaviour
 		array[row, column].matureAge = -1;
 		array[row, column].harvestsInto = null;
 		array[row, column].me = null;
+		array[row, column].harvestCount = 0;
+		array[row, column].seed = null;
 	}
 	public void PlantAgeUpdate() {
 		plug = UIPlugger.GetComponent<UiPlugger>();
@@ -453,6 +427,8 @@ public class Inven : MonoBehaviour
 						b.age = item.age;
 						b.harvestsInto = item.harvestsInto;
 						b.me = item.me;
+						b.harvestCount = item.harvestCount;
+						b.seed = item.seed;
 						Debug.Log(b.Name + " " + b.age);
 						b.matureAge = item.matureAge;
 						if (b.worldModel != null)

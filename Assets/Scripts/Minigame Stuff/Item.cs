@@ -32,6 +32,10 @@ public class Item : ScriptableObject
     public int matureAge;
     [SerializeField]
     public Item harvestsInto;
+    [SerializeField]
+    public int harvestCount;
+    [SerializeField]
+    public Item seed;
     
 
 }

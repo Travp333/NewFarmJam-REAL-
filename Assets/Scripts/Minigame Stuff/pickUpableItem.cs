@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class pickUpableItem : MonoBehaviour
@@ -22,9 +23,23 @@ public class pickUpableItem : MonoBehaviour
     }
     public void DropMe(){
         Debug.Log("TESTING@!!@!!");
-        inven.DropWholeStack(row.ToString() +", "+ column.ToString());
-        inven.UIPlugger.GetComponent<UiPlugger>().ClearWorldModel(row, column);
-        inven.UIPlugger.GetComponent<UiPlugger>().ClearSlot(row, column, inven.temp.emptyImage);
-        GameObject.Find("3rd Person Character").GetComponent<Inven>().SmartPickUp(item.harvestsInto);
+
+        if(inven != null){
+            inven.DropWholeStack(row.ToString() +", "+ column.ToString());
+            inven.UIPlugger.GetComponent<UiPlugger>().ClearWorldModel(row, column);
+            inven.UIPlugger.GetComponent<UiPlugger>().ClearSlot(row, column, inven.temp.emptyImage);
+            for (int i = 0; i < item.harvestCount; i++)
+            {
+                GameObject.Find("3rd Person Character").GetComponent<Inven>().SmartPickUp(item.harvestsInto);
+            }
+        }
+        else{
+            Debug.Log("TESTTTTT!!!!!");
+            for (int i = 0; i < item.harvestCount; i++)
+            {
+                GameObject.Find("3rd Person Character").GetComponent<Inven>().SmartPickUp(item.harvestsInto);
+            }
+        }
+        
     }
 }
