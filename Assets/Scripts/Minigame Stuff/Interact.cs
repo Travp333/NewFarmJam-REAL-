@@ -10,6 +10,7 @@ using UnityEngine.InputSystem;
 
 public class Interact : MonoBehaviour
 {
+	Camera lastActiveCamera;
 	//InputAction
 	public InputAction interactAction;
 	public InputAction openMenuAction;
@@ -18,6 +19,8 @@ public class Interact : MonoBehaviour
 	//Mask for the Raycast
     [SerializeField]
 	LayerMask mask = default;
+	[SerializeField]
+	LayerMask intMask = default;
 	//reference to the player UI
 	[SerializeField]
 	GameObject InventoryUI = null; //Inventory Canvas
@@ -133,10 +136,18 @@ public class Interact : MonoBehaviour
 	}
 	public void FlipCamera(Collider hit, bool flip){
 		if(hit.transform.gameObject.tag != "Player"){
-			if(hit.transform.gameObject.tag == "Plantable"){
-				if(hit.transform.gameObject.GetComponent<Inven>().topDownCam != null){
-					this.GetComponent<PlayerStates>().ThirdPersonCam.enabled = flip;
-					hit.transform.gameObject.GetComponent<Inven>().topDownCam.enabled = !flip;
+			if(hit.transform.gameObject.GetComponent<Inven>().topDownCam != null){
+				if(flip){
+					lastActiveCamera.enabled = true;
+					hit.transform.gameObject.GetComponent<Inven>().topDownCam.enabled = false;
+					GameObject.Find("TopDownCam").GetComponent<ActiveCameraTracker>().activeCamera = lastActiveCamera;
+				}
+				else{
+					GameObject.Find("TopDownCam").GetComponent<ActiveCameraTracker>().activeCamera.enabled = false;
+					hit.transform.gameObject.GetComponent<Inven>().topDownCam.enabled = true;
+					lastActiveCamera = GameObject.Find("TopDownCam").GetComponent<ActiveCameraTracker>().activeCamera;
+					GameObject.Find("TopDownCam").GetComponent<ActiveCameraTracker>().activeCamera = hit.transform.gameObject.GetComponent<Inven>().topDownCam;
+					
 				}
 			}
 		}
@@ -165,7 +176,7 @@ public class Interact : MonoBehaviour
         }
         if (interactAction.WasPressedThisFrame())
         {
-            Collider[] colliders = Physics.OverlapSphere(this.transform.position, sphereCastRadius);
+	        Collider[] colliders = Physics.OverlapSphere(this.transform.position, sphereCastRadius, intMask);
             foreach (Collider hit in colliders)
             {
 	            if (invIsOpen)
@@ -174,7 +185,7 @@ public class Interact : MonoBehaviour
 		            FlipCamera(hit, true);
 		            return;
 	            }
-            	//Debug.Log(hit.gameObject.name);
+            	Debug.Log(hit.gameObject.name);
 	            if(hit.transform.gameObject.GetComponent<Inven>() != null){
 		            if(hit.transform.gameObject.tag != "Player"){
 			            FlipCamera(hit, false);
