@@ -6482,7 +6482,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 154125499}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!4 &154125503
 Transform:
   m_ObjectHideFlags: 0
@@ -6492,7 +6492,7 @@ Transform:
   m_GameObject: {fileID: 154125499}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000003874302, y: 1, z: 0.00000044703484, w: 0.00000008940697}
-  m_LocalPosition: {x: -0.0017, y: -0.008, z: 0.0481}
+  m_LocalPosition: {x: 0.0005, y: -0.008, z: 0.0481}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15579,7 +15579,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3956782676507730881, guid: dc2b7792c81a737449de298b137a2ec6,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2067896145}
   m_SourcePrefab: {fileID: 100100000, guid: dc2b7792c81a737449de298b137a2ec6, type: 3}
 --- !u!1 &369578766
 GameObject:
@@ -23157,6 +23161,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9b2efd39cc3f42749be645e8ef25c94c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cooker
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -74341,6 +74350,25 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3b6255e8b4379745a5ef514c75093e2, type: 3}
+--- !u!1 &2067896140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3956782676507730881, guid: dc2b7792c81a737449de298b137a2ec6,
+    type: 3}
+  m_PrefabInstance: {fileID: 369270366}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2067896145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067896140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 036ba1bb67dd1a1419fb9b0b10809cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeCamera: {fileID: 0}
 --- !u!1001 &2068605942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74613,6 +74641,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e85decd1e79e6b8468d28216c3eacd9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CookerUIPrefab: {fileID: 5370990761619445497, guid: 868c7bc48bb592a408d796ce36b17a20,
+    type: 3}
   PlantableUIPrefab: {fileID: 5370990761619445497, guid: fe15488cd85a9684692f2a49050dcbd0,
     type: 3}
   UIPrefab: {fileID: 5370990761619445497, guid: 64f543e370ff5064e94aa790ba98e109,
