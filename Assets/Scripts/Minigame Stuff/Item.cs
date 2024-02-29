@@ -36,6 +36,7 @@ public class Item : ScriptableObject
     public int harvestCount;
     [SerializeField]
     public Item seed;
-    
+    [SerializeField]
+    public bool isVeggie;
 
 }

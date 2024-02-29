@@ -15,7 +15,7 @@ MonoBehaviour:
   me: {fileID: 11400000}
   Objname: Bamboo Fully Grown Creepy
   stackSize: 1
-  img: {fileID: 21300000, guid: 1810e063680304446b7750fc50fc80ec, type: 3}
+  img: {fileID: 21300000, guid: d2f27891e27bafb448b3cdbedef5bdbe, type: 3}
   worldModel:
   - {fileID: 1246674325083502988, guid: ad66f53499240fa4cb795bb194957e28, type: 3}
   - {fileID: 1246674325083502988, guid: e0d709e094406fc4fbae18f5c73d014f, type: 3}

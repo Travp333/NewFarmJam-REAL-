@@ -15,7 +15,7 @@ MonoBehaviour:
   me: {fileID: 11400000}
   Objname: Bamboo Sprout
   stackSize: 1
-  img: {fileID: 21300000, guid: 1810e063680304446b7750fc50fc80ec, type: 3}
+  img: {fileID: 21300000, guid: 70d880823b325c74d87ec7376afcfbdd, type: 3}
   worldModel:
   - {fileID: 1246674325083502988, guid: 841641d591d3bb1498ef286140ca1563, type: 3}
   - {fileID: 1246674325083502988, guid: 10463a766bd28b9478bfe49852cab36e, type: 3}
@@ -29,3 +29,5 @@ MonoBehaviour:
   age: 0
   matureAge: 4
   harvestsInto: {fileID: 0}
+  harvestCount: 0
+  seed: {fileID: 0}

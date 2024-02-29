@@ -15,7 +15,7 @@ MonoBehaviour:
   me: {fileID: 11400000}
   Objname: Bamboo Stick
   stackSize: 99
-  img: {fileID: 21300000, guid: 1810e063680304446b7750fc50fc80ec, type: 3}
+  img: {fileID: 21300000, guid: efc1adb837b1b304893b1566adead52c, type: 3}
   worldModel:
   - {fileID: 5641501220634067805, guid: a8823abe4c487c74a9cb93fa1aff7121, type: 3}
   requiredIngredient: {fileID: 11400000, guid: 5ec74faf62814c241b8a88358b33b5f5, type: 2}
@@ -25,6 +25,7 @@ MonoBehaviour:
   isSeed: 1
   age: 0
   matureAge: 4
-  harvestsInto: {fileID: 11400000}
-  harvestCount: 1
+  harvestsInto: {fileID: 0}
+  harvestCount: 0
   seed: {fileID: 0}
+  isVeggie: 0

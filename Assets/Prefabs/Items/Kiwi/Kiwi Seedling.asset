@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79a0295687fa01a4c9b3188f6da3b7d5, type: 3}
+  m_Name: Kiwi Seedling
+  m_EditorClassIdentifier: 
+  me: {fileID: 11400000}
+  Objname: Kiwi Seedling
+  stackSize: 1
+  img: {fileID: 21300000, guid: 041788f21d2b95d4097c115399c14e77, type: 3}
+  worldModel:
+  - {fileID: 6844534549885848741, guid: 3ceca689dec35b5489b50c77fef27545, type: 3}
+  requiredIngredient: {fileID: 0}
+  craftsInto: {fileID: 0}
+  growsInto: {fileID: 11400000, guid: 0db9e785eb701304f9e0a61190df11b3, type: 2}
+  grabbable: 0
+  isSeed: 0
+  age: 0
+  matureAge: 4
+  harvestsInto: {fileID: 0}
+  harvestCount: 0
+  seed: {fileID: 11400000, guid: 5ec74faf62814c241b8a88358b33b5f5, type: 2}

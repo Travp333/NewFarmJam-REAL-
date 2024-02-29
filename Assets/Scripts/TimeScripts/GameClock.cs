@@ -51,7 +51,7 @@ public class GameClock : MonoBehaviour, SaveInterface
 
     }
     public void NewHour() {
-        Debug.Log("New Hour: " + gameHour);
+        //Debug.Log("New Hour: " + gameHour);
         
         if(growingManager != null)
         growingManager.GrowStepUpdate();
