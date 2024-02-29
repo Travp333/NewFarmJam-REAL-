@@ -15,14 +15,14 @@ MonoBehaviour:
   me: {fileID: 11400000}
   Objname: Pumpkin Sprout
   stackSize: 1
-  img: {fileID: 21300000, guid: 68db1555c82922346809eee3bcc5d79c, type: 3}
+  img: {fileID: 21300000, guid: ab79b26b00d9b3e4d9fd37cab10c3675, type: 3}
   worldModel:
-  - {fileID: 1363519882805038905, guid: c62f03f14829c784ca9eeb9a5696a047, type: 3}
-  - {fileID: 5334388555768425024, guid: a39c6e4638abeb74a980e85220dc7627, type: 3}
-  - {fileID: 1863080501927479840, guid: 4cd2afcdeb0326b4abcf86b7ca32c921, type: 3}
+  - {fileID: 5064647307783215583, guid: 905a744b241b0ee4ea46a2468457a531, type: 3}
+  - {fileID: 6961415098076735427, guid: 01c47fc5eb52ace4cacfdae01f785892, type: 3}
+  - {fileID: 6212278959041928594, guid: 5e719272bed1bba4daa4e8b7582d888e, type: 3}
   requiredIngredient: {fileID: 0}
   craftsInto: {fileID: 0}
-  growsInto: {fileID: 11400000, guid: 74fe92af64e7ac543b18434c1b880123, type: 2}
+  growsInto: {fileID: 11400000, guid: 599b6e400f33b7543809f0518c436506, type: 2}
   grabbable: 0
   isSeed: 0
   age: 0
@@ -30,3 +30,4 @@ MonoBehaviour:
   harvestsInto: {fileID: 0}
   harvestCount: 0
   seed: {fileID: 0}
+  isVeggie: 0

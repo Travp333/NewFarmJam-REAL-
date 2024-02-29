@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using Unity.VisualScripting;
@@ -34,7 +34,6 @@ public class pickUpableItem : MonoBehaviour
             }
         }
         else{
-            //Debug.Log("TESTTTTT!!!!!");
             for (int i = 0; i < item.harvestCount; i++)
             {
                 GameObject.Find("3rd Person Character").GetComponent<Inven>().SmartPickUp(item.harvestsInto);

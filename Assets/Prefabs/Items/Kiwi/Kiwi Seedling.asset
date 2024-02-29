@@ -15,12 +15,12 @@ MonoBehaviour:
   me: {fileID: 11400000}
   Objname: Kiwi Seedling
   stackSize: 1
-  img: {fileID: 21300000, guid: 041788f21d2b95d4097c115399c14e77, type: 3}
+  img: {fileID: 21300000, guid: 7e11078530e84b34a9215d096a188824, type: 3}
   worldModel:
-  - {fileID: 6844534549885848741, guid: 3ceca689dec35b5489b50c77fef27545, type: 3}
+  - {fileID: 2444742332717712512, guid: ecd9041449247e9499ab2a7621684e02, type: 3}
   requiredIngredient: {fileID: 0}
   craftsInto: {fileID: 0}
-  growsInto: {fileID: 11400000, guid: 0db9e785eb701304f9e0a61190df11b3, type: 2}
+  growsInto: {fileID: 11400000, guid: 100992db261243b4ab3e314573b50a54, type: 2}
   grabbable: 0
   isSeed: 0
   age: 0
@@ -28,3 +28,4 @@ MonoBehaviour:
   harvestsInto: {fileID: 0}
   harvestCount: 0
   seed: {fileID: 11400000, guid: 5ec74faf62814c241b8a88358b33b5f5, type: 2}
+  isVeggie: 0

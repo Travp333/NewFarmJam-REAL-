@@ -29,3 +29,6 @@ MonoBehaviour:
   age: 0
   matureAge: 4
   harvestsInto: {fileID: 0}
+  harvestCount: 0
+  seed: {fileID: 11400000}
+  isVeggie: 0

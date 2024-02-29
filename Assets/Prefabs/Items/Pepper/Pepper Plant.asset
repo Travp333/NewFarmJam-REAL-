@@ -15,12 +15,9 @@ MonoBehaviour:
   me: {fileID: 11400000}
   Objname: Pepper Plant
   stackSize: 1
-  img: {fileID: 21300000, guid: 1810e063680304446b7750fc50fc80ec, type: 3}
+  img: {fileID: 21300000, guid: a3b205ebd42178b4eaa314b7b845ba7b, type: 3}
   worldModel:
   - {fileID: 1982561185896705612, guid: 0dfd7a6eff40a79439845c8866fa051a, type: 3}
-  - {fileID: 1982561185896705612, guid: c464e520bd90e554886cc153429dcafc, type: 3}
-  - {fileID: 1982561185896705612, guid: 0dfd7a6eff40a79439845c8866fa051a, type: 3}
-  - {fileID: 1982561185896705612, guid: c464e520bd90e554886cc153429dcafc, type: 3}
   requiredIngredient: {fileID: 0}
   craftsInto: {fileID: 0}
   growsInto: {fileID: 0}
@@ -28,7 +25,7 @@ MonoBehaviour:
   isSeed: 0
   age: 0
   matureAge: 0
-  harvestsInto: {fileID: 0}
-  harvestCount: 1
-  seed: {fileID: 0}
+  harvestsInto: {fileID: 11400000, guid: 5694718c89bfd5a428d8e553fcf7cf86, type: 2}
+  harvestCount: 4
+  seed: {fileID: 11400000, guid: 8595eab69835e6c469db91a4a453cd69, type: 2}
   isVeggie: 0

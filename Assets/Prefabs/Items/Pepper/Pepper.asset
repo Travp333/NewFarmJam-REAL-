@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79a0295687fa01a4c9b3188f6da3b7d5, type: 3}
+  m_Name: Pepper
+  m_EditorClassIdentifier: 
+  me: {fileID: 11400000}
+  Objname: Pepper
+  stackSize: 99
+  img: {fileID: 21300000, guid: 51505c6149ed2f3449a693db39ccc8ef, type: 3}
+  worldModel:
+  - {fileID: 6911378314323980264, guid: 8c36972550164234eaf93b0f409d9c6c, type: 3}
+  requiredIngredient: {fileID: 0}
+  craftsInto: {fileID: 0}
+  growsInto: {fileID: 0}
+  grabbable: 1
+  isSeed: 0
+  age: 0
+  matureAge: 0
+  harvestsInto: {fileID: 0}
+  harvestCount: 0
+  seed: {fileID: 11400000, guid: 8595eab69835e6c469db91a4a453cd69, type: 2}
+  isVeggie: 1
