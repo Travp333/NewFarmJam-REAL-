@@ -37,6 +37,8 @@ public class pickUpableItem : MonoBehaviour
             for (int i = 0; i < item.harvestCount; i++)
             {
                 GameObject.Find("3rd Person Character").GetComponent<Inven>().SmartPickUp(item.harvestsInto);
+
+                
             }
         }
         

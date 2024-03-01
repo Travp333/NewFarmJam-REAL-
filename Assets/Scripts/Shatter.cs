@@ -74,6 +74,9 @@ public class Shatter : MonoBehaviour
     }
     public void oneShot(float time){
         if (!boomBlocked){
+			if(GameObject.Find("Directional Light").GetComponent<BambooPosRecorder>().spawnedBamboo.Contains(this.gameObject)){
+				GameObject.Find("Directional Light").GetComponent<BambooPosRecorder>().spawnedBamboo.Remove(this.gameObject);
+			}
 	        Invoke("spawnShatter", time);
 			if(GetComponent<pickUpableItem>()!= null){
 				GetComponent<pickUpableItem>().DropMe();

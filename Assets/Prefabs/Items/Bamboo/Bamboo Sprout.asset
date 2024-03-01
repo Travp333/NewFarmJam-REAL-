@@ -23,7 +23,7 @@ MonoBehaviour:
   - {fileID: 1246674325083502988, guid: 14c419c37d11d8043a02d6fdc6fd68c9, type: 3}
   requiredIngredient: {fileID: 0}
   craftsInto: {fileID: 0}
-  growsInto: {fileID: 11400000, guid: 03221ee60d7aedd4dacf53aea57f7ba8, type: 2}
+  growsInto: {fileID: 11400000, guid: 19a7f6b83a1e5814abbb51f801c9ea4f, type: 2}
   grabbable: 0
   isSeed: 0
   age: 0

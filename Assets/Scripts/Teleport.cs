@@ -6,23 +6,16 @@ public class Teleport : MonoBehaviour
 {
 	[SerializeField]
 	Transform destination;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	[SerializeField]
+	bool isHomeTrigger;
 	protected void OnTriggerEnter(Collider other)
 	{
 		if(other.gameObject.tag == "Player"){
-			Debug.Log("TEST");
 			if(other.gameObject.GetComponent<RootReferenceHolder>()!=null){
 				other.gameObject.GetComponent<RootReferenceHolder>().root.transform.position = destination.position;
+			}
+			if(isHomeTrigger){
+				GameObject.Find("Directional Light").GetComponent<BambooPosRecorder>().spawnBamboo();
 			}
 			
 		}
