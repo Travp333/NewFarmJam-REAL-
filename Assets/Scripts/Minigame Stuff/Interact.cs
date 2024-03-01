@@ -132,14 +132,13 @@ public class Interact : MonoBehaviour
 		storageInvOpen = false;
 	}
 	public void FlipCamera(Collider hit, bool flip){
-		if(hit.transform.gameObject.tag != "Player"){
 			if(hit.transform.gameObject.tag == "Plantable"){
 				if(hit.transform.gameObject.GetComponent<Inven>().topDownCam != null){
 					this.GetComponent<PlayerStates>().ThirdPersonCam.enabled = flip;
 					hit.transform.gameObject.GetComponent<Inven>().topDownCam.enabled = !flip;
 				}
 			}
-		}
+		
 	}
     void Update()
 	{
@@ -176,22 +175,40 @@ public class Interact : MonoBehaviour
 	            }
             	//Debug.Log(hit.gameObject.name);
 	            if(hit.transform.gameObject.GetComponent<Inven>() != null){
-		            if(hit.transform.gameObject.tag != "Player"){
-			            FlipCamera(hit, false);
-		            	//Debug.Log("HIT NON PLAYER INVENTORY");
-			            Inven inv = hit.transform.gameObject.GetComponent<Inven>();
-			            //enable the relevant UI element
-			            inv.UIPlugger.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-			            storageInvOpen = true;
-			            //force open the player's inventory
-			            OpenInventory();
-			            //Add distance check here
-			            storageObjectPos = inv.gameObject.transform;
-			            distanceGate = true;
-			            return;
-		            }
-	            }
-            }
+					if (hit.transform.gameObject.tag == "Plantable")
+					{
+						FlipCamera(hit, false);
+						//Debug.Log("HIT NON PLAYER INVENTORY");
+						Inven inv = hit.transform.gameObject.GetComponent<Inven>();
+						//enable the relevant UI element
+						inv.UIPlugger.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+						storageInvOpen = true;
+						//force open the player's inventory
+						OpenInventory();
+						//Add distance check here
+						storageObjectPos = inv.gameObject.transform;
+						distanceGate = true;
+						return;
+					}
+					
+
+
+				}
+				else if (hit.transform.gameObject.tag == "Shop")
+				{
+					Shop shop = hit.transform.gameObject.GetComponent<Shop>();
+					//enable the relevant UI element
+					shop.shopMenu.SetActive(true);
+					
+					//force open the player's inventory
+					OpenInventory();
+					//Add distance check here
+					storageObjectPos = inv.gameObject.transform;
+					distanceGate = true;
+					return;
+				}
+
+			}
         }
         
 	    if(distanceGate){

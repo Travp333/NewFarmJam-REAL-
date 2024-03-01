@@ -7,7 +7,7 @@ public class GameClock : MonoBehaviour, SaveInterface
     [SerializeField] private Light DirectionalLight;
     [SerializeField] private LightPreset preset;
     [SerializeField] public GrowingManager growingManager;
-
+    [SerializeField] TrainSch train;
     
     [SerializeField]
     float gameTimeScale = 3600f; //3600 is 100 gamedays per real hour
@@ -15,10 +15,12 @@ public class GameClock : MonoBehaviour, SaveInterface
     float totalPlayTime = 0f;
     float gameTimeInHours = 0f;
     public int gameHour = 0;
+    
 
 	private void Start()
 	{
         gameTimeScale = gameTimeScale / 3600f; //converts scaling from seconds to hours. 
+        NewHour();
         UpdateLighting();                     //moved from update to save calculations
         
 	}
@@ -31,14 +33,16 @@ public class GameClock : MonoBehaviour, SaveInterface
         //check when an has passed
         if (gameHour - gameHourLastFrame > 0) 
         {
-            NewHour();
+            NewHour(); 
         }
 
         gameHourLastFrame = gameHour;
         UpdateLighting();
 
     }
-
+    public void MidnightHour() {
+        Debug.Log("midnight");
+    }
     public void LoadData(SaveData data) {
         this.gameHour = data.gameHour;
         this.totalPlayTime = data.totalPlayTime;
@@ -53,8 +57,18 @@ public class GameClock : MonoBehaviour, SaveInterface
     public void NewHour() {
         Debug.Log("New Hour: " + gameHour);
         
-        if(growingManager != null)
-        growingManager.GrowStepUpdate();
+        int m = gameHour % 24;
+        if ( m == 0)
+        {
+            MidnightHour();
+        }
+
+        if (growingManager != null)
+            growingManager.GrowStepUpdate();
+
+        if (train != null && train.enabled == false) {
+            train.enabled = true;
+        }
     }
 	private void OnValidate()
 	{
