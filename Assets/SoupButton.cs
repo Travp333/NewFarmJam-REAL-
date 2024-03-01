@@ -10,6 +10,7 @@ public class SoupButton : MonoBehaviour
     Inven playerInventory;
     Inven soupInventory;
     public void SoupClick() {
+        Debug.Log("SFX CRAFT SOUP NOISE");
         
         foreach (Inven i in GameObject.FindObjectsOfType<Inven>())
         {

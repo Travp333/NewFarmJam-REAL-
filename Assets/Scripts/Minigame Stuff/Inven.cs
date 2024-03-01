@@ -154,7 +154,7 @@ public class Inven : MonoBehaviour
 	public void SpecificPickUpAndCount(Item item, int row, int column, int amount){
 		if(array[row,column].Name == ""){
 			//yes empty, filling slot
-			Debug.Log("Slot (" + row + " , "+ column + " ) is empty, putting " + item.Objname + " in slot");
+			//Debug.Log("Slot (" + row + " , "+ column + " ) is empty, putting " + item.Objname + " in slot");
 			isPickedUp = true;
 			//Debug.Log("ispickedup set to "+ isPickedUp);
 			array[row,column].Amount = amount;
@@ -325,7 +325,6 @@ public class Inven : MonoBehaviour
 	}
 	//this drops a specific item that is found using its exact coordinates
 	public void DropSpecificItem(string coords){
-		
 		string [] coords2 = coords.Split(",");
 		int row = int.Parse(coords2[0]);
 		int column = int.Parse(coords2[1]);
@@ -335,7 +334,7 @@ public class Inven : MonoBehaviour
 		if(array[row, column].Amount > 0){
 			//make the button flash grey for a second to give feedback
 			plug.ButtonPress(row, column);
-			Debug.Log("Dropping one " + array[row, column].Name + " from slot (" + row + " , "+ column + " ) , now we have" + (array[row,column].Amount - 1));
+			//Debug.Log("Dropping one " + array[row, column].Name + " from slot (" + row + " , "+ column + " ) , now we have" + (array[row,column].Amount - 1));
 			//deduct one of the items from the stack
 			array[row, column].Amount = array[row, column].Amount - 1;
 			//spawn a prefab with the same info as that item
@@ -353,7 +352,6 @@ public class Inven : MonoBehaviour
             }
             return;
 		}
-		
 	}
 	public void DropWholeStack(string coords){
 		//Debug.Log("Made it to inventory with coords "+ coords);
@@ -374,7 +372,7 @@ public class Inven : MonoBehaviour
 			array[row, column].Amount = 0;
 			//you just dropped the last item in that slot, reverting to default
 			if(array[row, column].Amount <= 0){
-				Debug.Log("Out of " + array[row, column].Name + " in slot (" + row + " , "+ column + " ) , slot now empty ");
+				//Debug.Log("Out of " + array[row, column].Name + " in slot (" + row + " , "+ column + " ) , slot now empty ");
 				plug.ClearSlot(row, column, temp.emptyImage);
 				ClearInfo(row, column);
 				//updating UI to match new change

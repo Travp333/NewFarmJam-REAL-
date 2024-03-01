@@ -39,14 +39,14 @@ public class BambooPosRecorder : MonoBehaviour
             bambooSpawnPositions.Remove(bambooSpawnPositions[0]);
             if(!bambooSpawnPositions.Contains(player.position)){
                 bambooSpawnPositions.Add(player.position);
-                Debug.Log("Overwriting Position!");
+                //Debug.Log("Overwriting Position!");
             }
 
         }
         else{
             if(!bambooSpawnPositions.Contains(player.position)){
                 bambooSpawnPositions.Add(player.position);
-                Debug.Log("Recording Position!");
+                //Debug.Log("Recording Position!");
             }
         }
 

@@ -79,10 +79,14 @@ public class Shatter : MonoBehaviour
 			}
 	        Invoke("spawnShatter", time);
 			if(GetComponent<pickUpableItem>()!= null){
+				
 				GetComponent<pickUpableItem>().DropMe();
 			}
 	        if(GetComponent<SeedGetter>()!= null){
 	        	GetComponent<SeedGetter>().PickUpSeed(seedOdds);
+	        }
+			if(GetComponent<SeedGetter>()!= null && GetComponent<pickUpableItem>() == null){
+	        	Debug.Log("SFX BREAK GRASS NOISE");
 	        }
 
         }

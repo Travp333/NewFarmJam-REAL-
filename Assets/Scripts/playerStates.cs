@@ -50,6 +50,7 @@ public class PlayerStates : MonoBehaviour
 		}
 		if(attackAction.IsPressed() && !move.moveBlocked){
 			//Debug.Log("SWIONG!!");
+			
 			attacking = true;
 		}
 		else{

@@ -98,6 +98,7 @@ public class Interact : MonoBehaviour
 	}
 	//open up the player's Inventory
 	void OpenInventory(){
+		Debug.Log("SFX OPEN INVENTORY NOISE");
 		this.gameObject.GetComponentInChildren<AnimationStateController>().ForceIdle();
 		this.gameObject.GetComponent<Movement>().velocity = Vector3.zero;
 		this.gameObject.GetComponent<Movement>().blockMovement();
@@ -125,7 +126,7 @@ public class Interact : MonoBehaviour
 	
 	//closes out the inventory and all open storage inventories, mostly just inverse of above
 	void CloseInventory(){
-		
+		Debug.Log("SFX CLOSE INVENTORY NOISE");
 		this.gameObject.GetComponent<Movement>().unblockMovement();
 		tempSlot.ClearSlot();
 		Cursor.lockState = CursorLockMode.Locked;
@@ -188,7 +189,7 @@ public class Interact : MonoBehaviour
 		            FlipCamera(hit, true);
 		            return;
 	            }
-            	Debug.Log(hit.gameObject.name);
+            	//Debug.Log(hit.gameObject.name);
 	            if(hit.transform.gameObject.GetComponent<Inven>() != null){
 					if (hit.transform.gameObject.tag == "Plantable" || hit.transform.gameObject.tag == "Cooker" || hit.transform.gameObject.tag == "Chest")
 					{

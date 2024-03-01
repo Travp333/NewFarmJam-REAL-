@@ -30,6 +30,10 @@ public class AnimationStateController : MonoBehaviour
     [Tooltip("how long you need to be in the air before the 'onGround' bool triggers")]
     float OnGroundBuffer = .5f;
     float Groundstopwatch = 0;
+
+    public void PlayFootstepNoise(){
+        Debug.Log("SFX FOOTSTEP NOISE");
+    }
     
 	public void BlockMovement(){
 		sphere.blockMovement();
@@ -151,6 +155,7 @@ public class AnimationStateController : MonoBehaviour
             animator.SetBool(isSwingingHash, true);
             animator.SetLayerWeight(1,1);
             state.macheteHitbox.SetActive(true);
+            Debug.Log("SFX MACHETE SWORD SWING SOUND");
         }
 		if (!isWalking && (movementPressed && WalkPressed) && !sphere.moveBlocked){
 		    animator.SetBool(isWalkingHash, true);

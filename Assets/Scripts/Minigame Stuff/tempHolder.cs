@@ -39,7 +39,6 @@ public class tempHolder : MonoBehaviour
 	public int tempHarvestCount;
 	public Item tempSeed;
 	public bool tempIsVeggie;
-	
 
 	
 	//protected void Update()
@@ -71,8 +70,12 @@ public class tempHolder : MonoBehaviour
 			}
 		}
 	}
+	public void PlayDropItemSoundEffect(){
+		Debug.Log("SFX DROP INVEN ITEM NOISE");
+	}
 	//resets values to defaults, ensures the slot is empty.
 	public void ClearSlot(){
+		
 		foreach(UiPlugger i in GameObject.FindObjectsOfType<UiPlugger>()){
 			if(i.inven == tempInven){
 				i.ButtonDeselected(tempRow, tempColumn);
@@ -120,6 +123,7 @@ public class tempHolder : MonoBehaviour
 		tempIsVeggie = slot.isVeggie;
 	}
 	public void HoldItem(Inven inventoryObject, string coords){
+		Debug.Log("SFX PICK UP INVEN ITEM NOISE");
 		//Debug.Log("running HoldItem()");
 		//store a reference to the Ui script, as we will use it often
 		UiPlugger plug = inventoryObject.UIPlugger.GetComponent<UiPlugger>();
@@ -179,6 +183,7 @@ public class tempHolder : MonoBehaviour
 					//Debug.Log("same object, doing nothing. heres some data " + inventoryObject.array[row, column].Name + ", " + row + ", " + column);
 					//same name, same slot, same object, do nothing, reset
 					//Debug.Log("FUCK#2 "+ tempInven.array[tempRow, tempColumn].Name + ", " + inventoryObject.array[row, column].Name);
+					PlayDropItemSoundEffect();
 					ClearSlot();
 				}
 				
@@ -194,18 +199,19 @@ public class tempHolder : MonoBehaviour
 						inventoryObject.array[row, column].Amount = inventoryObject.array[row, column].StackSize;
 						//update UI
 						plug.UpdateItem(row, column, inventoryObject.array[row, column].Amount);
-						Debug.Log("FUCK#1");
+						//Debug.Log("FUCK#1");
+						PlayDropItemSoundEffect();
 						ClearSlot();
 						
 					}
 					else if(inventoryObject.gameObject.tag == "Player" && inventoryObject.array[row, column].isVeggie == true && tempIsVeggie == true){
-						Debug.Log("Stacking two stacks of Veggies in the player inventory");
+						//Debug.Log("Stacking two stacks of Veggies in the player inventory");
 						//we can simply add the temp slot and second button press together
 						//add the items in temp slot to the second pressed button's slot, clear out original button's slot and temp slot
-						Debug.Log("setting second inventory item( " +inventoryObject.gameObject.name + " ) count to " + tempInven.array[tempRow, tempColumn].Amount+ " + "+ inventoryObject.array[row, column].Amount + " at slot " + row + ", " + column);
+						//Debug.Log("setting second inventory item( " +inventoryObject.gameObject.name + " ) count to " + tempInven.array[tempRow, tempColumn].Amount+ " + "+ inventoryObject.array[row, column].Amount + " at slot " + row + ", " + column);
 						inventoryObject.array[row, column].Amount = tempInven.array[tempRow, tempColumn].Amount + inventoryObject.array[row, column].Amount;
 						plug.UpdateItem(row, column, inventoryObject.array[row, column].Amount);
-						Debug.Log("Dropping first inventory item ( " +tempInven.gameObject.name + " ) at slot " +tempRow.ToString() +", "+ tempColumn.ToString());
+						//Debug.Log("Dropping first inventory item ( " +tempInven.gameObject.name + " ) at slot " +tempRow.ToString() +", "+ tempColumn.ToString());
 						tempPlug.ClearWorldModel(tempRow, tempColumn);
 						tempInven.DropWholeStack(tempRow.ToString() +", "+ tempColumn.ToString());
 						//tempPlug.ClearSlot(tempRow, tempCount, emptyImage);
@@ -215,21 +221,23 @@ public class tempHolder : MonoBehaviour
 						//tempInven.array[tempRow, tempColumn].Amount = 0;
 						//tempInven.array[tempRow, tempColumn].image = emptyImage;
 						//tempPlug.ChangeItem(tempRow,tempColumn, emptyImage, 0, "");
+						PlayDropItemSoundEffect();
 						ClearSlot();
 					}
 					else if(inventoryObject.array[row, column].isVeggie == true && tempIsVeggie == true){
 						//Debug.Log("FUCK>?>>>>?");
+						PlayDropItemSoundEffect();
 						ClearSlot();
 					}
 					
 					else if(inventoryObject.gameObject.tag == "Player" && inventoryObject.array[row, column].isSeed == true && tempIsSeed == true){
-						Debug.Log("Stacking two stacks of seeds in the player inventory");
+						//Debug.Log("Stacking two stacks of seeds in the player inventory");
 						//we can simply add the temp slot and second button press together
 						//add the items in temp slot to the second pressed button's slot, clear out original button's slot and temp slot
-						Debug.Log("setting second inventory item( " +inventoryObject.gameObject.name + " ) count to " + tempInven.array[tempRow, tempColumn].Amount+ " + "+ inventoryObject.array[row, column].Amount + " at slot " + row + ", " + column);
+						//Debug.Log("setting second inventory item( " +inventoryObject.gameObject.name + " ) count to " + tempInven.array[tempRow, tempColumn].Amount+ " + "+ inventoryObject.array[row, column].Amount + " at slot " + row + ", " + column);
 						inventoryObject.array[row, column].Amount = tempInven.array[tempRow, tempColumn].Amount + inventoryObject.array[row, column].Amount;
 						plug.UpdateItem(row, column, inventoryObject.array[row, column].Amount);
-						Debug.Log("Dropping first inventory item ( " +tempInven.gameObject.name + " ) at slot " +tempRow.ToString() +", "+ tempColumn.ToString());
+						//Debug.Log("Dropping first inventory item ( " +tempInven.gameObject.name + " ) at slot " +tempRow.ToString() +", "+ tempColumn.ToString());
 						tempPlug.ClearWorldModel(tempRow, tempColumn);
 						tempInven.DropWholeStack(tempRow.ToString() +", "+ tempColumn.ToString());
 						//tempPlug.ClearSlot(tempRow, tempCount, emptyImage);
@@ -239,16 +247,18 @@ public class tempHolder : MonoBehaviour
 						//tempInven.array[tempRow, tempColumn].Amount = 0;
 						//tempInven.array[tempRow, tempColumn].image = emptyImage;
 						//tempPlug.ChangeItem(tempRow,tempColumn, emptyImage, 0, "");
+						PlayDropItemSoundEffect();
 						ClearSlot();
 					}
 
 					else if(inventoryObject.array[row, column].isSeed == true && tempIsSeed == true){
 						//Debug.Log("FUCK>?>>>>?");
+						PlayDropItemSoundEffect();
 						ClearSlot();
 					}
 					
 					else{
-						Debug.Log("Stacking two stacks of same item type that are NOT two seeds in the planterbox AND are NOT two veggies in the Cooker");
+						//Debug.Log("Stacking two stacks of same item type that are NOT two seeds in the planterbox AND are NOT two veggies in the Cooker");
 						//we can simply add the temp slot and second button press together
 						//add the items in temp slot to the second pressed button's slot, clear out original button's slot and temp slot
 						inventoryObject.array[row, column].Amount = tempInven.array[tempRow, tempColumn].Amount + inventoryObject.array[row, column].Amount;
@@ -257,6 +267,7 @@ public class tempHolder : MonoBehaviour
 						tempInven.array[tempRow, tempColumn].Amount = 0;
 						tempInven.array[tempRow, tempColumn].image = emptyImage;
 						tempPlug.ChangeItem(tempRow,tempColumn, emptyImage, 0, "");
+						PlayDropItemSoundEffect();
 						ClearSlot();
 					}
 				}
@@ -268,7 +279,7 @@ public class tempHolder : MonoBehaviour
 					if(inventoryObject.array[row, column].requiredIngredient != null){
 						if(inventoryObject.array[row, column].requiredIngredient.name == tempName){
 							//crafting two seeds!
-							Debug.Log("Crafting Two Seeds!");
+							//Debug.Log("Crafting Two Seeds!");
 							inventoryObject.array[row, column].Name = tempCraftsInto.name;
 							inventoryObject.array[row, column].Amount = 1;
 							inventoryObject.array[row, column].StackSize = tempCraftsInto.stackSize;
@@ -297,19 +308,20 @@ public class tempHolder : MonoBehaviour
 							else{
 								tempPlug.UpdateItem(tempRow, tempColumn, tempInven.array[tempRow, tempColumn].Amount);
 							}
-		
+							PlayDropItemSoundEffect();
 							ClearSlot();
 						}
 						else{
 							//trying to stack seeds!
-							Debug.Log("Trying to stack seeds");
+							//Debug.Log("Trying to stack seeds");
+							PlayDropItemSoundEffect();
 							ClearSlot();								
 						}
 					}
 				}
 				else if((inventoryObject.gameObject.tag == "Cooker") && (inventoryObject.array[row, column].image.name == "empty") && (tempIsVeggie == true)){
 					//Plant Only One!
-					Debug.Log("Placing a Veggie");
+					//Debug.Log("Placing a Veggie");
 					inventoryObject.array[row, column].Name = tempName;
 					inventoryObject.array[row, column].Amount = 1;
 					inventoryObject.array[row, column].StackSize = tempInven.array[tempRow, tempColumn].StackSize;
@@ -337,7 +349,7 @@ public class tempHolder : MonoBehaviour
 					else{
 						tempPlug.UpdateItem(tempRow, tempColumn, tempInven.array[tempRow, tempColumn].Amount);
 					}
-	
+					PlayDropItemSoundEffect();
 					ClearSlot();
 					//if(tempRequiredIngredient.name == inventoryObject.array[row, column].Name){
 						//PUT STUFF HERE
@@ -345,7 +357,7 @@ public class tempHolder : MonoBehaviour
 				}
 				else if((inventoryObject.gameObject.tag == "Plantable") && (inventoryObject.array[row, column].image.name == "empty") && (tempIsSeed == true)){
 					//Plant Only One!
-					Debug.Log("Placing a Seed");
+					//Debug.Log("Placing a Seed");
 					inventoryObject.array[row, column].Name = tempName;
 					inventoryObject.array[row, column].Amount = 1;
 					inventoryObject.array[row, column].StackSize = tempInven.array[tempRow, tempColumn].StackSize;
@@ -373,7 +385,7 @@ public class tempHolder : MonoBehaviour
 					else{
 						tempPlug.UpdateItem(tempRow, tempColumn, tempInven.array[tempRow, tempColumn].Amount);
 					}
-	
+					PlayDropItemSoundEffect();
 					ClearSlot();
 					//if(tempRequiredIngredient.name == inventoryObject.array[row, column].Name){
 						//PUT STUFF HERE
@@ -386,17 +398,19 @@ public class tempHolder : MonoBehaviour
 					tempInven.DropWholeStack(tempRow.ToString() +", "+ tempColumn.ToString());
 					tempPlug.ClearWorldModel(tempRow, tempColumn);
 					//tempPlug.ClearSlot(tempRow, tempColumn, emptyImage);
+					PlayDropItemSoundEffect();
 					ClearSlot();	
 					
 				}
 				//Debug.Log(tempInven.array[tempRow, tempColumn].requiredIngredient.name +", "0 + tempInven.array[tempRow, tempColumn].Name + ", "+ inventoryObject.array[tempRow, tempColumn].requiredIngredient.name + ", " + )
 				else if((tempRequiredIngredient != null && inventoryObject != null)){
-					Debug.Log("Dropped on real object! " + tempRequiredIngredient.name + " and " +inventoryObject.array[row, column].Name);
+					//Debug.Log("Dropped on real object! " + tempRequiredIngredient.name + " and " +inventoryObject.array[row, column].Name);
 					if(tempRequiredIngredient.name == inventoryObject.array[row, column].Name){
 						//Debug.Log("Matching requirement and name");
 						if(tempCraftsInto != null){
 							if((inventoryObject.array[row, column].requiredIngredient.name == tempInven.array[tempRow, tempColumn].Name || tempInven.array[tempRow, tempColumn].requiredIngredient.name == inventoryObject.array[row, column].Name)&&inventoryObject.gameObject.tag == "Plantable"){
-								Debug.Log("Crafting with something! making " + tempCraftsInto.name);
+								//Debug.Log("Crafting with something! making " + tempCraftsInto.name);
+								Debug.Log("SFX CRAFTING ITEM SOUND");
 								inventoryObject.array[row, column].Name = tempCraftsInto.name;
 								inventoryObject.array[row, column].Amount = 1;
 								inventoryObject.array[row, column].StackSize = tempCraftsInto.stackSize;
@@ -425,7 +439,7 @@ public class tempHolder : MonoBehaviour
 								else{
 									tempPlug.UpdateItem(tempRow, tempColumn, tempInven.array[tempRow, tempColumn].Amount);
 								}
-
+								//PlayDropItemSoundEffect();
 								ClearSlot();
 								//if(tempRequiredIngredient.name == inventoryObject.array[row, column].Name){
 								//PUT STUFF HERE
@@ -439,7 +453,7 @@ public class tempHolder : MonoBehaviour
 							//ClearSlot();
 						}
 						else{
-							Debug.Log("Clearing slot via crafting");	
+							//Debug.Log("Clearing slot via crafting");	
 							//Debug.Log("TempRow+Column" + tempRow + ", " + tempColumn);
 							//Debug.Log("Row+Column" + row + ", " + column);
 							tempInven.DropSpecificItem(tempRow.ToString() +", "+ tempColumn.ToString());
@@ -450,19 +464,22 @@ public class tempHolder : MonoBehaviour
 							}
 							//Debug.Log("TOTAL COUNT SLOT 2: "+ inventoryObject.array[row, column].Name + ", " + inventoryObject.array[row, column].Amount );
 							//Debug.Log("TOTAL COUNT SLOT 1: "+ tempInven.array[tempRow, tempColumn].Name + ", " + inventoryObject.array[tempRow, tempColumn].Amount );
-							Debug.Log("FUCK#5");
+							//Debug.Log("FUCK#5");
+							PlayDropItemSoundEffect();
 							ClearSlot();
 						}
 					
 						
 					}
 					else{
-						Debug.Log("FUCK#4");
+						//Debug.Log("FUCK#4");
+						PlayDropItemSoundEffect();
 						ClearSlot();
 					}
 				}
 				else{
-					Debug.Log("FUCK#3");
+					//Debug.Log("FUCK#3");
+					PlayDropItemSoundEffect();
 					ClearSlot();
 				}
 			}

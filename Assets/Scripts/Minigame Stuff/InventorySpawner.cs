@@ -27,6 +27,7 @@ public class InventorySpawner : MonoBehaviour
 		}
 		foreach(Inven i in GameObject.FindObjectsOfType<Inven>()){
 			if(i.gameObject.tag == "Plantable"){
+				
 				//Debug.Log("SPawning plantable inven");
 				GameObject g = Instantiate(PlantableUIPrefab, this.transform);
 				//Debug.Log("Pluggin Ui Plugger");

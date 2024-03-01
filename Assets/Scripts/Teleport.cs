@@ -12,6 +12,7 @@ public class Teleport : MonoBehaviour
 	{
 		if(other.gameObject.tag == "Player"){
 			if(other.gameObject.GetComponent<RootReferenceHolder>()!=null){
+				Debug.Log("SFX OPEN DOOR NOISE");
 				other.gameObject.GetComponent<RootReferenceHolder>().root.transform.position = destination.position;
 			}
 			if(isHomeTrigger){
