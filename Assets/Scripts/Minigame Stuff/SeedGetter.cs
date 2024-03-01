@@ -17,7 +17,7 @@ public class SeedGetter : MonoBehaviour
     }
 	public void PickUpSeed(int odds){
 		int rando = Random.Range(0, odds);
-		if(rando == 4){
+		if(rando == 0){
 			Item randomSeed = seeds[Random.Range(0, seeds.Length)];
 			GameObject.Find("3rd Person Character").GetComponent<Inven>().SmartPickUp(randomSeed);
 		}

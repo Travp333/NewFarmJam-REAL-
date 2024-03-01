@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour {
 	public GameObject center;
 
 	[SerializeField]
-	GameObject feet;
+	public GameObject feet;
 	//public InputAction jumpAction;
 
 	//reference to the script that controls limits on your movement speed

@@ -190,7 +190,7 @@ public class Interact : MonoBehaviour
 	            }
             	Debug.Log(hit.gameObject.name);
 	            if(hit.transform.gameObject.GetComponent<Inven>() != null){
-					if (hit.transform.gameObject.tag == "Plantable")
+					if (hit.transform.gameObject.tag == "Plantable" || hit.transform.gameObject.tag == "Cooker" || hit.transform.gameObject.tag == "Chest")
 					{
 						FlipCamera(hit, false);
 						//Debug.Log("HIT NON PLAYER INVENTORY");

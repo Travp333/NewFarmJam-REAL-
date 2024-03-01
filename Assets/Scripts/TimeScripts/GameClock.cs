@@ -20,7 +20,7 @@ public class GameClock : MonoBehaviour, SaveInterface
 	private void Start()
 	{
         gameTimeScale = gameTimeScale / 3600f; //converts scaling from seconds to hours. 
-        NewHour();
+        //NewHour();
         UpdateLighting();                     //moved from update to save calculations
         
 	}
@@ -68,6 +68,10 @@ public class GameClock : MonoBehaviour, SaveInterface
 
         if (train != null && train.enabled == false) {
             train.enabled = true;
+        }
+        int bambooTimer = gameHour % GetComponent<BambooPosRecorder>().recordIncrement;
+        if (bambooTimer == 0){
+            GetComponent<BambooPosRecorder>().BambooPosRecord();
         }
     }
 	private void OnValidate()

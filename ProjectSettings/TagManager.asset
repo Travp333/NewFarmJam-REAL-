@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Plantable
   - Cooker
+  - Chest
   layers:
   - Default
   - TransparentFX
