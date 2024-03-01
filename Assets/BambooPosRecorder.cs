@@ -22,9 +22,9 @@ public class BambooPosRecorder : MonoBehaviour
     public void spawnBamboo(){
         if(spawnedBamboo.Count > 0){
             foreach(GameObject b in spawnedBamboo){
-                spawnedBamboo.Remove(b);
                 Destroy(b);
             }
+            spawnedBamboo.Clear();
         }
         if(bambooSpawnPositions.Count > 0){
             foreach ( Vector3 t in bambooSpawnPositions){
