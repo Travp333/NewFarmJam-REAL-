@@ -118,6 +118,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pumpkin plant phase 3 2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 71be709c773471a4a9023721b71fe0c3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -142,6 +147,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7506089359021024473}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 71be709c773471a4a9023721b71fe0c3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1230923826252443328}
   m_SourcePrefab: {fileID: 100100000, guid: 71be709c773471a4a9023721b71fe0c3, type: 3}
 --- !u!1 &6854118050646488606 stripped
 GameObject:
@@ -170,6 +179,7 @@ MonoBehaviour:
   bombBreak: 0
   hasEvent: 0
   paperThin: 0
+  seedOdds: 6
 --- !u!114 &5911901028727151636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,3 +265,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.062311858, y: 0.16486214, z: 0.07142356}
   m_Center: {x: -0.0026891788, y: 0.07452105, z: 0.0024616653}
+--- !u!114 &-1230923826252443328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6854118050646488606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f560075f78cf254eb11b43e5c0261f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seeds:
+  - {fileID: 11400000, guid: 40ac304654dc90449a4ce8c5159d8cee, type: 2}

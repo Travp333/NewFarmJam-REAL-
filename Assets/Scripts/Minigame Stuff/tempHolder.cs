@@ -38,6 +38,7 @@ public class tempHolder : MonoBehaviour
 	public Item tempMe;
 	public int tempHarvestCount;
 	public Item tempSeed;
+	public bool tempIsVeggie;
 	
 
 	
@@ -96,6 +97,7 @@ public class tempHolder : MonoBehaviour
 		tempMe = null;
 		tempHarvestCount = 0;
 		tempSeed = null;
+		tempIsVeggie = false;
 	}
 	public void SetTempToSlot(Inven inventoryObject, int row, int column){
 		tempRow = row; 
@@ -115,6 +117,7 @@ public class tempHolder : MonoBehaviour
 		tempMe = slot.me;
 		tempHarvestCount = slot.harvestCount;
 		tempSeed = slot.seed;
+		tempIsVeggie = slot.isVeggie;
 	}
 	public void HoldItem(Inven inventoryObject, string coords){
 		//Debug.Log("running HoldItem()");
@@ -172,11 +175,13 @@ public class tempHolder : MonoBehaviour
 			//if the temp slot is not null, we know it is holding a valid inventory object. So, we must initiate the swap
 			//if we are swapping two objects with the same name, prepare to stack!
 			if(tempInven.array[tempRow, tempColumn].Name == inventoryObject.array[row, column].Name) {
-				if(row == tempRow && tempColumn == column){
+				if((tempInven.gameObject.name == inventoryObject.gameObject.name)&&(row == tempRow && tempColumn == column)){
 					//Debug.Log("same object, doing nothing. heres some data " + inventoryObject.array[row, column].Name + ", " + row + ", " + column);
 					//same name, same slot, same object, do nothing, reset
+					//Debug.Log("FUCK#2 "+ tempInven.array[tempRow, tempColumn].Name + ", " + inventoryObject.array[row, column].Name);
 					ClearSlot();
 				}
+				
 				else{
 					//Debug.Log("Different slots, same name, merging");
 					//two different slots, but same name. merge stacks
@@ -189,24 +194,37 @@ public class tempHolder : MonoBehaviour
 						inventoryObject.array[row, column].Amount = inventoryObject.array[row, column].StackSize;
 						//update UI
 						plug.UpdateItem(row, column, inventoryObject.array[row, column].Amount);
+						Debug.Log("FUCK#1");
 						ClearSlot();
 						
 					}
+					
 					else if(inventoryObject.gameObject.tag != "Plantable" && inventoryObject.array[row, column].isSeed == true && tempIsSeed == true){
 						Debug.Log("Stacking two stacks of seeds in the player inventory");
 						//we can simply add the temp slot and second button press together
 						//add the items in temp slot to the second pressed button's slot, clear out original button's slot and temp slot
+						Debug.Log("setting second inventory item( " +inventoryObject.gameObject.name + " ) count to " + tempInven.array[tempRow, tempColumn].Amount+ " + "+ inventoryObject.array[row, column].Amount + " at slot " + row + ", " + column);
 						inventoryObject.array[row, column].Amount = tempInven.array[tempRow, tempColumn].Amount + inventoryObject.array[row, column].Amount;
 						plug.UpdateItem(row, column, inventoryObject.array[row, column].Amount);
-						tempInven.DropWholeStack(tempRow.ToString() +", "+ tempColumn.ToString());
-						tempPlug.ClearSlot(tempRow, tempCount, emptyImage);
+						Debug.Log("Dropping first inventory item ( " +tempInven.gameObject.name + " ) at slot " +tempRow.ToString() +", "+ tempColumn.ToString());
 						tempPlug.ClearWorldModel(tempRow, tempColumn);
-						tempInven.array[tempRow, tempColumn].Name = "";
-						tempInven.array[tempRow, tempColumn].Amount = 0;
-						tempInven.array[tempRow, tempColumn].image = emptyImage;
-						tempPlug.ChangeItem(tempRow,tempColumn, emptyImage, 0, "");
+						tempInven.DropWholeStack(tempRow.ToString() +", "+ tempColumn.ToString());
+						//tempPlug.ClearSlot(tempRow, tempCount, emptyImage);
+						
+						
+						//tempInven.array[tempRow, tempColumn].Name = "";
+						//tempInven.array[tempRow, tempColumn].Amount = 0;
+						//tempInven.array[tempRow, tempColumn].image = emptyImage;
+						//tempPlug.ChangeItem(tempRow,tempColumn, emptyImage, 0, "");
 						ClearSlot();
 					}
+
+
+					else if(inventoryObject.array[row, column].isSeed == true && tempIsSeed == true){
+						Debug.Log("FUCK>?>>>>?");
+						ClearSlot();
+					}
+					
 					else{
 						Debug.Log("Stacking two stacks of same item type that are NOT two seeds in the planterbox");
 						//we can simply add the temp slot and second button press together
@@ -245,6 +263,7 @@ public class tempHolder : MonoBehaviour
 							inventoryObject.array[row, column].me = tempCraftsInto.me;
 							inventoryObject.array[row, column].harvestCount = tempCraftsInto.harvestCount;
 							inventoryObject.array[row, column].seed = tempCraftsInto.seed;
+							inventoryObject.array[row, column].isVeggie = tempCraftsInto.isVeggie;
 							plug.ClearWorldModel(row, column);
 							plug.SyncWorldModel(row, column, tempCraftsInto.name, tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length)]);
 							plug.ChangeItem(row,column, tempCraftsInto.img, 1 , tempCraftsInto.name);
@@ -286,6 +305,7 @@ public class tempHolder : MonoBehaviour
 					inventoryObject.array[row, column].me = tempMe;
 					inventoryObject.array[row, column].harvestCount = tempHarvestCount;
 					inventoryObject.array[row, column].seed = tempSeed;
+					inventoryObject.array[row, column].isVeggie = tempIsVeggie;
 					plug.SyncWorldModel(row, column, tempName, tempModel);
 					plug.ChangeItem(row,column, tempImage, 1 , tempName);
 					tempInven.DropSpecificItem(tempRow.ToString() +", "+ tempColumn.ToString());
@@ -303,56 +323,9 @@ public class tempHolder : MonoBehaviour
 					//}
 				}
 				else if(inventoryObject.array[row, column].Name == ""){
-					Debug.Log("Clean swap, swapping with empty slot. Object 1 is "+ tempInven.array[tempRow, tempColumn].Name + " with " + tempInven.array[tempRow, tempColumn].Amount + " remaining in stock, and Object 2 is empty and this is Slot: "+ row + ", " + column);
-					// clean swap, two different objects
-					// we find the inventory slot the tempslot object is pointing to, and set it equal to the second button's data
-					/*
-					tempInven.array[tempRow, tempColumn] = inventoryObject.array[row, column];
-					tempName = inventoryObject.array[row, column].Name;
-					tempImage = inventoryObject.array[row, column].image;
-					tempModel = inventoryObject.array[row, column].worldModel;	
-					tempCraftsInto = inventoryObject.array[row, column].craftsInto;
-					tempGrowsInto = inventoryObject.array[row, column].growsInto;
-					tempRequiredIngredient = inventoryObject.array[row, column].requiredIngredient;
-					tempGrabbable = inventoryObject.array[row, column].grabbable;
-					tempIsSeed = inventoryObject.array[row, column].isSeed;
-					tempHarvestsInto = inventoryObject.array[row, column].harvestsInto;
-					tempAge = inventoryObject.array[row, column].age;
-					tempMatureAge = inventoryObject.array[row, column].matureAge;
-					*/
-					//we then update the Ui to follow suit
-
-					//tempPlug.ChangeItem(tempRow, tempColumn, inventoryObject.array[row, column].image, inventoryObject.array[row, column].Amount, inventoryObject.array[row, column].Name);
-					//then we set the second button equal to the temp slot's data
-
-					//Debug.Log("TESTING  BEFORE !!!" + inventoryObject.array[row, column].Amount + ", " + tempInven.array[tempRow, tempColumn].Amount);
-					//inventoryObject.array[row, column] = slot;
-					//Debug.Log("TESTING  AFTER !!!" + inventoryObject.array[row, column].Amount + ", " + tempInven.array[tempRow, tempColumn].Amount);
-
-					//inventoryObject.array[row, column].Name = slot.Name;
-					//inventoryObject.array[row, column].image = slot.image;
-					//inventoryObject.array[row, column].worldModel = slot.worldModel;
-					//inventoryObject.array[row, column].growsInto = slot.growsInto;
-					//inventoryObject.array[row, column].requiredIngredient = slot.requiredIngredient;
-					//inventoryObject.array[row, column].craftsInto = slot.craftsInto;
-					//inventoryObject.array[row, column].grabbable = slot.grabbable;
-					//inventoryObject.array[row, column].isSeed = slot.isSeed;
-					//inventoryObject.array[row, column].harvestsInto = slot.harvestsInto;
-					//inventoryObject.array[row, column].age = slot.age;
-					//inventoryObject.array[row, column].matureAge = slot.matureAge;
-					//we also have the Ui and worldmodel update
-					//inventoryObject.array[row, column].StackSize = tempInven.array[tempRow, tempColumn].StackSize;
-					//	inventoryObject.array[row, column].Amount = tempInven.array[tempRow, tempColumn].Amount;
-
-					
-
-
-					//Debug.Log("Row = " + row + " Column = " + column);
-					//plug.SyncWorldModel(row, column, tempName, tempModel);
-					//plug.ClearSlot(row, column, emptyImage);
-					//plug.ChangeItem(row,column, tempImage, inventoryObject.array[row, column].Amount, tempName);
+					//Debug.Log("Clean swap, swapping with empty slot. Object 1 is "+ tempInven.array[tempRow, tempColumn].Name + " with " + tempInven.array[tempRow, tempColumn].Amount + " remaining in stock, and Object 2 is empty and this is Slot: "+ row + ", " + column);
 					inventoryObject.SpecificPickUpAndCount(tempMe, row, column, tempInven.array[tempRow, tempColumn].Amount);
-					plug.SyncWorldModel(row, column, tempName, tempModel);
+					//plug.SyncWorldModel(row, column, tempName, tempModel);
 					tempInven.DropWholeStack(tempRow.ToString() +", "+ tempColumn.ToString());
 					tempPlug.ClearWorldModel(tempRow, tempColumn);
 					//tempPlug.ClearSlot(tempRow, tempColumn, emptyImage);
@@ -383,6 +356,7 @@ public class tempHolder : MonoBehaviour
 								inventoryObject.array[row, column].me = tempCraftsInto.me;
 								inventoryObject.array[row, column].harvestCount = tempCraftsInto.harvestCount;
 								inventoryObject.array[row, column].seed = tempCraftsInto.seed;
+								inventoryObject.array[row, column].isVeggie = tempCraftsInto.isVeggie;
 								plug.ClearWorldModel(row, column);
 								plug.SyncWorldModel(row, column, tempCraftsInto.name, tempCraftsInto.worldModel[Random.Range(0,tempCraftsInto.worldModel.Length)]);
 								plug.ChangeItem(row,column, tempCraftsInto.img, 1 , tempCraftsInto.name);
@@ -394,7 +368,7 @@ public class tempHolder : MonoBehaviour
 								else{
 									tempPlug.UpdateItem(tempRow, tempColumn, tempInven.array[tempRow, tempColumn].Amount);
 								}
-	
+
 								ClearSlot();
 								//if(tempRequiredIngredient.name == inventoryObject.array[row, column].Name){
 								//PUT STUFF HERE
@@ -419,16 +393,19 @@ public class tempHolder : MonoBehaviour
 							}
 							//Debug.Log("TOTAL COUNT SLOT 2: "+ inventoryObject.array[row, column].Name + ", " + inventoryObject.array[row, column].Amount );
 							//Debug.Log("TOTAL COUNT SLOT 1: "+ tempInven.array[tempRow, tempColumn].Name + ", " + inventoryObject.array[tempRow, tempColumn].Amount );
+							Debug.Log("FUCK#5");
 							ClearSlot();
 						}
 					
 						
 					}
 					else{
+						Debug.Log("FUCK#4");
 						ClearSlot();
 					}
 				}
 				else{
+					Debug.Log("FUCK#3");
 					ClearSlot();
 				}
 			}

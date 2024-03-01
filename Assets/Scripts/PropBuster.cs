@@ -26,7 +26,7 @@ public class PropBuster : MonoBehaviour
         //}
         
 	    if(other.gameObject.GetComponent<Rigidbody>() != null){
-            Debug.Log("Hit " + other.gameObject.name);
+           // Debug.Log("Hit " + other.gameObject.name);
             if(other.GetComponent<Shatter>()!= null){
                 other.GetComponent<Shatter>().oneShot(0);
             }

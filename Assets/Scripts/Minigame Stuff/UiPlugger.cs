@@ -98,14 +98,14 @@ public class UiPlugger : MonoBehaviour
 		
 		if(worldModel != null){
 			if(sync != null){
-				Debug.Log("WORLD MODEL HERE" + worldModel + "SYNC HERE" + sync.name);
+				//Debug.Log("WORLD MODEL HERE" + worldModel + "SYNC HERE" + sync.name);
 				//Debug.Log("CHANGED WORLD MODEL");
 				sync.UpdateWorldModel(row, column, name, worldModel);
 			}
 		}
 		else{
 			if(sync != null){
-				Debug.Log("SOMETHING SOMETHING?????");
+				//Debug.Log("SOMETHING SOMETHING?????");
 			}
 		}
 	}

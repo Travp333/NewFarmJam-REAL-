@@ -30,6 +30,7 @@ public class ItemStat {
 	public Item me;
     public int harvestCount;
 	public Item seed;
+	public bool isVeggie;
 	
 }
 public class Inven : MonoBehaviour
@@ -148,6 +149,7 @@ public class Inven : MonoBehaviour
 			array[row, column].me = item.me;
 			array[row, column].harvestCount = item.harvestCount;
 			array[row, column].seed = item.seed;
+			array[row, column].isVeggie = item.isVeggie;
 	}
 	public void SpecificPickUpAndCount(Item item, int row, int column, int amount){
 		if(array[row,column].Name == ""){
@@ -373,9 +375,10 @@ public class Inven : MonoBehaviour
 			//you just dropped the last item in that slot, reverting to default
 			if(array[row, column].Amount <= 0){
 				Debug.Log("Out of " + array[row, column].Name + " in slot (" + row + " , "+ column + " ) , slot now empty ");
+				plug.ClearSlot(row, column, temp.emptyImage);
 				ClearInfo(row, column);
 				//updating UI to match new change
-				plug.ClearSlot(row, column, temp.emptyImage);
+				
 			}
 			else{
 				//there are still more of that item in the slot, updating UI to match new change
@@ -403,6 +406,7 @@ public class Inven : MonoBehaviour
 		array[row, column].me = null;
 		array[row, column].harvestCount = 0;
 		array[row, column].seed = null;
+		array[row, column].isVeggie = false;
 	}
 	public void PlantAgeUpdate() {
 		plug = UIPlugger.GetComponent<UiPlugger>();
@@ -429,8 +433,9 @@ public class Inven : MonoBehaviour
 						b.me = item.me;
 						b.harvestCount = item.harvestCount;
 						b.seed = item.seed;
-						Debug.Log(b.Name + " " + b.age);
+						//Debug.Log(b.Name + " " + b.age);
 						b.matureAge = item.matureAge;
+						b.isVeggie = item.isVeggie;
 						if (b.worldModel != null)
 						{
 							plug.ClearWorldModel(b.x, b.y);

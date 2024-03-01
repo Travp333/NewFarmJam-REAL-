@@ -15,17 +15,20 @@ MonoBehaviour:
   me: {fileID: 11400000}
   Objname: Bamboo Sprout
   stackSize: 1
-  img: {fileID: 21300000, guid: 1810e063680304446b7750fc50fc80ec, type: 3}
+  img: {fileID: 21300000, guid: ff9df222587a485418271ff74c4cf901, type: 3}
   worldModel:
-  - {fileID: 1246674325083502988, guid: 841641d591d3bb1498ef286140ca1563, type: 3}
-  - {fileID: 1246674325083502988, guid: 10463a766bd28b9478bfe49852cab36e, type: 3}
-  - {fileID: 1246674325083502988, guid: 48b921a0e4de47747b5c55cbe2f4e427, type: 3}
-  - {fileID: 1246674325083502988, guid: 4484939aa7d43ff42a4b8343e93f8c38, type: 3}
+  - {fileID: 1246674325083502988, guid: 4cb109a06c726734bb45810696ab888d, type: 3}
+  - {fileID: 1246674325083502988, guid: 2b9a296c3949b524bacbe2d11aab8b6a, type: 3}
+  - {fileID: 1246674325083502988, guid: ab5ab1a589da63c40901f05e5b7175f2, type: 3}
+  - {fileID: 1246674325083502988, guid: 14c419c37d11d8043a02d6fdc6fd68c9, type: 3}
   requiredIngredient: {fileID: 0}
   craftsInto: {fileID: 0}
-  growsInto: {fileID: 11400000, guid: 357beffe1e0f5a74987ca5906c2e57fc, type: 2}
+  growsInto: {fileID: 11400000, guid: 03221ee60d7aedd4dacf53aea57f7ba8, type: 2}
   grabbable: 0
   isSeed: 0
   age: 0
   matureAge: 4
   harvestsInto: {fileID: 0}
+  harvestCount: 0
+  seed: {fileID: 11400000, guid: 308542c5be35d044ea4515aa0cf0eebf, type: 2}
+  isVeggie: 0

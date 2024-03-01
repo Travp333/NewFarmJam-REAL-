@@ -55,7 +55,7 @@ public class GameClock : MonoBehaviour, SaveInterface
 
     }
     public void NewHour() {
-        Debug.Log("New Hour: " + gameHour);
+        //Debug.Log("New Hour: " + gameHour);
         
         int m = gameHour % 24;
         if ( m == 0)

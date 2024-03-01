@@ -113,6 +113,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pumpkin
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f337081e2d4e5804391ea76aad72a9f7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -129,10 +134,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6428364416644709213}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f337081e2d4e5804391ea76aad72a9f7,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 547870102934087432}
   m_SourcePrefab: {fileID: 100100000, guid: f337081e2d4e5804391ea76aad72a9f7, type: 3}
 --- !u!1 &9066820640903894633 stripped
 GameObject:
@@ -204,24 +205,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.07016355, y: 0.1754245, z: 0.06328603}
   m_Center: {x: 0.0015691769, y: 0.05119003, z: 0.0075512663}
---- !u!114 &547870102934087432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9066820640903894633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16f86a5e3c3f23645bae0f9e99a54e90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shatterPrefab:
-  - {fileID: 3036581624169874738, guid: 88e956903825d2146b17d91bc45b174f, type: 3}
-  shatterSpawnPos: {fileID: 9066820640903894633}
-  hitPoints: 2
-  breakSpeed: 40
-  throwableBreak: 0
-  bombBreak: 0
-  hasEvent: 0
-  paperThin: 0

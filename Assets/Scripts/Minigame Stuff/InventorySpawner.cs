@@ -5,10 +5,11 @@ using UnityEngine;
 public class InventorySpawner : MonoBehaviour
 {
 	[SerializeField]
+	GameObject CookerUIPrefab;
+	[SerializeField]
 	GameObject PlantableUIPrefab;
-		[SerializeField]
+	[SerializeField]
 	GameObject UIPrefab;
-	
 	GameObject Player;
 	[SerializeField]
 	public tempHolder temp;
@@ -28,6 +29,18 @@ public class InventorySpawner : MonoBehaviour
 			if(i.gameObject.tag == "Plantable"){
 				//Debug.Log("SPawning plantable inven");
 				GameObject g = Instantiate(PlantableUIPrefab, this.transform);
+				//Debug.Log("Pluggin Ui Plugger");
+				i.UIPlugger = g.gameObject;
+				g.GetComponent<UiPlugger>().inven = i;
+				g.GetComponent<UiPlugger>().sync = i.GetComponent<InvenSyncer>();
+				i.jumpStart();
+				g.name = i.gameObject.name + " Inventory";
+				Player.GetComponent<Interact>().HideAllInventories();
+				
+			}
+			else if(i.gameObject.tag == "Cooker"){
+				//Debug.Log("SPawning plantable inven");
+				GameObject g = Instantiate(CookerUIPrefab, this.transform);
 				//Debug.Log("Pluggin Ui Plugger");
 				i.UIPlugger = g.gameObject;
 				g.GetComponent<UiPlugger>().inven = i;

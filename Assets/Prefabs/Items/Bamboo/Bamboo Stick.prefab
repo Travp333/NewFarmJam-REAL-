@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 3248709861579975412}
   - component: {fileID: 6651515916764018307}
   - component: {fileID: 3235125523535640871}
-  - component: {fileID: -3561528915006127209}
   m_Layer: 0
   m_Name: Bamboo Stick
   m_TagString: Untagged
@@ -151,24 +150,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.014896024, y: 0.26620466, z: 0.0149342725}
   m_Center: {x: -0.0021859745, y: 0.1279718, z: 0.003075968}
---- !u!114 &-3561528915006127209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5641501220634067805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16f86a5e3c3f23645bae0f9e99a54e90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shatterPrefab:
-  - {fileID: 3036581624169874738, guid: 1ba7a14ef45062e4fb0ad66803a176c9, type: 3}
-  shatterSpawnPos: {fileID: 5641501220634067805}
-  hitPoints: 2
-  breakSpeed: 40
-  throwableBreak: 0
-  bombBreak: 0
-  hasEvent: 0
-  paperThin: 0

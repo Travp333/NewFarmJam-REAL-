@@ -31,6 +31,8 @@ public class Shatter : MonoBehaviour
 	bool broken;
 	[SerializeField]
 	bool paperThin;
+	[SerializeField]
+	int seedOdds = 6;
 	public void setBoomBlocked(bool plug){
 		
         boomBlocked = plug;
@@ -73,9 +75,12 @@ public class Shatter : MonoBehaviour
     public void oneShot(float time){
         if (!boomBlocked){
 	        Invoke("spawnShatter", time);
-			if(this.gameObject.GetComponent<pickUpableItem>()!= null){
-				this.gameObject.GetComponent<pickUpableItem>().DropMe();
+			if(GetComponent<pickUpableItem>()!= null){
+				GetComponent<pickUpableItem>().DropMe();
 			}
+	        if(GetComponent<SeedGetter>()!= null){
+	        	GetComponent<SeedGetter>().PickUpSeed(seedOdds);
+	        }
 
         }
     }

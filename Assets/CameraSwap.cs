@@ -12,7 +12,7 @@ public class CameraSwap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-	    switchFromCam = GameObject.Find("TopDownCam").GetComponent<Camera>();
+	    switchFromCam = GameObject.Find("TopDownCam").GetComponent<ActiveCameraTracker>().activeCamera;
 	    player = GameObject.Find("3rd Person Character").GetComponent<Movement>();
 	    rotationPointer = GameObject.Find("RotationPointer").GetComponent<RotationPointer>();
     }
@@ -24,6 +24,8 @@ public class CameraSwap : MonoBehaviour
 			switchToCam.GetComponent<AudioListener>().enabled = true;
 			switchFromCam.enabled = false;
 			switchFromCam.GetComponent<AudioListener>().enabled = false;
+			switchFromCam = GameObject.Find("TopDownCam").GetComponent<ActiveCameraTracker>().activeCamera;
+			GameObject.Find("TopDownCam").GetComponent<ActiveCameraTracker>().activeCamera = switchToCam;
 			player.playerInputSpace = switchToCam.transform;
 			rotationPointer.playerinputSpace = switchToCam.transform;
 		}
@@ -31,17 +33,14 @@ public class CameraSwap : MonoBehaviour
 	protected void OnTriggerExit(Collider other)
 	{
 		if(other.gameObject.tag == "Player"){
+			
 			switchToCam.enabled = false;
 			switchToCam.GetComponent<AudioListener>().enabled = false;
 			switchFromCam.enabled = true;
 			switchFromCam.GetComponent<AudioListener>().enabled = true;
 			player.playerInputSpace = switchFromCam.transform;
 			rotationPointer.playerinputSpace = switchFromCam.transform;
+			GameObject.Find("TopDownCam").GetComponent<ActiveCameraTracker>().activeCamera = switchFromCam;
 		}
 	}
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
