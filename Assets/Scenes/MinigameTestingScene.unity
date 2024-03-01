@@ -17482,11 +17482,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3ae2df7062322b449dc498e82e4e49b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxBamboos: 100
   Bamboos:
   - {fileID: 1246674325083502988, guid: e0d709e094406fc4fbae18f5c73d014f, type: 3}
   - {fileID: 1246674325083502988, guid: ad66f53499240fa4cb795bb194957e28, type: 3}
   recordIncrement: 1
   player: {fileID: 0}
+  spawnedBamboo: []
+  maxDistance: 5
 --- !u!4 &411923357 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 735363220334402062, guid: c3b6255e8b4379745a5ef514c75093e2,
@@ -39815,6 +39818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 1866434515}
+  isHomeTrigger: 1
 --- !u!1001 &1049422431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55263,6 +55267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 43428572}
+  isHomeTrigger: 0
 --- !u!65 &1489512607
 BoxCollider:
   m_ObjectHideFlags: 0
