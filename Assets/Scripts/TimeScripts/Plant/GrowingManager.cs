@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrowingManager : MonoBehaviour, SaveInterface
+public class GrowingManager : MonoBehaviour
 {
     List<Inven> plants;
     [SerializeField]
@@ -26,7 +26,7 @@ public class GrowingManager : MonoBehaviour, SaveInterface
         plants.Clear();
         foreach (Inven i in GameObject.FindObjectsOfType<Inven>())
         {
-            if (i.gameObject.tag == "Plantable")
+            if (i.gameObject.CompareTag("Plantable") && !plants.Contains(i))
             {
                 plants.Add(i);
             }
@@ -41,12 +41,5 @@ public class GrowingManager : MonoBehaviour, SaveInterface
             
         
     
-    public void LoadData(SaveData s) {
-        //this.plants = s.plants;
-    }
-    public void SaveData(ref SaveData s)
-    {
-        //s.plants = this.plants;
-    }
     
 }

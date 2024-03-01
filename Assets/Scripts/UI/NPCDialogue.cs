@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class NPCDialogue : MonoBehaviour
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/NPCDialogue", order = 1)]
+public class NPCDialogue : ScriptableObject
 {
-    public AltDialogue introDialogue;
-    public AltDialogue hubWorldDialogue;
-    public AltDialogue enteredWorld1Dialgue;
-    public AltDialogue enteredWorld2Dialgue;
-    public AltDialogue enteredWorld1and2Dialgue;
-    public AltDialogue preBossFightDialogue;
-    public GameObject dialogueBox;
+    [SerializeField]
+    public AltDialogue[] lines;
+    
+   
+    
 
 }

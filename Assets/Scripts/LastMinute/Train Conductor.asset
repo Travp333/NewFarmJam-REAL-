@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7f526eae7735848bdb51fd5a5c9f19, type: 3}
+  m_Name: Train Conductor
+  m_EditorClassIdentifier: 
+  lines:
+  - name: 'Conductor '
+    sentences:
+    - 'Clearly you hold nothing of value.
+
+
+      I offer nothing in exchange for
+      nothing.'
+  - name: Conductor
+    sentences:
+    - 'Is that Gravy? Do you know that the world runs on gravy?
+
+'
+    - "Even a crude veggie gravy such as this leaves little to be desired. \n\n \n\n"
+    - I will certainly return for more of your delicious swill.
+    - "This farmer's cure will free your soil, apply it to blighted plots and bump
+      up production.\n \n\n"

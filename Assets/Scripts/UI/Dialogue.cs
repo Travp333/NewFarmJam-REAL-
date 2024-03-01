@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/*
+using TMPro;
+
 public class Dialogue : MonoBehaviour
 {
     [SerializeField]
-    public TextMeshProGUI textComponent;
+    public TextMeshProUGUI textComponent;
     [SerializeField]
     public GameObject diagBackground;
+
+    [SerializeField]
+    NPCDialogue npcLines;
 
     public string[] lines;
 
@@ -19,20 +23,20 @@ public class Dialogue : MonoBehaviour
     private GameObject diagBoxGameObject;
 
     [SerializeField]
-    private PlayerInteraction playerInteration;
+    private Interact playerInteration;
 
     
    private void Start()
     {
         textComponent.text = string.Empty;
         Hide();
+        
     }
 
 
-    private void Update()
+    public void DialogueUpdate()
     {
-        if (GetKeydown(KeyCode.F))
-        {
+        
             Show();
 
             if (textComponent.text == lines[index])
@@ -45,12 +49,14 @@ public class Dialogue : MonoBehaviour
                 textComponent.text = lines[index];
                 Hide();
             }
-        }
+        
     }
 
     public void StartDialogue()
     {
         index = 0;
+
+        lines = npcLines.lines[0].sentences;
         StartCoroutine(TypeLine());
     }
 
@@ -86,7 +92,6 @@ public class Dialogue : MonoBehaviour
     private void Hide()
     {
         diagBackground.SetActive(false);
-        texstComponent.gameObject.SetActive(false);
+        textComponent.gameObject.SetActive(false);
     }
 }
-*/
