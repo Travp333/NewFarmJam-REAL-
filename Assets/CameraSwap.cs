@@ -38,8 +38,8 @@ public class CameraSwap : MonoBehaviour
 			switchToCam.GetComponent<AudioListener>().enabled = false;
 			switchFromCam.enabled = true;
 			switchFromCam.GetComponent<AudioListener>().enabled = true;
-			player.playerInputSpace = switchFromCam.transform;
-			rotationPointer.playerinputSpace = switchFromCam.transform;
+			player.playerInputSpace = GameObject.Find("TopDownCam").GetComponent<ActiveCameraTracker>().activeCamera.transform;
+			rotationPointer.playerinputSpace = GameObject.Find("TopDownCam").GetComponent<ActiveCameraTracker>().activeCamera.transform;
 			GameObject.Find("TopDownCam").GetComponent<ActiveCameraTracker>().activeCamera = switchFromCam;
 		}
 	}

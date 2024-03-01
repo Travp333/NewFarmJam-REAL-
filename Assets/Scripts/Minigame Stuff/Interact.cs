@@ -152,6 +152,7 @@ public class Interact : MonoBehaviour
 
 				}
 			}
+		}
 		
 	}
     void Update()
