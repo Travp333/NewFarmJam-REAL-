@@ -48,6 +48,13 @@ public class Interact : MonoBehaviour
 	[Tooltip("How wide the sphere is that is cast from the player when hitting e")]
 	float sphereCastRadius = .5f;
 	PlayerStates states;
+
+	public Dialogue tempDialogue;
+	bool dialogueIsOpen = false;
+	[SerializeField]
+	Item cure;
+	[SerializeField]
+	Item[] seeds;
     void Start()
 	{
 		states = GetComponent<PlayerStates>();
@@ -156,79 +163,139 @@ public class Interact : MonoBehaviour
 		}
 		
 	}
-    void Update()
+	public void OpenDialogue() {
+		this.gameObject.GetComponentInChildren<AnimationStateController>().ForceIdle();
+		this.gameObject.GetComponent<Movement>().velocity = Vector3.zero;
+		this.gameObject.GetComponent<Movement>().blockMovement();
+		dialogueIsOpen = true;
+	}
+	public void CloseDialogue() {
+		this.gameObject.GetComponent<Movement>().unblockMovement();
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+		tempDialogue = null;
+		Debug.Log("Dialog Closed");
+		dialogueIsOpen = false;
+	}
+	void Update()
 	{
-    	//inventory is not open
-        if (openMenuAction.WasPressedThisFrame())
-        {
-        	if(invIsOpen){
-        		CloseInventory();
-        		HideAllInventories();
-	        	Collider[] colliders = Physics.OverlapSphere(this.transform.position, sphereCastRadius);
-	        	foreach (Collider hit in colliders)
-	        	{
-	        		if(hit.transform.gameObject.GetComponent<Inven>() != null){
-	        			FlipCamera(hit, true);
-	        		}
-	        		
-	        	}
-        	}
-        	else{
-        		OpenInventory();
-        	}
-            
-        }
-        if (interactAction.WasPressedThisFrame())
-        {
-	        Collider[] colliders = Physics.OverlapSphere(this.transform.position, sphereCastRadius, intMask);
-            foreach (Collider hit in colliders)
-            {
-	            if (invIsOpen)
-	            {
-		            CloseInventory();
-		            FlipCamera(hit, true);
-		            return;
-	            }
-            	//Debug.Log(hit.gameObject.name);
-	            if(hit.transform.gameObject.GetComponent<Inven>() != null){
-					if (hit.transform.gameObject.tag == "Plantable" || hit.transform.gameObject.tag == "Cooker" || hit.transform.gameObject.tag == "Chest")
+		//inventory is not open
+		if (openMenuAction.WasPressedThisFrame())
+		{
+			if (invIsOpen)
+			{
+				CloseInventory();
+				HideAllInventories();
+				Collider[] colliders = Physics.OverlapSphere(this.transform.position, sphereCastRadius);
+				foreach (Collider hit in colliders)
+				{
+					if (hit.transform.gameObject.GetComponent<Inven>() != null)
 					{
-						FlipCamera(hit, false);
-						//Debug.Log("HIT NON PLAYER INVENTORY");
-						Inven inv = hit.transform.gameObject.GetComponent<Inven>();
-						//enable the relevant UI element
-						inv.UIPlugger.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-						storageInvOpen = true;
-						//force open the player's inventory
-						OpenInventory();
-						//Add distance check here
-						storageObjectPos = inv.gameObject.transform;
-						distanceGate = true;
-						return;
+						FlipCamera(hit, true);
 					}
-					
-
 
 				}
-				else if (hit.transform.gameObject.tag == "Shop")
+			}
+			else
+			{
+				OpenInventory();
+			}
+
+		}
+		if (interactAction.WasPressedThisFrame())
+		{
+			if (dialogueIsOpen && tempDialogue != null)
+			{
+				tempDialogue.ContinueDialogue();
+
+				return;
+			}
+			Collider[] colliders = Physics.OverlapSphere(this.transform.position, sphereCastRadius, intMask);
+			foreach (Collider hit in colliders)
+			{
+				if (invIsOpen)
 				{
-					Shop shop = hit.transform.gameObject.GetComponent<Shop>();
-					//enable the relevant UI element
-					shop.shopMenu.SetActive(true);
-					
-					//force open the player's inventory
-					OpenInventory();
-					//Add distance check here
-					storageObjectPos = inv.gameObject.transform;
-					distanceGate = true;
+					CloseInventory();
+					FlipCamera(hit, true);
 					return;
 				}
 
+				if (hit.transform.gameObject.GetComponent<Dialogue>() != null && !dialogueIsOpen)
+				{
+					OpenDialogue();
+					tempDialogue = hit.transform.gameObject.GetComponent<Dialogue>();
+					tempDialogue.input = this;
+					//gravy check
+					if (hit.transform.gameObject.CompareTag("Conductor"))
+					{
+						int foundGravy = 0;
+						for (int i = 0; i < inv.vSize; i++)
+						{
+							for (int i2 = 0; i2 < inv.hSize; i2++)
+							{
+								if (inv.array[i, i2].Name == "Gravy")
+								{
+									foundGravy = inv.array[i, i2].Amount;
+									for (int j = 0; j < foundGravy; j++)
+									{
+										inv.DropSpecificItem(new string(i + "," + i2));
+										inv.SmartPickUp(cure);
+									}
+								}
+							}
+						}
+						if (foundGravy > 0)
+						{
+							tempDialogue.useAltLines = true;
+						}
+						else
+							tempDialogue.useAltLines = false;
+						foreach (Item i in seeds)
+						{
+							if (Random.Range(0, 9) == 0)
+							{
+								inv.SmartPickUp(i);
+							}
+						}
+						tempDialogue.StartDialogue();
+						Debug.Log("Found Dialogue");
+
+
+						return;
+					}
+				}
+					//Debug.Log(hit.gameObject.name);
+					if (hit.transform.gameObject.GetComponent<Inven>() != null)
+					{
+						if (hit.transform.gameObject.tag == "Plantable" || hit.transform.gameObject.tag == "Cooker" || hit.transform.gameObject.tag == "Chest")
+						{
+							Debug.Log("Found Inventory");
+							FlipCamera(hit, false);
+							//Debug.Log("HIT NON PLAYER INVENTORY");
+							Inven inv = hit.transform.gameObject.GetComponent<Inven>();
+							//enable the relevant UI element
+							inv.UIPlugger.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+							storageInvOpen = true;
+							//force open the player's inventory
+							OpenInventory();
+							//Add distance check here
+							storageObjectPos = inv.gameObject.transform;
+							distanceGate = true;
+							return;
+						}
+
+
+
+					}
+
+
+				}
 			}
-        }
-        
-	    if(distanceGate){
-	    	DistanceCheck();
-	    }
-    }
+
+			if (distanceGate)
+			{
+				DistanceCheck();
+			}
+		
+	}
 }

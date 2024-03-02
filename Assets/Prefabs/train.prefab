@@ -1,5 +1,89 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1020048320276296644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4993034720268793195}
+  - component: {fileID: 378901444051153124}
+  - component: {fileID: 3125053854327272563}
+  - component: {fileID: 6982169922483386444}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4993034720268793195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020048320276296644}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.021798858, z: -0, w: 0.9997624}
+  m_LocalPosition: {x: -1.008, y: 0.598, z: 0.093}
+  m_LocalScale: {x: 0.6912948, y: 0.69129485, z: 0.6912948}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5331439710465680738}
+  m_LocalEulerAnglesHint: {x: 0, y: 2.498, z: 0}
+--- !u!33 &378901444051153124
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020048320276296644}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &3125053854327272563
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020048320276296644}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.306686, z: 1.2212074}
+  m_Center: {x: 0.0000005328155, y: 0.15334295, z: 0.11060347}
+--- !u!114 &6982169922483386444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020048320276296644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c8489bcd602fc4e806d583bb16b74f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 0}
+  lines:
+  - You clearly have nothing of value.
+  altLines:
+  - Is that Gravy?
+  useAltLines: 0
+  textSpeed: 1
+  bgPanel: {fileID: 0}
+  input: {fileID: 0}
 --- !u!1001 &5654178442552967817
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90,7 +174,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: e4edbd53e53cb7b499bbbdb9cdda5495, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 76c9a2a98e0404143a7e2a43d9c33db5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4993034720268793195}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 76c9a2a98e0404143a7e2a43d9c33db5,
         type: 3}
@@ -183,3 +271,11 @@ MonoBehaviour:
   lengthOfStay: 6
   arrivalOffset: 12
   clock: {fileID: 0}
+  arriveAnimComplete: 0
+  departAnimComplete: 0
+--- !u!4 &5331439710465680738 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 76c9a2a98e0404143a7e2a43d9c33db5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5654178442552967817}
+  m_PrefabAsset: {fileID: 0}

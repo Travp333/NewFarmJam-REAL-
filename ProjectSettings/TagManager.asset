@@ -7,6 +7,7 @@ TagManager:
   - Plantable
   - Cooker
   - Chest
+  - Conductor
   layers:
   - Default
   - TransparentFX
